@@ -1,9 +1,9 @@
 package projetomecanica;
 
 import java.util.List;
-import projetomecanica.modelos.Cliente;
-import projetomecanica.modelos.dao.ClienteDAO;
-import projetomecanica.modelos.dao.IClienteDAO;
+import projetomecanica.entidades.Cliente;
+import projetomecanica.entidades.dao.ClienteDAO;
+import projetomecanica.entidades.dao.IClienteDAO;
 
 public class ProjetoMecanica {
     

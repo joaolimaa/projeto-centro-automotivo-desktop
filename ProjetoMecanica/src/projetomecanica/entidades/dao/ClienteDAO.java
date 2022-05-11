@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetomecanica.modelos.dao;
+package projetomecanica.entidades.dao;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,13 +11,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
-import projetomecanica.modelos.Cliente;
+import projetomecanica.entidades.Cliente;
 
 /**
  *
  * @author leona
  */
-public class ClienteDAO implements IClienteDAO{
+public class ClienteDAO implements DaoGenerico<Cliente>{
     
     private String nomeDoArquivoNoDisco = "Cliente.txt";
 
@@ -49,19 +49,10 @@ public class ClienteDAO implements IClienteDAO{
 
     @Override
     public void alterar(Cliente objeto) throws Exception {
-        //apagar
-        ArrayList<Cliente> lista = obterClientes();
-        //apagar
-        lista.forEach(item -> System.out.println(item));
         
-        int id = consultar(objeto.getId()).getId();
-        //apagar
-        System.out.println("Consultar:" + consultar(objeto.getId()) + "\n");
-        System.out.println("Consultar id:" + id + "\n");
+        int id = objeto.getId();
         
         excluir(id);
-        //apagar
-        lista.forEach(item -> System.out.println(item));
         
         try {
             
@@ -78,11 +69,6 @@ public class ClienteDAO implements IClienteDAO{
         } catch (Exception erro) {
             throw erro;
         }
-        
-        //apagar
-        lista = obterClientes();
-        //apagar
-        lista.forEach(item -> System.out.println(item));
         
     }
 
@@ -136,7 +122,7 @@ public class ClienteDAO implements IClienteDAO{
         
         try {
             
-            ArrayList<Cliente> listaDeClientes = obterClientes();
+            ArrayList<Cliente> listaDeClientes = obterEntidades();
             
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
             
@@ -155,7 +141,7 @@ public class ClienteDAO implements IClienteDAO{
     }
 
     @Override
-    public ArrayList<Cliente> obterClientes() throws Exception {
+    public ArrayList<Cliente> obterEntidades() throws Exception {
         
         try {
             

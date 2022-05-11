@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetomecanica.modelos.dao;
+package projetomecanica.entidades.dao;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -37,16 +37,5 @@ public class GeradorIdentificador {
         bw.close();	
         return id;
     }
-    /*public void finalize() throws IOException{
-         //cria o arquivo
-         FileWriter fw = new FileWriter(nomeDoArquivo,false);
-         //Criar o buffer do arquivo
-         BufferedWriter bw =new BufferedWriter(fw);
-         //Escreve no arquivo
-         String saida = id+"";
-         bw.write(saida);
-         //fecha o arquivo
-         bw.close();		
-    }*/
     
 }
