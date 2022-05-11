@@ -166,17 +166,18 @@ public class Logo extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabelQuadro.setBackground(new java.awt.Color(255, 255, 255));
         jLabelQuadro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelQuadro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255), 4));
+        jLabelQuadro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255), 0));
 
-        jButton1.setText("jButton1");
+        jButton1.setText("EXECUTAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jComboBoxMarcas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Chevrolet", "Fiat", "Ford", "Honda", "Hyundai", "Kia", "Mitsubishi", "Peugeot", "Renault", "Toyota", "Volkswagen", "Volvo", " " }));
+        jComboBoxMarcas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Chevrolet", "Fiat", "Ford", "Honda", "Hyundai", "Kia", "Mitsubishi", "Peugeot", "Renault", "Toyota", "Volkswagen", "Volvo" }));
         jComboBoxMarcas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxMarcasActionPerformed(evt);
@@ -194,7 +195,7 @@ public class Logo extends javax.swing.JFrame {
                 .addComponent(jComboBoxMarcas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(572, 572, 572))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(66, 66, 66)
                 .addComponent(jLabelQuadro, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -205,9 +206,9 @@ public class Logo extends javax.swing.JFrame {
                 .addComponent(jLabelQuadro, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jComboBoxMarcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jComboBoxMarcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(413, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(8, 83, 148));

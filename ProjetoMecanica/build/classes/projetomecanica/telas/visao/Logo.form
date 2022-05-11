@@ -165,7 +165,7 @@
                   <EmptySpace min="-2" pref="572" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                   <Component id="jLabelQuadro" min="-2" pref="97" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -178,10 +178,10 @@
                   <Component id="jLabelQuadro" min="-2" pref="91" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jComboBoxMarcas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="413" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -189,10 +189,13 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabelQuadro">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder thickness="4">
+                <LineBorder thickness="0">
                   <Color PropertyName="color" blue="ff" green="0" red="0" type="rgb"/>
                 </LineBorder>
               </Border>
@@ -201,7 +204,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
+            <Property name="text" type="java.lang.String" value="EXECUTAR"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -210,7 +213,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxMarcas">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="14">
+              <StringArray count="13">
                 <StringItem index="0" value=" "/>
                 <StringItem index="1" value="Chevrolet"/>
                 <StringItem index="2" value="Fiat"/>
@@ -224,7 +227,6 @@
                 <StringItem index="10" value="Toyota"/>
                 <StringItem index="11" value="Volkswagen"/>
                 <StringItem index="12" value="Volvo"/>
-                <StringItem index="13" value=" "/>
               </StringArray>
             </Property>
           </Properties>
