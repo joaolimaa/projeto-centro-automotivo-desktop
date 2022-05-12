@@ -5,20 +5,24 @@ import projetomecanica.entidades.enums.TipoVeiculo;
 public class Veiculo {
     
     private int id;
-    private String placa;
+    private String placa = "";
     private Modelo modelo;
-    private String renavam;
-    private int anoModelo;
-    private int anoFabricacao;
+    private String renavam = "";
+    private int anoModelo = 0;
+    private int anoFabricacao = 0;
     private TipoVeiculo tipo;
+    private int idCliente;
+    
+    public Veiculo() {}
 
-    public Veiculo( String placa, Modelo modelo, String renavam, int anoModelo, int anoFabricacao, TipoVeiculo tipo) {
+    public Veiculo(String placa, Modelo modelo, String renavam, int anoModelo, int anoFabricacao, TipoVeiculo tipo, int idCliente) {
         this.placa = placa;
         this.modelo = modelo;
         this.renavam = renavam;
         this.anoModelo = anoModelo;
         this.anoFabricacao = anoFabricacao;
         this.tipo = tipo;
+        this.idCliente = idCliente;
     }
 
     public int getId() {
@@ -76,5 +80,15 @@ public class Veiculo {
     public void setTipo(TipoVeiculo tipo) {
         this.tipo = tipo;
     }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    
     
 }

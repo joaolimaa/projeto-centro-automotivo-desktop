@@ -2,6 +2,7 @@ package projetomecanica;
 
 import java.util.List;
 import projetomecanica.entidades.Cliente;
+import projetomecanica.entidades.Telefone;
 import projetomecanica.entidades.dao.ClienteDAO;
 import projetomecanica.entidades.dao.IClienteDAO;
 
@@ -9,7 +10,7 @@ public class ProjetoMecanica {
     
     public static void main(String[] args) throws Exception {
             
-        Cliente cliente = new Cliente("Eduardo", 999689312, "eduardo@.com", "rua R17");
+        Cliente cliente = new Cliente("Alterado", 999689312, "eduardo@.com", "rua R17");
         
         IClienteDAO dao = new ClienteDAO();
         

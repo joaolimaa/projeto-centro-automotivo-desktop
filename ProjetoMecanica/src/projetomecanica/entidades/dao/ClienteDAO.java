@@ -17,7 +17,7 @@ import projetomecanica.entidades.Cliente;
  *
  * @author leona
  */
-public class ClienteDAO implements DaoGenerico<Cliente>{
+public class ClienteDAO implements IDaoGenerico<Cliente>{
     
     private String nomeDoArquivoNoDisco = "Cliente.txt";
 
@@ -50,13 +50,11 @@ public class ClienteDAO implements DaoGenerico<Cliente>{
     @Override
     public void alterar(Cliente objeto) throws Exception {
         
-        int id = objeto.getId();
-        
-        excluir(id);
+        this.excluir(objeto.getId());
         
         try {
             
-            objeto.setId(id);
+            objeto.setId(objeto.getId());
             
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco, true);
             

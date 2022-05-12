@@ -2,7 +2,7 @@ package projetomecanica.entidades.dao;
 
 import java.util.ArrayList;
 
-public interface DaoGenerico<Tipo> {
+public interface IDaoGenerico<Tipo> {
     
     void incluir (Tipo objeto) throws Exception;
     

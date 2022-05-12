@@ -2,6 +2,7 @@ package projetomecanica.entidades;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import projetomecanica.entidades.enums.Status;
 import projetomecanica.entidades.enums.TipoColaborador;
 
 class Colaborador {
@@ -12,22 +13,12 @@ class Colaborador {
     private String email;
     private Endereco endereco;
     private LocalDate dataNascimento;
-    private float salarioBase;
-    private float valorHora;
-    private TipoColaborador tipo;
+    private float salarioBase = 0;
+    private float valorHora = 0;
+    private TipoColaborador tipo = TipoColaborador.ATENDENTE;
+    private Status status = Status.ATIVO;
     
     public Colaborador() {}
-
-    public Colaborador(String nomeCompleto, ArrayList<Telefone> telefones, String email, Endereco endereco, LocalDate dataNascimento, float salarioBase, float valorHora, TipoColaborador tipo) {
-        this.nomeCompleto = nomeCompleto;
-        this.telefones = telefones;
-        this.email = email;
-        this.endereco = endereco;
-        this.dataNascimento = dataNascimento;
-        this.salarioBase = salarioBase;
-        this.valorHora = valorHora;
-        this.tipo = tipo;
-    }
 
     public int getId() {
         return id;
