@@ -1,34 +1,38 @@
 package projetomecanica.entidades;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
+import projetomecanica.entidades.enums.StatusPessoa;
 import projetomecanica.entidades.enums.TipoDeCliente;
+import projetomecanica.servicos.Utils;
 
 public class Cliente {
     
     private int id = 0;
-    private String nomeCompleto;
-    private ArrayList<Telefone> telefones;
-    private String email;
-    private Endereco endereco;
-    private TipoDeCliente tipo;
-    private String cpf_cnpj;
-    private String razaoSocial;
-    private LocalDate dataNascimento;
-    private Veiculo veiculo;
+    private String nomeCompleto = "";
+    private Telefone telefone1 = new Telefone();
+    private Telefone telefone2 = new Telefone();
+    private Telefone telefone3 = new Telefone();
+    private String email = "";
+    private Endereco endereco = new Endereco();
+    private TipoDeCliente tipo = TipoDeCliente.PESSOA_FISICA;
+    private String cpf_cnpj = "";
+    private String razaoSocial = "";
+    private String dataNascimento = "";
+    private StatusPessoa status = StatusPessoa.ATIVO;
 
     public Cliente() {}
 
-    public Cliente(String nomeCompleto, ArrayList<Telefone> telefones, String email, Endereco endereco, TipoDeCliente tipo, String cpf_cnpj, String razaoSocial, LocalDate dataNascimento, Veiculo veiculo) {
+    public Cliente(String nomeCompleto, Telefone telefone1, Telefone telefone2, Telefone telefone3, String email, Endereco endereco, TipoDeCliente tipo, String cpf_cnpj, String razaoSocial, String dataNascimento, StatusPessoa status) {
         this.nomeCompleto = nomeCompleto;
-        this.telefones = telefones;
+        this.telefone1 = telefone1;
+        this.telefone2 = telefone2;
+        this.telefone3 = telefone3;
         this.email = email;
         this.endereco = endereco;
         this.tipo = tipo;
         this.cpf_cnpj = cpf_cnpj;
         this.razaoSocial = razaoSocial;
         this.dataNascimento = dataNascimento;
-        this.veiculo = veiculo;
+        this.status = status;
     }
 
     public int getId() {
@@ -47,12 +51,28 @@ public class Cliente {
         this.nomeCompleto = nomeCompleto;
     }
 
-    public ArrayList<Telefone> getTelefones() {
-        return telefones;
+    public Telefone getTelefone1() {
+        return telefone1;
     }
 
-    public void setTelefones(ArrayList<Telefone> telefones) {
-        this.telefones = telefones;
+    public void setTelefone1(Telefone telefone1) {
+        this.telefone1 = telefone1;
+    }
+
+    public Telefone getTelefone2() {
+        return telefone2;
+    }
+
+    public void setTelefone2(Telefone telefone2) {
+        this.telefone2 = telefone2;
+    }
+
+    public Telefone getTelefone3() {
+        return telefone3;
+    }
+
+    public void setTelefone3(Telefone telefone3) {
+        this.telefone3 = telefone3;
     }
 
     public String getEmail() {
@@ -83,7 +103,8 @@ public class Cliente {
         return cpf_cnpj;
     }
 
-    public void setCpf_cnpj(String cpf_cnpj) {
+    public void setCpf_cnpj(String cpf_cnpj) throws Exception {
+        if (!Utils.isCPF(cpf_cnpj) || !Utils.isCNPJ(cpf_cnpj)) throw new Exception("CPF ou CNPJ inválido");
         this.cpf_cnpj = cpf_cnpj;
     }
 
@@ -95,25 +116,26 @@ public class Cliente {
         this.razaoSocial = razaoSocial;
     }
 
-    public LocalDate getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(String dataNascimento) throws Exception {
+        if (!Utils.dataIsValida(dataNascimento)) throw new Exception("Data de nascimento inválida");
         this.dataNascimento = dataNascimento;
     }
 
-    public Veiculo getVeiculo() {
-        return veiculo;
+    public StatusPessoa getStatus() {
+        return status;
     }
 
-    public void setVeiculo(Veiculo veiculo) {
-        this.veiculo = veiculo;
+    public void setStatus(StatusPessoa status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
-        return id + ";" + nomeCompleto + ";" + telefones + ";" + email + ";" + endereco + ";" + tipo + ";" + cpf_cnpj + ";" + razaoSocial + ";" + dataNascimento + ";" + veiculo;
+        return id + ";" + nomeCompleto + ";" + telefone1.toString() + ";" + telefone2.toString() + ";" + telefone3.toString() + ";" + email + ";" + endereco.toString() + ";" + tipo.getDescricao() + ";" + cpf_cnpj + ";" + razaoSocial + ";" + dataNascimento + ";" + status.getDescricao();
     }
     
 }
