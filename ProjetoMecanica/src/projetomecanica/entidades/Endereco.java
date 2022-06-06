@@ -4,16 +4,18 @@ import projetomecanica.entidades.enums.TipoDeLogradouro;
 
 public class Endereco {
     
-    private TipoDeLogradouro tipoLogradouro;
-    private String logradouro;
-    private String complemento;
-    private String bairro;
-    private String cidade;
-    private String cep;
-    private String estado;
-    private int numero;
+    private TipoDeLogradouro tipoLogradouro = TipoDeLogradouro.AVENIDA;
+    private String logradouro = "";
+    private String complemento = "";
+    private String bairro = "";
+    private String cidade = "";
+    private int cep = 0;
+    private String estado = "";
+    private int numero = 0;
 
-    public Endereco(TipoDeLogradouro tipoLogradouro, String logradouro, String complemento, String bairro, String cidade, String cep, String estado, int numero) {
+    public Endereco() {}
+
+    public Endereco(TipoDeLogradouro tipoLogradouro, String logradouro, String complemento, String bairro, String cidade, int cep, String estado, int numero) {
         this.tipoLogradouro = tipoLogradouro;
         this.logradouro = logradouro;
         this.complemento = complemento;
@@ -64,11 +66,11 @@ public class Endereco {
         this.cidade = cidade;
     }
 
-    public String getCep() {
+    public int getCep() {
         return cep;
     }
 
-    public void setCep(String cep) {
+    public void setCep(int cep) {
         this.cep = cep;
     }
 
@@ -90,7 +92,7 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return tipoLogradouro + ";" + logradouro + ";" + complemento + ";" + bairro + ";" + cidade + ";" + cep + ";" + estado + ";" + numero;
+        return this.tipoLogradouro.getDescricao() + ";" + this.logradouro + ";" + this.complemento + ";" + this.bairro + ";" + this.cidade + ";" + this.cep + ";" + this.estado + ";" + this.numero;
     }
     
 }

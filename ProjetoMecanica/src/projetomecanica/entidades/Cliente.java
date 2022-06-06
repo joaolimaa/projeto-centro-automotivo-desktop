@@ -1,27 +1,27 @@
 package projetomecanica.entidades;
 
-import java.time.LocalDate;
-import projetomecanica.entidades.enums.Status;
+import projetomecanica.entidades.enums.StatusPessoa;
 import projetomecanica.entidades.enums.TipoDeCliente;
+import projetomecanica.servicos.Utils;
 
 public class Cliente {
     
     private int id = 0;
     private String nomeCompleto = "";
-    private Telefone telefone1;
-    private Telefone telefone2;
-    private Telefone telefone3;
+    private Telefone telefone1 = new Telefone();
+    private Telefone telefone2 = new Telefone();
+    private Telefone telefone3 = new Telefone();
     private String email = "";
-    private Endereco endereco;
+    private Endereco endereco = new Endereco();
     private TipoDeCliente tipo = TipoDeCliente.PESSOA_FISICA;
     private String cpf_cnpj = "";
     private String razaoSocial = "";
-    private LocalDate dataNascimento;
-    private Status status = Status.ATIVO;
+    private String dataNascimento = "";
+    private StatusPessoa status = StatusPessoa.ATIVO;
 
     public Cliente() {}
 
-    public Cliente(String nomeCompleto, Telefone telefone1, Telefone telefone2, Telefone telefone3, String email, Endereco endereco, TipoDeCliente tipo, String cpf_cnpj, String razaoSocial, LocalDate dataNascimento, Status status) {
+    public Cliente(String nomeCompleto, Telefone telefone1, Telefone telefone2, Telefone telefone3, String email, Endereco endereco, TipoDeCliente tipo, String cpf_cnpj, String razaoSocial, String dataNascimento, StatusPessoa status) {
         this.nomeCompleto = nomeCompleto;
         this.telefone1 = telefone1;
         this.telefone2 = telefone2;
@@ -103,7 +103,8 @@ public class Cliente {
         return cpf_cnpj;
     }
 
-    public void setCpf_cnpj(String cpf_cnpj) {
+    public void setCpf_cnpj(String cpf_cnpj) throws Exception {
+        if (!Utils.isCPF(cpf_cnpj) || !Utils.isCNPJ(cpf_cnpj)) throw new Exception("CPF ou CNPJ inválido");
         this.cpf_cnpj = cpf_cnpj;
     }
 
@@ -115,25 +116,26 @@ public class Cliente {
         this.razaoSocial = razaoSocial;
     }
 
-    public LocalDate getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(String dataNascimento) throws Exception {
+        if (!Utils.dataIsValida(dataNascimento)) throw new Exception("Data de nascimento inválida");
         this.dataNascimento = dataNascimento;
     }
 
-    public Status getStatus() {
+    public StatusPessoa getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(StatusPessoa status) {
         this.status = status;
     }
 
     @Override
     public String toString() {
-        return id + ";" + nomeCompleto + ";" + telefone1 + ";" + telefone2 + ";" + telefone3 + ";" + email + ";" + endereco + ";" + tipo + ";" + cpf_cnpj + ";" + razaoSocial + ";" + dataNascimento + ";" + status;
+        return id + ";" + nomeCompleto + ";" + telefone1.toString() + ";" + telefone2.toString() + ";" + telefone3.toString() + ";" + email + ";" + endereco.toString() + ";" + tipo.getDescricao() + ";" + cpf_cnpj + ";" + razaoSocial + ";" + dataNascimento + ";" + status.getDescricao();
     }
     
 }

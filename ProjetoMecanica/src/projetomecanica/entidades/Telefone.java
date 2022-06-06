@@ -1,42 +1,34 @@
 package projetomecanica.entidades;
 
 import projetomecanica.entidades.enums.TipoDeTelefone;
+import projetomecanica.servicos.Utils;
 
 public class Telefone {
     
-    private int ddi;
-    private int ddd;
-    private int numero;
-    private TipoDeTelefone tipo;
+    private int ddd = 0;
+    private int numero = 0;
+    private TipoDeTelefone tipo = TipoDeTelefone.CELULAR;
+    
+    public Telefone() {}
 
-    public Telefone(int ddi, int ddd, int numero, TipoDeTelefone tipo) {
-        this.ddi = ddi;
+    public Telefone(int ddd, int numero, TipoDeTelefone tipo) throws Exception {
+        if (!Utils.validaTelefone(ddd, numero)) throw new Exception("Telefone inválido");
         this.ddd = ddd;
         this.numero = numero;
         this.tipo = tipo;
-    }
-
-    public int getDdi() {
-        return ddi;
-    }
-
-    public void setDdi(int ddi) {
-        this.ddi = ddi;
     }
 
     public int getDdd() {
         return ddd;
     }
 
-    public void setDdd(int ddd) {
-        this.ddd = ddd;
-    }
-
     public int getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(int ddd, int numero) throws Exception {
+        if (!Utils.validaTelefone(ddd, numero)) throw new Exception("Telefone inválido");
+        this.ddd = ddd;
         this.numero = numero;
     }
 
@@ -50,7 +42,7 @@ public class Telefone {
 
     @Override
     public String toString() {
-        return ddi + ";" + ddd + ";" + numero + ";" + tipo;
+        return this.ddd + ";" + this.numero + ";" + this.tipo.getDescricao();
     }
     
 }
