@@ -1,4 +1,4 @@
-package projetomecanica.entidades;
+ package projetomecanica.entidades;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -4,9 +4,15 @@
  */
 package projetomecanica.telas.visao;
 
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-
+import projetomecanica.telas.clientes.*;
+import projetomecanica.telas.funcionarios.*;
 /**
  *
  * @author Dell
@@ -18,6 +24,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
+         if(this.getExtendedState()!= TelaCadastrarClientes.MAXIMIZED_BOTH){
+            this.setExtendedState(TelaCadastrarClientes.MAXIMIZED_BOTH);
+        }
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -29,18 +39,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
-        jButtonPerfil = new javax.swing.JButton();
+        jPanelFundo = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        jButtonCadastrarVeiculoMenu = new javax.swing.JButton();
+        jButtonCadastrarFuncionariosMenu = new javax.swing.JButton();
+        jButtonServicoMenu = new javax.swing.JButton();
+        jButtonCadastrarPecasMenu = new javax.swing.JButton();
+        jButtonCadastrarClienteMenu = new javax.swing.JButton();
+        jButtonOrdemServicoMenu = new javax.swing.JButton();
+        jButtonPagarMenu = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButtonCadastrarCliente = new javax.swing.JButton();
         jButtonCadastrarVeiculo = new javax.swing.JButton();
@@ -48,40 +60,35 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonServico = new javax.swing.JButton();
         jButtonPagar = new javax.swing.JButton();
         jButtonCadastrarColaborador = new javax.swing.JButton();
-        jButtonConfiguracoes = new javax.swing.JButton();
         jButtonCadastrarPecas = new javax.swing.JButton();
+
+        jRadioButtonMenuItem1.setSelected(true);
+        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(8, 83, 148));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setForeground(new java.awt.Color(8, 83, 148));
 
-        jButtonMenu.setBackground(new java.awt.Color(8, 83, 148));
+        jButtonMenu.setBackground(new java.awt.Color(0, 0, 0));
         jButtonMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 20.png")); // NOI18N
         jButtonMenu.setBorder(null);
-        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMenuActionPerformed(evt);
             }
         });
 
-        jButtonSair.setBackground(new java.awt.Color(8, 83, 148));
+        jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 14.png")); // NOI18N
         jButtonSair.setBorder(null);
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSairActionPerformed(evt);
-            }
-        });
-
-        jButtonPerfil.setBackground(new java.awt.Color(8, 83, 148));
-        jButtonPerfil.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 19.png")); // NOI18N
-        jButtonPerfil.setBorder(null);
-        jButtonPerfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPerfilActionPerformed(evt);
             }
         });
 
@@ -92,9 +99,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jButtonMenu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 758, Short.MAX_VALUE)
-                .addComponent(jButtonPerfil)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonSair)
                 .addGap(25, 25, 25))
         );
@@ -103,118 +108,141 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButtonPerfil)
                     .addComponent(jButtonSair)
                     .addComponent(jButtonMenu))
                 .addGap(17, 17, 17))
         );
 
+        jPanelFundo.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelFundo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanelFundo.setPreferredSize(new java.awt.Dimension(20, 20));
+
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setBackground(new java.awt.Color(8, 83, 148));
-        jButton1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 4.png")); // NOI18N
-        jButton1.setText("  Clientes");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCadastrarVeiculoMenu.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonCadastrarVeiculoMenu.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonCadastrarVeiculoMenu.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCadastrarVeiculoMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 5.png")); // NOI18N
+        jButtonCadastrarVeiculoMenu.setText("   Veículos");
+
+        jButtonCadastrarFuncionariosMenu.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonCadastrarFuncionariosMenu.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonCadastrarFuncionariosMenu.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCadastrarFuncionariosMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 37.png")); // NOI18N
+        jButtonCadastrarFuncionariosMenu.setText(" Funcionários");
+        jButtonCadastrarFuncionariosMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonCadastrarFuncionariosMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonCadastrarFuncionariosMenuActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(8, 83, 148));
-        jButton2.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 5.png")); // NOI18N
-        jButton2.setText("   Veículos");
+        jButtonServicoMenu.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonServicoMenu.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonServicoMenu.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonServicoMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 8.png")); // NOI18N
+        jButtonServicoMenu.setText("     Serviços");
 
-        jButton3.setBackground(new java.awt.Color(8, 83, 148));
-        jButton3.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 7.png")); // NOI18N
-        jButton3.setText("     OS's");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCadastrarPecasMenu.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonCadastrarPecasMenu.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonCadastrarPecasMenu.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCadastrarPecasMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 18.png")); // NOI18N
+        jButtonCadastrarPecasMenu.setText("   Estoque");
+        jButtonCadastrarPecasMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jButtonCadastrarClienteMenu.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonCadastrarClienteMenu.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonCadastrarClienteMenu.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCadastrarClienteMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 4.png")); // NOI18N
+        jButtonCadastrarClienteMenu.setText("  Clientes");
+        jButtonCadastrarClienteMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonCadastrarClienteMenuActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(8, 83, 148));
-        jButton4.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 8.png")); // NOI18N
-        jButton4.setText("     Serviços");
-
-        jButton5.setBackground(new java.awt.Color(8, 83, 148));
-        jButton5.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 9.png")); // NOI18N
-        jButton5.setText("  Pagamento");
-
-        jButton6.setBackground(new java.awt.Color(8, 83, 148));
-        jButton6.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 18.png")); // NOI18N
-        jButton6.setText("   Estoque");
-
-        jButton7.setBackground(new java.awt.Color(8, 83, 148));
-        jButton7.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 37.png")); // NOI18N
-        jButton7.setText(" Funcionários");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        jButtonOrdemServicoMenu.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonOrdemServicoMenu.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonOrdemServicoMenu.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonOrdemServicoMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 7.png")); // NOI18N
+        jButtonOrdemServicoMenu.setText("     OS's");
+        jButtonOrdemServicoMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                jButtonOrdemServicoMenuActionPerformed(evt);
             }
         });
+
+        jButtonPagarMenu.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonPagarMenu.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonPagarMenu.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonPagarMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 9.png")); // NOI18N
+        jButtonPagarMenu.setText("  Pagamento");
+        jButtonPagarMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonCadastrarClienteMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jButtonCadastrarVeiculoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jButtonOrdemServicoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jButtonServicoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(196, 196, 196)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(90, 90, 90)
+                        .addComponent(jButtonPagarMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jButtonCadastrarPecasMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jButtonCadastrarFuncionariosMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(82, 82, 82)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(184, 184, 184)
+                .addContainerGap(100, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jButtonCadastrarClienteMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                    .addComponent(jButtonCadastrarVeiculoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                    .addComponent(jButtonOrdemServicoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                    .addComponent(jButtonServicoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(226, Short.MAX_VALUE))
+                    .addComponent(jButtonPagarMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                    .addComponent(jButtonCadastrarPecasMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                    .addComponent(jButtonCadastrarFuncionariosMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(8, 83, 148));
+        javax.swing.GroupLayout jPanelFundoLayout = new javax.swing.GroupLayout(jPanelFundo);
+        jPanelFundo.setLayout(jPanelFundoLayout);
+        jPanelFundoLayout.setHorizontalGroup(
+            jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFundoLayout.createSequentialGroup()
+                .addContainerGap(138, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(130, Short.MAX_VALUE))
+        );
+        jPanelFundoLayout.setVerticalGroup(
+            jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFundoLayout.createSequentialGroup()
+                .addContainerGap(97, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(96, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
-        jButtonCadastrarCliente.setBackground(new java.awt.Color(8, 83, 148));
+        jButtonCadastrarCliente.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 4.png")); // NOI18N
         jButtonCadastrarCliente.setBorder(null);
         jButtonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -223,7 +251,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButtonCadastrarVeiculo.setBackground(new java.awt.Color(8, 83, 148));
+        jButtonCadastrarVeiculo.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarVeiculo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 5.png")); // NOI18N
         jButtonCadastrarVeiculo.setBorder(null);
         jButtonCadastrarVeiculo.addActionListener(new java.awt.event.ActionListener() {
@@ -232,7 +260,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButtonOrdemServico.setBackground(new java.awt.Color(8, 83, 148));
+        jButtonOrdemServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonOrdemServico.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 7.png")); // NOI18N
         jButtonOrdemServico.setBorder(null);
         jButtonOrdemServico.addActionListener(new java.awt.event.ActionListener() {
@@ -241,7 +269,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButtonServico.setBackground(new java.awt.Color(8, 83, 148));
+        jButtonServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonServico.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 8.png")); // NOI18N
         jButtonServico.setBorder(null);
         jButtonServico.addActionListener(new java.awt.event.ActionListener() {
@@ -250,7 +278,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButtonPagar.setBackground(new java.awt.Color(8, 83, 148));
+        jButtonPagar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonPagar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 9.png")); // NOI18N
         jButtonPagar.setBorder(null);
         jButtonPagar.addActionListener(new java.awt.event.ActionListener() {
@@ -259,7 +287,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButtonCadastrarColaborador.setBackground(new java.awt.Color(8, 83, 148));
+        jButtonCadastrarColaborador.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarColaborador.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 10.png")); // NOI18N
         jButtonCadastrarColaborador.setBorder(null);
         jButtonCadastrarColaborador.addActionListener(new java.awt.event.ActionListener() {
@@ -268,16 +296,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButtonConfiguracoes.setBackground(new java.awt.Color(8, 83, 148));
-        jButtonConfiguracoes.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\engrenagem.png")); // NOI18N
-        jButtonConfiguracoes.setBorder(null);
-        jButtonConfiguracoes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConfiguracoesActionPerformed(evt);
-            }
-        });
-
-        jButtonCadastrarPecas.setBackground(new java.awt.Color(8, 83, 148));
+        jButtonCadastrarPecas.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarPecas.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 18.png")); // NOI18N
         jButtonCadastrarPecas.setBorder(null);
         jButtonCadastrarPecas.addActionListener(new java.awt.event.ActionListener() {
@@ -294,7 +313,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonCadastrarPecas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonConfiguracoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonCadastrarColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonServico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -306,23 +324,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(30, 30, 30)
                 .addComponent(jButtonCadastrarCliente)
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jButtonCadastrarVeiculo)
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jButtonOrdemServico)
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jButtonServico)
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jButtonPagar)
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jButtonCadastrarPecas)
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jButtonCadastrarColaborador)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                .addComponent(jButtonConfiguracoes)
-                .addGap(17, 17, 17))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -333,7 +349,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelFundo, javax.swing.GroupLayout.DEFAULT_SIZE, 1186, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,19 +357,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelFundo, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jButtonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonMenuActionPerformed
 
     private void jButtonCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClienteActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jButtonCadastrarClienteActionPerformed
 
     private void jButtonCadastrarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarVeiculoActionPerformed
@@ -378,31 +395,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonCadastrarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarColaboradorActionPerformed
         // TODO add your handling code here:
+        TelaCadastrarColaborador cadastroColaborador = new TelaCadastrarColaborador();
+        cadastroColaborador.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
 
-    private void jButtonConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfiguracoesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonConfiguracoesActionPerformed
-
-    private void jButtonPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPerfilActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonPerfilActionPerformed
-
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jButtonSairActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonCadastrarClienteMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClienteMenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        TelaCliente cliente = new TelaCliente();
+        cliente.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonCadastrarClienteMenuActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonOrdemServicoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoMenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonOrdemServicoMenuActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void jButtonCadastrarFuncionariosMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarFuncionariosMenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+        TelaCadastrarColaborador cadastroColaborador = new TelaCadastrarColaborador();
+        cadastroColaborador.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonCadastrarFuncionariosMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -471,26 +489,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonCadastrarCliente;
+    private javax.swing.JButton jButtonCadastrarClienteMenu;
     private javax.swing.JButton jButtonCadastrarColaborador;
+    private javax.swing.JButton jButtonCadastrarFuncionariosMenu;
     private javax.swing.JButton jButtonCadastrarPecas;
+    private javax.swing.JButton jButtonCadastrarPecasMenu;
     private javax.swing.JButton jButtonCadastrarVeiculo;
-    private javax.swing.JButton jButtonConfiguracoes;
+    private javax.swing.JButton jButtonCadastrarVeiculoMenu;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JButton jButtonOrdemServico;
+    private javax.swing.JButton jButtonOrdemServicoMenu;
     private javax.swing.JButton jButtonPagar;
-    private javax.swing.JButton jButtonPerfil;
+    private javax.swing.JButton jButtonPagarMenu;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonServico;
+    private javax.swing.JButton jButtonServicoMenu;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanelFundo;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     // End of variables declaration//GEN-END:variables
 }
