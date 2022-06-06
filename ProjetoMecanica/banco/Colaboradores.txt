@@ -1,0 +1,1 @@
+7;nomeMudado;55;62;999689312;TRABALHO;55;62;999689312;TRABALHO;55;62;999689312;TRABALHO;email;RUA;rua;complemento;bairro;cidade;0;estado;0;data;0.0;0.0;MECANICO;INATIVO

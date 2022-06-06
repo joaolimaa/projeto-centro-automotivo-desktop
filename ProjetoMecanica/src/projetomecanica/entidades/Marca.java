@@ -10,6 +10,9 @@ public class Marca {
         this.descricao = descricao;
         this.logo = logo;
     }
+    
+    public Marca() {
+    }
 
     public int getId() {
         return id;

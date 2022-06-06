@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/funcionarios/TelaCadastrarColaborador.java</file>
             <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/clientes/TelaCadastrarClientes.java</file>
             <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/visao/TelaPrincipal.java</file>
             <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/funcionarios/TelaFuncionario.java</file>
+=======
+            <file>file:/C:/Users/leona/OneDrive/Área%20de%20Trabalho/Eduardo/Projeto%20Integrador/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/entidades/Cliente.java</file>
+            <file>file:/C:/Users/leona/OneDrive/Área%20de%20Trabalho/Eduardo/Projeto%20Integrador/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/servicos/Utils.java</file>
+            <file>file:/C:/Users/leona/OneDrive/Área%20de%20Trabalho/Eduardo/Projeto%20Integrador/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/ProjetoMecanica.java</file>
+>>>>>>> 7de1a0babb80b610a7d0e7c7288d90f1a124555c
         </group>
     </open-files>
 </project-private>
