@@ -93,8 +93,7 @@ public class ClienteDAO implements IDaoGenerico<Cliente>{
                     objetoCliente.setNomeCompleto(vetorString[1]);
                 
                     Telefone objetoTelefone1 = new Telefone();
-                    objetoTelefone1.setDdd(Integer.parseInt(vetorString[2]));
-                    objetoTelefone1.setNumero(Integer.parseInt(vetorString[3]));
+                    objetoTelefone1.setNumero(Integer.parseInt(vetorString[2]), Integer.parseInt(vetorString[3]));
                     TipoDeTelefone tipo1 = TipoDeTelefone.valueOf(vetorString[4]);
                     objetoTelefone1.setTipo(tipo1);
                     
