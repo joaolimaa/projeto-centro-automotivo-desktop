@@ -7,6 +7,7 @@ package projetomecanica.telas.funcionarios;
 import projetomecanica.telas.clientes.*;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
+import projetomecanica.telas.visao.*;
 
 /**
  *
@@ -19,6 +20,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
      */
     public TelaFuncionario() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -37,7 +39,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCadastros = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jButtonNovoFuncionario = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -129,10 +131,15 @@ public class TelaFuncionario extends javax.swing.JFrame {
             jTableCadastros.getColumnModel().getColumn(5).setMaxWidth(120);
         }
 
-        jButton1.setBackground(new java.awt.Color(8, 83, 148));
-        jButton1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Novo Funcionário");
+        jButtonNovoFuncionario.setBackground(new java.awt.Color(8, 83, 148));
+        jButtonNovoFuncionario.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonNovoFuncionario.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonNovoFuncionario.setText("Novo Funcionário");
+        jButtonNovoFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovoFuncionarioActionPerformed(evt);
+            }
+        });
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("Pesquisar");
@@ -156,7 +163,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(jButtonNovoFuncionario))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47))
         );
@@ -165,7 +172,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButton1)
+                    .addComponent(jButtonNovoFuncionario)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(29, 29, 29)
@@ -317,10 +324,16 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
     private void jButtonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuActionPerformed
         // TODO add your handling code here:
+        TelaPrincipal inicio = new TelaPrincipal();
+        inicio.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonMenuActionPerformed
 
     private void jButtonCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClienteActionPerformed
         // TODO add your handling code here:
+        TelaCliente cliente = new TelaCliente();
+        cliente.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonCadastrarClienteActionPerformed
 
     private void jButtonCadastrarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarVeiculoActionPerformed
@@ -357,7 +370,17 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         // TODO add your handling code here:
+        TelaPrincipal inicio = new TelaPrincipal();
+        inicio.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonSairActionPerformed
+
+    private void jButtonNovoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoFuncionarioActionPerformed
+        // TODO add your handling code here:
+        TelaCadastroFuncionarios NovoFuncionario = new TelaCadastroFuncionarios();
+        NovoFuncionario.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonNovoFuncionarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -426,13 +449,13 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCadastrarCliente;
     private javax.swing.JButton jButtonCadastrarColaborador;
     private javax.swing.JButton jButtonCadastrarPecas;
     private javax.swing.JButton jButtonCadastrarVeiculo;
     private javax.swing.JButton jButtonConfiguracoes;
     private javax.swing.JButton jButtonMenu;
+    private javax.swing.JButton jButtonNovoFuncionario;
     private javax.swing.JButton jButtonOrdemServico;
     private javax.swing.JButton jButtonPagar;
     private javax.swing.JButton jButtonPerfil;
