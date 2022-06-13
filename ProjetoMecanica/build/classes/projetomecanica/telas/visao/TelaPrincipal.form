@@ -200,7 +200,7 @@
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Component id="jButtonCadastrarPecasMenu" pref="240" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Component id="jButtonCadastrarFuncionariosMenu" min="-2" pref="232" max="-2" attributes="0"/>
+                              <Component id="jButtonCadastrarColaboradorMenu" min="-2" pref="232" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -222,7 +222,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButtonPagarMenu" alignment="3" pref="73" max="32767" attributes="0"/>
                           <Component id="jButtonCadastrarPecasMenu" alignment="3" pref="73" max="32767" attributes="0"/>
-                          <Component id="jButtonCadastrarFuncionariosMenu" alignment="3" pref="73" max="32767" attributes="0"/>
+                          <Component id="jButtonCadastrarColaboradorMenu" alignment="3" pref="73" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="100" max="32767" attributes="0"/>
                   </Group>
@@ -247,7 +247,7 @@
                 <Property name="text" type="java.lang.String" value="   Ve&#xed;culos"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButtonCadastrarFuncionariosMenu">
+            <Component class="javax.swing.JButton" name="jButtonCadastrarColaboradorMenu">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
@@ -267,7 +267,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCadastrarFuncionariosMenuActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCadastrarColaboradorMenuActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonServicoMenu">

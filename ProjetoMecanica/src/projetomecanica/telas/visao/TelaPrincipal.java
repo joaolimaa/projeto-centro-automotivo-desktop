@@ -47,7 +47,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanelFundo = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jButtonCadastrarVeiculoMenu = new javax.swing.JButton();
-        jButtonCadastrarFuncionariosMenu = new javax.swing.JButton();
+        jButtonCadastrarColaboradorMenu = new javax.swing.JButton();
         jButtonServicoMenu = new javax.swing.JButton();
         jButtonCadastrarPecasMenu = new javax.swing.JButton();
         jButtonCadastrarClienteMenu = new javax.swing.JButton();
@@ -125,15 +125,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonCadastrarVeiculoMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 5.png")); // NOI18N
         jButtonCadastrarVeiculoMenu.setText("   Veículos");
 
-        jButtonCadastrarFuncionariosMenu.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonCadastrarFuncionariosMenu.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonCadastrarFuncionariosMenu.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonCadastrarFuncionariosMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 37.png")); // NOI18N
-        jButtonCadastrarFuncionariosMenu.setText(" Funcionários");
-        jButtonCadastrarFuncionariosMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButtonCadastrarFuncionariosMenu.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCadastrarColaboradorMenu.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonCadastrarColaboradorMenu.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonCadastrarColaboradorMenu.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCadastrarColaboradorMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 37.png")); // NOI18N
+        jButtonCadastrarColaboradorMenu.setText(" Funcionários");
+        jButtonCadastrarColaboradorMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonCadastrarColaboradorMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCadastrarFuncionariosMenuActionPerformed(evt);
+                jButtonCadastrarColaboradorMenuActionPerformed(evt);
             }
         });
 
@@ -200,7 +200,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jButtonCadastrarPecasMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                         .addGap(10, 10, 10)
-                        .addComponent(jButtonCadastrarFuncionariosMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonCadastrarColaboradorMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(82, 82, 82)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -217,7 +217,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonPagarMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                     .addComponent(jButtonCadastrarPecasMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                    .addComponent(jButtonCadastrarFuncionariosMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE))
+                    .addComponent(jButtonCadastrarColaboradorMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE))
                 .addContainerGap(100, Short.MAX_VALUE))
         );
 
@@ -366,11 +366,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     private void jButtonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuActionPerformed
         // TODO add your handling code here:
+        TelaPrincipal menu = new TelaPrincipal();
+        menu.setVisible(true);
+        dispose();
+        
     }//GEN-LAST:event_jButtonMenuActionPerformed
 
     private void jButtonCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClienteActionPerformed
         // TODO add your handling code here:
-
+        TelaExibirClientes exibirCliente = new TelaExibirClientes();
+        exibirCliente.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonCadastrarClienteActionPerformed
 
     private void jButtonCadastrarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarVeiculoActionPerformed
@@ -395,8 +401,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonCadastrarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarColaboradorActionPerformed
         // TODO add your handling code here:
-        TelaCadastrarColaborador cadastroColaborador = new TelaCadastrarColaborador();
-        cadastroColaborador.setVisible(true);
+        TelaCadastrarColaborador exibirColaborador = new TelaCadastrarColaborador();
+        exibirColaborador.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
 
@@ -406,8 +412,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonCadastrarClienteMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClienteMenuActionPerformed
         // TODO add your handling code here:
-        TelaCliente cliente = new TelaCliente();
-        cliente.setVisible(true);
+        TelaExibirClolaboradores exibirCliente = new TelaExibirClolaboradores();
+        exibirCliente.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonCadastrarClienteMenuActionPerformed
 
@@ -415,12 +421,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonOrdemServicoMenuActionPerformed
 
-    private void jButtonCadastrarFuncionariosMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarFuncionariosMenuActionPerformed
+    private void jButtonCadastrarColaboradorMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarColaboradorMenuActionPerformed
         // TODO add your handling code here:
-        TelaCadastrarColaborador cadastroColaborador = new TelaCadastrarColaborador();
-        cadastroColaborador.setVisible(true);
+        TelaExibirClolaboradores exibirColaborador = new TelaExibirClolaboradores();
+        exibirColaborador.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButtonCadastrarFuncionariosMenuActionPerformed
+    }//GEN-LAST:event_jButtonCadastrarColaboradorMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -447,40 +453,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaPrincipal().setVisible(true);
@@ -492,7 +465,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCadastrarCliente;
     private javax.swing.JButton jButtonCadastrarClienteMenu;
     private javax.swing.JButton jButtonCadastrarColaborador;
-    private javax.swing.JButton jButtonCadastrarFuncionariosMenu;
+    private javax.swing.JButton jButtonCadastrarColaboradorMenu;
     private javax.swing.JButton jButtonCadastrarPecas;
     private javax.swing.JButton jButtonCadastrarPecasMenu;
     private javax.swing.JButton jButtonCadastrarVeiculo;
