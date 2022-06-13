@@ -86,7 +86,7 @@ public class VeiculoDAO implements IDaoGenerico<Veiculo>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 13) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 14) throw new Exception("Faltam dados na String");
                 
                 objetoVeiculo.setId(Integer.parseInt(vetorString[0]));
                 
@@ -112,6 +112,7 @@ public class VeiculoDAO implements IDaoGenerico<Veiculo>{
                     StatusVeiculo status = StatusVeiculo.valueOf(vetorString[11]);
                     objetoVeiculo.setStatus(status);
                     objetoVeiculo.setIdCliente(Integer.parseInt(vetorString[12]));
+                    objetoVeiculo.setQuilometragem(Integer.parseInt(vetorString[13]));
                 
                     br.close();
                     
@@ -174,7 +175,7 @@ public class VeiculoDAO implements IDaoGenerico<Veiculo>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 13) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 14) throw new Exception("Faltam dados na String");
                 
                 objetoVeiculo.setId(Integer.parseInt(vetorString[0]));
                 objetoVeiculo.setPlaca(vetorString[1]);
@@ -197,6 +198,7 @@ public class VeiculoDAO implements IDaoGenerico<Veiculo>{
                 StatusVeiculo status = StatusVeiculo.valueOf(vetorString[11]);
                 objetoVeiculo.setStatus(status);
                 objetoVeiculo.setIdCliente(Integer.parseInt(vetorString[12]));
+                objetoVeiculo.setQuilometragem(Integer.parseInt(vetorString[13]));
                         
                 listaDeVeiculos.add(objetoVeiculo);
             }

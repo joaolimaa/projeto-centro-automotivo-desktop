@@ -84,7 +84,7 @@ public class ColaboradorDAO implements IDaoGenerico<Colaborador>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 25) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 27) throw new Exception("Faltam dados na String");
                 
                 objetoColaborador.setId(Integer.parseInt(vetorString[0]));
                 
@@ -93,24 +93,21 @@ public class ColaboradorDAO implements IDaoGenerico<Colaborador>{
                     objetoColaborador.setNomeCompleto(vetorString[1]);
 
                     Telefone objetoTelefone1 = new Telefone();
-                    objetoTelefone1.setDdd(Integer.parseInt(vetorString[2]));
-                    objetoTelefone1.setNumero(Integer.parseInt(vetorString[3]));
+                    objetoTelefone1.setNumero(Integer.parseInt(vetorString[2]), Integer.parseInt(vetorString[3]));
                     TipoDeTelefone tipo1 = TipoDeTelefone.valueOf(vetorString[4]);
                     objetoTelefone1.setTipo(tipo1);
 
                     objetoColaborador.setTelefone1(objetoTelefone1);
 
                     Telefone objetoTelefone2 = new Telefone();
-                    objetoTelefone2.setDdd(Integer.parseInt(vetorString[5]));
-                    objetoTelefone2.setNumero(Integer.parseInt(vetorString[6]));
+                    objetoTelefone2.setNumero(Integer.parseInt(vetorString[5]), Integer.parseInt(vetorString[6]));
                     TipoDeTelefone tipo2 = TipoDeTelefone.valueOf(vetorString[7]);
                     objetoTelefone2.setTipo(tipo2);
 
                     objetoColaborador.setTelefone2(objetoTelefone2);
 
                     Telefone objetoTelefone3 = new Telefone();
-                    objetoTelefone3.setDdd(Integer.parseInt(vetorString[8]));
-                    objetoTelefone3.setNumero(Integer.parseInt(vetorString[9]));
+                    objetoTelefone3.setNumero(Integer.parseInt(vetorString[8]), Integer.parseInt(vetorString[9]));
                     TipoDeTelefone tipo3 = TipoDeTelefone.valueOf(vetorString[10]);
                     objetoTelefone3.setTipo(tipo3);
 
@@ -137,6 +134,8 @@ public class ColaboradorDAO implements IDaoGenerico<Colaborador>{
                     objetoColaborador.setTipo(tipoColaborador);
                     StatusPessoa status = StatusPessoa.valueOf(vetorString[24]);
                     objetoColaborador.setStatus(status);
+                    objetoColaborador.setSenha(vetorString[25]);
+                    objetoColaborador.setIdControleDeAcesso(Integer.parseInt(vetorString[26]));
                 
                     br.close();
                     
@@ -199,30 +198,27 @@ public class ColaboradorDAO implements IDaoGenerico<Colaborador>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 28) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 27) throw new Exception("Faltam dados na String");
                 
                 objetoColaborador.setId(Integer.parseInt(vetorString[0]));
                 objetoColaborador.setNomeCompleto(vetorString[1]);
-                
+
                 Telefone objetoTelefone1 = new Telefone();
-                objetoTelefone1.setDdd(Integer.parseInt(vetorString[2]));
-                objetoTelefone1.setNumero(Integer.parseInt(vetorString[3]));
+                objetoTelefone1.setNumero(Integer.parseInt(vetorString[2]), Integer.parseInt(vetorString[3]));
                 TipoDeTelefone tipo1 = TipoDeTelefone.valueOf(vetorString[4]);
                 objetoTelefone1.setTipo(tipo1);
 
                 objetoColaborador.setTelefone1(objetoTelefone1);
 
                 Telefone objetoTelefone2 = new Telefone();
-                objetoTelefone2.setDdd(Integer.parseInt(vetorString[5]));
-                objetoTelefone2.setNumero(Integer.parseInt(vetorString[6]));
+                objetoTelefone2.setNumero(Integer.parseInt(vetorString[5]), Integer.parseInt(vetorString[6]));
                 TipoDeTelefone tipo2 = TipoDeTelefone.valueOf(vetorString[7]);
                 objetoTelefone2.setTipo(tipo2);
 
                 objetoColaborador.setTelefone2(objetoTelefone2);
 
                 Telefone objetoTelefone3 = new Telefone();
-                objetoTelefone3.setDdd(Integer.parseInt(vetorString[8]));
-                objetoTelefone3.setNumero(Integer.parseInt(vetorString[9]));
+                objetoTelefone3.setNumero(Integer.parseInt(vetorString[8]), Integer.parseInt(vetorString[9]));
                 TipoDeTelefone tipo3 = TipoDeTelefone.valueOf(vetorString[10]);
                 objetoTelefone3.setTipo(tipo3);
 
@@ -249,6 +245,8 @@ public class ColaboradorDAO implements IDaoGenerico<Colaborador>{
                 objetoColaborador.setTipo(tipoColaborador);
                 StatusPessoa status = StatusPessoa.valueOf(vetorString[24]);
                 objetoColaborador.setStatus(status);
+                objetoColaborador.setSenha(vetorString[25]);
+                objetoColaborador.setIdControleDeAcesso(Integer.parseInt(vetorString[26]));
                 
                 listaDeColaboradores.add(objetoColaborador);
             }
@@ -281,6 +279,28 @@ public class ColaboradorDAO implements IDaoGenerico<Colaborador>{
     }
     
     public void excluir(int id) throws Exception {
+        
+        try {
+            
+            ArrayList<Colaborador> listaDeColaboradores = this.obterTodasEntidades();
+            
+            FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
+            
+            BufferedWriter bw = new BufferedWriter(fw);
+            
+            for (int i = 0; i < listaDeColaboradores.size(); i++) {
+                if (listaDeColaboradores.get(i).getId() != id) bw.write(listaDeColaboradores.get(i).toString()+"\n");
+            }
+            
+            bw.close();
+            
+        } catch (Exception erro) {
+            throw erro;
+        }
+        
+    }
+    
+    public boolean isAcessoLiberado(int idControleDeAcesso) throws Exception {
         
         try {
             

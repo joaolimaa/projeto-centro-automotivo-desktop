@@ -6,14 +6,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
-import projetomecanica.entidades.Servico;
+import java.util.stream.Collectors;
+import projetomecanica.entidades.Marca;
 
-public class ServicoDAO implements IDaoGenerico<Servico>{
+public class MarcaDAO implements IDaoGenerico<Marca>{
     
-    private String nomeDoArquivoNoDisco = "banco\\Servicos.txt";
+    private String nomeDoArquivoNoDisco = "banco\\Marcas.txt";
 
     @Override
-    public void incluir(Servico objeto) throws Exception {
+    public void incluir(Marca objeto) throws Exception {
         
         try {
             
@@ -39,7 +40,7 @@ public class ServicoDAO implements IDaoGenerico<Servico>{
     }
 
     @Override
-    public void alterar(Servico objeto) throws Exception {
+    public void alterar(Marca objeto) throws Exception {
         
         int id = objeto.getId();
         
@@ -64,7 +65,7 @@ public class ServicoDAO implements IDaoGenerico<Servico>{
     }
 
     @Override
-    public Servico consultarPorId(int id) throws Exception {
+    public Marca consultarPorId(int id) throws Exception {
         
         try {
             
@@ -76,19 +77,21 @@ public class ServicoDAO implements IDaoGenerico<Servico>{
             
             while ((linha=br.readLine()) != null) {
                 
-                Servico objetoServico = new Servico();
+                Marca objetoMarca = new Marca();
                 
                 String vetorString[] = linha.split(";");
                 
                 if (vetorString.length != 8) throw new Exception("Faltam dados na String");
                 
-                objetoServico.setId(Integer.parseInt(vetorString[0]));
+                objetoMarca.setId(Integer.parseInt(vetorString[0]));
                 
-                if (objetoServico.getId() == id) {
+                if (objetoMarca.getId() == id) {
+                    
+                    objetoMarca.setDescricao(vetorString[1]);
                 
                     br.close();
                     
-                    return objetoServico;
+                    return objetoMarca;
                 }
             }
             
@@ -107,17 +110,17 @@ public class ServicoDAO implements IDaoGenerico<Servico>{
         
         try {
             
-            ArrayList<Servico> listaDeServicos = obterTodasEntidades();
+            ArrayList<Marca> listaDeMarcas = obterTodasEntidades();
             
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
             
             BufferedWriter bw = new BufferedWriter(fw);
             
-            for (int i = 0; i < listaDeServicos.size(); i++) {
-                if (listaDeServicos.get(i).getId() == id) {
-                    //listaDeServicos.get(i).setStatus(StatusServico.INATIVO);
+            for (int i = 0; i < listaDeMarcas.size(); i++) {
+                if (listaDeMarcas.get(i).getId() == id) {
+                    //listaDePecas.get(i).setStatus(StatusPeca.INATIVO);
                 }
-                bw.write(listaDeServicos.get(i).toString()+"\n");
+                bw.write(listaDeMarcas.get(i).toString()+"\n");
             }
             
             bw.close();
@@ -129,11 +132,11 @@ public class ServicoDAO implements IDaoGenerico<Servico>{
     }
 
     @Override
-    public ArrayList<Servico> obterTodasEntidades() throws Exception {
+    public ArrayList<Marca> obterTodasEntidades() throws Exception {
         
         try {
             
-            ArrayList<Servico> listaDeServicos = new ArrayList();
+            ArrayList<Marca> listaDeMarcas = new ArrayList();
             
             FileReader fr = new FileReader(nomeDoArquivoNoDisco);
             
@@ -143,20 +146,21 @@ public class ServicoDAO implements IDaoGenerico<Servico>{
             
             while ((linha = br.readLine()) != null) {
                 
-                Servico objetoServico = new Servico();
+                Marca objetoMarca = new Marca();
                 
                 String vetorString[] = linha.split(";");
                 
                 if (vetorString.length != 8) throw new Exception("Faltam dados na String");
                 
-                objetoServico.setId(Integer.parseInt(vetorString[0]));
+                objetoMarca.setId(Integer.parseInt(vetorString[0]));
+                objetoMarca.setDescricao(vetorString[1]);
                         
-                listaDeServicos.add(objetoServico);
+                listaDeMarcas.add(objetoMarca);
             }
             
             br.close();
             
-            return listaDeServicos;
+            return listaDeMarcas;
             
         } catch (Exception erro) {
             throw erro;
@@ -164,13 +168,17 @@ public class ServicoDAO implements IDaoGenerico<Servico>{
     }
     
     @Override
-    public List<Servico> obterEntidadesAtivos() throws Exception {
+    public List<Marca> obterEntidadesAtivos() throws Exception {
         
         try {
             
-            ArrayList<Servico> listaDeServicos = new ArrayList<>();
+            ArrayList<Marca> listaDeMarcas = obterTodasEntidades();
             
-            return listaDeServicos;
+            List<Marca> listaDeMarcasAtivos = listaDeMarcas.stream()
+                    //.filter(i -> i.getStatus().equals(StatusPeca.EM_ESPERA) && i.getStatus().equals(StatusPeca.EM_MANUTENCAO))
+                    .collect(Collectors.toList());
+            
+            return listaDeMarcasAtivos;
             
         } catch (Exception erro) {
             throw erro;
@@ -181,14 +189,14 @@ public class ServicoDAO implements IDaoGenerico<Servico>{
         
         try {
             
-            ArrayList<Servico> listaDeServicos = this.obterTodasEntidades();
+            ArrayList<Marca> listaDePecas = this.obterTodasEntidades();
             
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
             
             BufferedWriter bw = new BufferedWriter(fw);
             
-            for (int i = 0; i < listaDeServicos.size(); i++) {
-                if (listaDeServicos.get(i).getId() != id) bw.write(listaDeServicos.get(i).toString()+"\n");
+            for (int i = 0; i < listaDePecas.size(); i++) {
+                if (listaDePecas.get(i).getId() != id) bw.write(listaDePecas.get(i).toString()+"\n");
             }
             
             bw.close();

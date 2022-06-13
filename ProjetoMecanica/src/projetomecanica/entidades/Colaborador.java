@@ -2,6 +2,7 @@ package projetomecanica.entidades;
 
 import projetomecanica.entidades.enums.StatusPessoa;
 import projetomecanica.entidades.enums.TipoDeColaborador;
+import projetomecanica.servicos.Utils;
 
 public class Colaborador {
     
@@ -17,10 +18,16 @@ public class Colaborador {
     private float valorHora = 0;
     private TipoDeColaborador tipo = TipoDeColaborador.ATENDENTE;
     private StatusPessoa status = StatusPessoa.ATIVO;
+    private String senha = "";
+    private int idControleDeAcesso = 0;
     
     public Colaborador() {}
 
-    public Colaborador(String nomeCompleto, Telefone telefone1, Telefone telefone2, Telefone telefone3, String email, Endereco endereco, String dataNascimento, float salarioBase, float valorHora, TipoDeColaborador tipo, StatusPessoa status) {
+    public Colaborador(String nomeCompleto, Telefone telefone1, Telefone telefone2, Telefone telefone3, String email, Endereco endereco, String dataNascimento, float salarioBase, float valorHora, TipoDeColaborador tipo, StatusPessoa status, String senha, int idControleDeAcesso) throws Exception {
+        if (!Utils.validaEmail(email)) throw new Exception("Email inválido");
+        if (!Utils.validaNumero(salarioBase)) throw new Exception("Salario inválido");
+        if (!Utils.validaNumero(valorHora)) throw new Exception("Valor hora inválido");
+        if (!Utils.dataIsValida(dataNascimento)) throw new Exception("Data de nascimento inválida");
         this.nomeCompleto = nomeCompleto;
         this.telefone1 = telefone1;
         this.telefone2 = telefone2;
@@ -32,6 +39,8 @@ public class Colaborador {
         this.valorHora = valorHora;
         this.tipo = tipo;
         this.status = status;
+        this.senha = senha;
+        this.idControleDeAcesso = idControleDeAcesso;
     }
 
     public int getId() {
@@ -86,7 +95,8 @@ public class Colaborador {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email) throws Exception {
+        if (!Utils.validaEmail(email)) throw new Exception("Email inválido");
         this.email = email;
     }
 
@@ -102,7 +112,8 @@ public class Colaborador {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(String dataNascimento) throws Exception {
+        if (!Utils.dataIsValida(dataNascimento)) throw new Exception("Data de nascimento inválida");
         this.dataNascimento = dataNascimento;
     }
 
@@ -110,7 +121,8 @@ public class Colaborador {
         return salarioBase;
     }
 
-    public void setSalarioBase(float salarioBase) {
+    public void setSalarioBase(float salarioBase) throws Exception {
+        if (!Utils.validaNumero(salarioBase)) throw new Exception("Salario inválido");
         this.salarioBase = salarioBase;
     }
 
@@ -118,7 +130,8 @@ public class Colaborador {
         return valorHora;
     }
 
-    public void setValorHora(float valorHora) {
+    public void setValorHora(float valorHora) throws Exception {
+        if (!Utils.validaNumero(valorHora)) throw new Exception("Valor hora inválido");
         this.valorHora = valorHora;
     }
 
@@ -130,9 +143,25 @@ public class Colaborador {
         this.tipo = tipo;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public int getIdControleDeAcesso() {
+        return idControleDeAcesso;
+    }
+
+    public void setIdControleDeAcesso(int idControleDeAcesso) {
+        this.idControleDeAcesso = idControleDeAcesso;
+    }
+
     @Override
     public String toString() {
-        return id + ";" + nomeCompleto + ";" + telefone1 + ";" + telefone2 + ";" + telefone3 + ";" + email + ";" + endereco + ";" + dataNascimento + ";" + salarioBase + ";" + valorHora + ";" + tipo.getDescricao() + ";" + status.getDescricao();
+        return id + ";" + nomeCompleto + ";" + telefone1 + ";" + telefone2 + ";" + telefone3 + ";" + email + ";" + endereco + ";" + dataNascimento + ";" + salarioBase + ";" + valorHora + ";" + tipo.getDescricao() + ";" + status.getDescricao() + ";" + senha + ";" + idControleDeAcesso;
     }
     
 }

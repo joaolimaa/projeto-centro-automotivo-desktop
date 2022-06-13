@@ -12,6 +12,8 @@ public class Telefone {
     public Telefone() {}
 
     public Telefone(int ddd, int numero, TipoDeTelefone tipo) throws Exception {
+        if (!Utils.validaNumero(ddd)) throw new Exception("DDD não pode ser negativo");
+        if (!Utils.validaNumero(numero)) throw new Exception("Número não pode ser negativo");
         if (!Utils.validaTelefone(ddd, numero)) throw new Exception("Telefone inválido");
         this.ddd = ddd;
         this.numero = numero;
@@ -27,6 +29,8 @@ public class Telefone {
     }
 
     public void setNumero(int ddd, int numero) throws Exception {
+        if (!Utils.validaNumero(ddd)) throw new Exception("DDD não pode ser negativo");
+        if (!Utils.validaNumero(numero)) throw new Exception("Número não pode ser negativo");
         if (!Utils.validaTelefone(ddd, numero)) throw new Exception("Telefone inválido");
         this.ddd = ddd;
         this.numero = numero;

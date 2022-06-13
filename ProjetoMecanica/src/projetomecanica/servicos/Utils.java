@@ -3,7 +3,8 @@ package projetomecanica.servicos;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.InputMismatchException;
-import java.lang.System.Text;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Utils {
     
@@ -183,20 +184,98 @@ public class Utils {
         return numero >= 0;
     }
     
-    public static boolean ValidaCep(int cep) {
+    public static boolean validaCep(int cep) {
         
         String cepString = ""+cep;
         
-        if (cepString.length() == 8) {
-                cepString = cepString.substring(0, 5) + "-" + cepString.substring(5, 3);
-                //txt.Text = cep;
-            }
-        return System.Text.RegularExpressions.Regex.IsMatch(cepString, ("[0-9]{5}-[0-9]{3}"));
+        if (cepString.length() == 7) return true;
+        else return false;
         
     }
     
-    public static boolean ValidaEmail(String email) {
-        return System.Text.RegularExpressions.Regex.IsMatch(email, ("(?[^@]+)@(?.+)"));
+    public static boolean validaEmail(String email) {
+        boolean emailValido = false;
+        if (email != null && email.length() > 0) {
+            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(email);
+            if (matcher.matches()) {
+                emailValido = true;
+            }
+        }
+        return emailValido;
+    }
+
+    public static boolean validaNumero(float numero) {
+        return numero >= 0;
+    }
+    
+    public static boolean validaRenavam(String renavam) {
+        
+        if(renavam.matches("^([0-9]{9})$")) renavam = "00" + renavam;
+
+        // Valida se possui 11 digitos pos formatacao
+        if(!renavam.matches("[0-9]{11}")) return false;
+
+        // Remove o digito (11 posicao)
+        // renavamSemDigito = 0063988496
+        String renavamSemDigito = renavam.substring(0, 10);
+
+        // Inverte os caracteres (reverso)
+        // renavamReversoSemDigito = 69488936
+        String renavamReversoSemDigito = new StringBuffer(renavamSemDigito).reverse().toString();
+
+        int soma = 0;
+
+        // Multiplica as strings reversas do renavam pelos numeros multiplicadores
+        // para apenas os primeiros 8 digitos de um total de 10
+        // Exemplo: renavam reverso sem digito = 69488936
+        // 6, 9, 4, 8, 8, 9, 3, 6
+        // * * * * * * * *
+        // 2, 3, 4, 5, 6, 7, 8, 9 (numeros multiplicadores - sempre os mesmos [fixo])
+        // 12 + 27 + 16 + 40 + 48 + 63 + 24 + 54
+        // soma = 284
+        for (int i = 0; i < 8; i++) {
+            Integer algarismo = Integer.parseInt(renavamReversoSemDigito.substring(i, i + 1));
+            Integer multiplicador = i + 2;
+            soma += algarismo * multiplicador;
+        }
+
+        // Multiplica os dois ultimos digitos e soma
+        soma += Character.getNumericValue(renavamReversoSemDigito.charAt(8)) * 2;
+        soma += Character.getNumericValue(renavamReversoSemDigito.charAt(9)) * 3;
+
+        // mod11 = 284 % 11 = 9 (resto da divisao por 11)
+        int mod11 = soma % 11;
+
+        // Faz-se a conta 11 (valor fixo) - mod11 = 11 - 9 = 2
+        int ultimoDigitoCalculado = 11 - mod11;
+
+        // ultimoDigito = Caso o valor calculado anteriormente seja 10 ou 11, transformo ele em 0
+        // caso contrario, eh o proprio numero
+        ultimoDigitoCalculado = (ultimoDigitoCalculado >= 10 ? 0 : ultimoDigitoCalculado);
+
+        // Pego o ultimo digito do renavam original (para confrontar com o calculado)
+        int digitoRealInformado = Integer.valueOf(renavam.substring(renavam.length()-1, renavam.length()));
+
+        // Comparo os digitos calculado e informado
+        if(ultimoDigitoCalculado == digitoRealInformado) return true;
+        return false;
+    }
+    
+    public static boolean validaPlaca(String placa) {
+        boolean result = false;
+
+        Pattern pattern = Pattern.compile("[A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}|[A-Z]{3}[0-9]{4}");
+        Matcher mat = pattern.matcher(placa);
+        if (!mat.matches()) {
+            result = false;
+        } else {
+            result = true;
+
+        }
+        return result;
+
     }
     
 }

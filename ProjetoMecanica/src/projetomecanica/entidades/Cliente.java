@@ -16,12 +16,17 @@ public class Cliente {
     private TipoDeCliente tipo = TipoDeCliente.PESSOA_FISICA;
     private String cpf_cnpj = "";
     private String razaoSocial = "";
+    private String nomeFantasia = "";
     private String dataNascimento = "";
     private StatusPessoa status = StatusPessoa.ATIVO;
 
     public Cliente() {}
 
-    public Cliente(String nomeCompleto, Telefone telefone1, Telefone telefone2, Telefone telefone3, String email, Endereco endereco, TipoDeCliente tipo, String cpf_cnpj, String razaoSocial, String dataNascimento, StatusPessoa status) {
+    public Cliente(String nomeCompleto, Telefone telefone1, Telefone telefone2, Telefone telefone3, String email, Endereco endereco, TipoDeCliente tipo, String cpf_cnpj, String razaoSocial, String dataNascimento, StatusPessoa status, String nomeFantasia) throws Exception {
+        if (!Utils.validaEmail(email)) throw new Exception("Email inválido");
+        if (cpf_cnpj.length() > 11) if (!Utils.isCNPJ(cpf_cnpj)) throw new Exception("CNPJ inválido");
+        else if (!Utils.isCPF(cpf_cnpj)) throw new Exception("CPF inválido");
+        if (!Utils.dataIsValida(dataNascimento)) throw new Exception("Data de nascimento inválida");
         this.nomeCompleto = nomeCompleto;
         this.telefone1 = telefone1;
         this.telefone2 = telefone2;
@@ -33,6 +38,7 @@ public class Cliente {
         this.razaoSocial = razaoSocial;
         this.dataNascimento = dataNascimento;
         this.status = status;
+        this.nomeFantasia = nomeFantasia;
     }
 
     public int getId() {
@@ -79,7 +85,8 @@ public class Cliente {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email) throws Exception {
+        if (!Utils.validaEmail(email)) throw new Exception("Email inválido");
         this.email = email;
     }
 
@@ -104,7 +111,8 @@ public class Cliente {
     }
 
     public void setCpf_cnpj(String cpf_cnpj) throws Exception {
-        if (!Utils.isCPF(cpf_cnpj) || !Utils.isCNPJ(cpf_cnpj)) throw new Exception("CPF ou CNPJ inválido");
+        if (cpf_cnpj.length() > 11) if (!Utils.isCNPJ(cpf_cnpj)) throw new Exception("CNPJ inválido");
+        else if (!Utils.isCPF(cpf_cnpj)) throw new Exception("CPF inválido");
         this.cpf_cnpj = cpf_cnpj;
     }
 
@@ -133,9 +141,17 @@ public class Cliente {
         this.status = status;
     }
 
+    public String getNomeFantasia() {
+        return nomeFantasia;
+    }
+
+    public void setNomeFantasia(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
+    }
+
     @Override
     public String toString() {
-        return id + ";" + nomeCompleto + ";" + telefone1.toString() + ";" + telefone2.toString() + ";" + telefone3.toString() + ";" + email + ";" + endereco.toString() + ";" + tipo.getDescricao() + ";" + cpf_cnpj + ";" + razaoSocial + ";" + dataNascimento + ";" + status.getDescricao();
+        return id + ";" + nomeCompleto + ";" + telefone1.toString() + ";" + telefone2.toString() + ";" + telefone3.toString() + ";" + email + ";" + endereco.toString() + ";" + tipo.getDescricao() + ";" + cpf_cnpj + ";" + razaoSocial + ";" + dataNascimento + ";" + status.getDescricao() + ";" + nomeFantasia;
     }
     
 }

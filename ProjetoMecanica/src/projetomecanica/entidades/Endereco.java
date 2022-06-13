@@ -1,6 +1,7 @@
 package projetomecanica.entidades;
 
 import projetomecanica.entidades.enums.TipoDeLogradouro;
+import projetomecanica.servicos.Utils;
 
 public class Endereco {
     
@@ -15,7 +16,10 @@ public class Endereco {
 
     public Endereco() {}
 
-    public Endereco(TipoDeLogradouro tipoLogradouro, String logradouro, String complemento, String bairro, String cidade, int cep, String estado, int numero) {
+    public Endereco(TipoDeLogradouro tipoLogradouro, String logradouro, String complemento, String bairro, String cidade, int cep, String estado, int numero) throws Exception {
+        if (!Utils.validaNumero(cep)) throw new Exception("Cep não pode ser negativo");
+        if (!Utils.validaCep(cep)) throw new Exception("CEP inválido");
+        if (!Utils.validaNumero(numero)) throw new Exception("Número não pode ser negativo");
         this.tipoLogradouro = tipoLogradouro;
         this.logradouro = logradouro;
         this.complemento = complemento;
@@ -70,7 +74,9 @@ public class Endereco {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(int cep) throws Exception {
+        if (!Utils.validaNumero(cep)) throw new Exception("CEP não pode ser negativo");
+        if (!Utils.validaCep(cep)) throw new Exception("CEP inválido");
         this.cep = cep;
     }
 
@@ -86,7 +92,8 @@ public class Endereco {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(int numero) throws Exception {
+        if (!Utils.validaNumero(numero)) throw new Exception("Número não pode ser negativo");
         this.numero = numero;
     }
 
