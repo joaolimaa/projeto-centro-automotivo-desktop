@@ -84,7 +84,7 @@ public class ClienteDAO implements IDaoGenerico<Cliente>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 25) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 26) throw new Exception("Faltam dados na String");
                 
                 objetoCliente.setId(Integer.parseInt(vetorString[0]));
                 
@@ -100,16 +100,14 @@ public class ClienteDAO implements IDaoGenerico<Cliente>{
                     objetoCliente.setTelefone1(objetoTelefone1);
 
                     Telefone objetoTelefone2 = new Telefone();
-                    objetoTelefone2.setDdd(Integer.parseInt(vetorString[5]));
-                    objetoTelefone2.setNumero(Integer.parseInt(vetorString[6]));
+                    objetoTelefone2.setNumero(Integer.parseInt(vetorString[5]), Integer.parseInt(vetorString[6]));
                     TipoDeTelefone tipo2 = TipoDeTelefone.valueOf(vetorString[7]);
                     objetoTelefone2.setTipo(tipo2);
                     
                     objetoCliente.setTelefone2(objetoTelefone2);
 
                     Telefone objetoTelefone3 = new Telefone();
-                    objetoTelefone3.setDdd(Integer.parseInt(vetorString[8]));
-                    objetoTelefone3.setNumero(Integer.parseInt(vetorString[9]));
+                    objetoTelefone3.setNumero(Integer.parseInt(vetorString[8]), Integer.parseInt(vetorString[9]));
                     TipoDeTelefone tipo3 = TipoDeTelefone.valueOf(vetorString[10]);
                     objetoTelefone3.setTipo(tipo3);
                     
@@ -137,6 +135,7 @@ public class ClienteDAO implements IDaoGenerico<Cliente>{
                     objetoCliente.setDataNascimento(vetorString[23]);
                     StatusPessoa status = StatusPessoa.valueOf(vetorString[24]);
                     objetoCliente.setStatus(status);
+                    objetoCliente.setNomeFantasia(vetorString[25]);
                 
                     br.close();
                     
@@ -203,26 +202,23 @@ public class ClienteDAO implements IDaoGenerico<Cliente>{
                 
                 objetoCliente.setId(Integer.parseInt(vetorString[0]));
                 objetoCliente.setNomeCompleto(vetorString[1]);
-                
+
                 Telefone objetoTelefone1 = new Telefone();
-                objetoTelefone1.setDdd(Integer.parseInt(vetorString[2]));
-                objetoTelefone1.setNumero(Integer.parseInt(vetorString[3]));
+                objetoTelefone1.setNumero(Integer.parseInt(vetorString[2]), Integer.parseInt(vetorString[3]));
                 TipoDeTelefone tipo1 = TipoDeTelefone.valueOf(vetorString[4]);
                 objetoTelefone1.setTipo(tipo1);
 
                 objetoCliente.setTelefone1(objetoTelefone1);
 
                 Telefone objetoTelefone2 = new Telefone();
-                objetoTelefone2.setDdd(Integer.parseInt(vetorString[5]));
-                objetoTelefone2.setNumero(Integer.parseInt(vetorString[6]));
+                objetoTelefone2.setNumero(Integer.parseInt(vetorString[5]), Integer.parseInt(vetorString[6]));
                 TipoDeTelefone tipo2 = TipoDeTelefone.valueOf(vetorString[7]);
                 objetoTelefone2.setTipo(tipo2);
 
                 objetoCliente.setTelefone2(objetoTelefone2);
 
                 Telefone objetoTelefone3 = new Telefone();
-                objetoTelefone3.setDdd(Integer.parseInt(vetorString[8]));
-                objetoTelefone3.setNumero(Integer.parseInt(vetorString[9]));
+                objetoTelefone3.setNumero(Integer.parseInt(vetorString[8]), Integer.parseInt(vetorString[9]));
                 TipoDeTelefone tipo3 = TipoDeTelefone.valueOf(vetorString[10]);
                 objetoTelefone3.setTipo(tipo3);
 
@@ -250,6 +246,7 @@ public class ClienteDAO implements IDaoGenerico<Cliente>{
                 objetoCliente.setDataNascimento(vetorString[23]);
                 StatusPessoa status = StatusPessoa.valueOf(vetorString[24]);
                 objetoCliente.setStatus(status);
+                objetoCliente.setNomeFantasia(vetorString[25]);
                 
                 listaDeClientes.add(objetoCliente);
             }

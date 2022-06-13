@@ -2,6 +2,7 @@ package projetomecanica.entidades;
 
 import projetomecanica.entidades.enums.StatusVeiculo;
 import projetomecanica.entidades.enums.TipoDeVeiculo;
+import projetomecanica.servicos.Utils;
 
 public class Veiculo {
     
@@ -14,10 +15,16 @@ public class Veiculo {
     private StatusVeiculo status = StatusVeiculo.EM_ESPERA;
     private TipoDeVeiculo tipo = TipoDeVeiculo.ESPORTIVO;
     private int idCliente = 0;
+    private int quilometragem = 0;
     
     public Veiculo() {}
 
-    public Veiculo(String placa, Modelo modelo, String renavam, int anoModelo, int anoFabricacao, TipoDeVeiculo tipo, StatusVeiculo status, int idCliente) {
+    public Veiculo(String placa, Modelo modelo, String renavam, int anoModelo, int anoFabricacao, TipoDeVeiculo tipo, StatusVeiculo status, int idCliente, int quilometragem) throws Exception {
+        if (!Utils.validaNumero(anoModelo)) throw new Exception("Ano de modelo inválido");
+        if (!Utils.validaNumero(anoFabricacao)) throw new Exception("Ano de fabricação inválido");
+        if (!Utils.validaNumero(quilometragem)) throw new Exception("Quilometragem inválida");
+        if (!Utils.validaRenavam(renavam)) throw new Exception("Renavam inválido");
+        if (!Utils.validaPlaca(placa)) throw new Exception("Placa inválida");
         this.placa = placa;
         this.modelo = modelo;
         this.renavam = renavam;
@@ -26,6 +33,7 @@ public class Veiculo {
         this.tipo = tipo;
         this.status = status;
         this.idCliente = idCliente;
+        this.quilometragem = quilometragem;
     }
 
     public int getId() {
@@ -40,7 +48,8 @@ public class Veiculo {
         return placa;
     }
 
-    public void setPlaca(String placa) {
+    public void setPlaca(String placa) throws Exception {
+        if (!Utils.validaPlaca(placa)) throw new Exception("Placa inválida");
         this.placa = placa;
     }
 
@@ -56,7 +65,8 @@ public class Veiculo {
         return renavam;
     }
 
-    public void setRenavam(String renavam) {
+    public void setRenavam(String renavam) throws Exception {
+        if (!Utils.validaRenavam(renavam)) throw new Exception("Renavam inválido");
         this.renavam = renavam;
     }
 
@@ -64,7 +74,8 @@ public class Veiculo {
         return anoModelo;
     }
 
-    public void setAnoModelo(int anoModelo) {
+    public void setAnoModelo(int anoModelo) throws Exception {
+        if (!Utils.validaNumero(anoModelo)) throw new Exception("Ano de modelo inválido");
         this.anoModelo = anoModelo;
     }
 
@@ -72,7 +83,8 @@ public class Veiculo {
         return anoFabricacao;
     }
 
-    public void setAnoFabricacao(int anoFabricacao) {
+    public void setAnoFabricacao(int anoFabricacao) throws Exception {
+        if (!Utils.validaNumero(anoFabricacao)) throw new Exception("Ano de fabricação inválido");
         this.anoFabricacao = anoFabricacao;
     }
 
@@ -100,9 +112,18 @@ public class Veiculo {
         this.status = status;
     }
 
+    public int getQuilometragem() {
+        return quilometragem;
+    }
+
+    public void setQuilometragem(int quilometragem) throws Exception {
+        if (!Utils.validaNumero(quilometragem)) throw new Exception("Quilometragem inválida");
+        this.quilometragem = quilometragem;
+    }
+
     @Override
     public String toString() {
-        return this.id + ";" + this.placa + ";" + this.modelo.toString() + ";" + this.renavam + ";" + this.anoModelo + ";" + this.anoFabricacao + ";" + this.tipo + ";" + this.status + ";" + this.idCliente;
+        return this.id + ";" + this.placa + ";" + this.modelo.toString() + ";" + this.renavam + ";" + this.anoModelo + ";" + this.anoFabricacao + ";" + this.tipo + ";" + this.status + ";" + this.idCliente + ";" + this.quilometragem;
     }
     
 }
