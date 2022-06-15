@@ -65,14 +65,15 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
         jTextField17 = new javax.swing.JTextField();
         jPanelFundo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButtonNovoCliente = new javax.swing.JButton();
+        jButtonNovoVeiculo = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCadastros = new javax.swing.JTable();
-        jTextFieldNome = new javax.swing.JTextField();
+        jTextFieldPesquisa = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
+        jButtonSair1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButtonCadastrarCliente = new javax.swing.JButton();
         jButtonCadastrarVeiculo = new javax.swing.JButton();
@@ -142,15 +143,15 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
         jPanelFundo.setFocusable(false);
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 27)); // NOI18N
-        jLabel1.setText("Cliente");
+        jLabel1.setText("Veículo");
 
-        jButtonNovoCliente.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonNovoCliente.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonNovoCliente.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonNovoCliente.setText("Novo Cliente");
-        jButtonNovoCliente.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNovoVeiculo.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonNovoVeiculo.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonNovoVeiculo.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonNovoVeiculo.setText("Novo Veículo");
+        jButtonNovoVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNovoClienteActionPerformed(evt);
+                jButtonNovoVeiculoActionPerformed(evt);
             }
         });
 
@@ -167,11 +168,11 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTableCadastros);
 
-        jTextFieldNome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldNome.setText("Pesquisar");
-        jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldPesquisa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldPesquisa.setText("Pesquisar");
+        jTextFieldPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNomeActionPerformed(evt);
+                jTextFieldPesquisaActionPerformed(evt);
             }
         });
 
@@ -182,15 +183,15 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
             .addGroup(jPanelFundoLayout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1145, Short.MAX_VALUE)
                     .addGroup(jPanelFundoLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
-                        .addComponent(jButtonNovoCliente)))
+                        .addComponent(jButtonNovoVeiculo)))
                 .addGap(65, 65, 65))
         );
         jPanelFundoLayout.setVerticalGroup(
@@ -198,8 +199,8 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
             .addGroup(jPanelFundoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButtonNovoCliente)
-                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonNovoVeiculo)
+                    .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel1))
                 .addGap(25, 25, 25)
@@ -222,11 +223,20 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
         });
 
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 14.png")); // NOI18N
+        jButtonSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\1x\\Ativo 43.png")); // NOI18N
         jButtonSair.setBorder(null);
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSairActionPerformed(evt);
+            }
+        });
+
+        jButtonSair1.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonSair1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\1x\\Ativo 42.png")); // NOI18N
+        jButtonSair1.setBorder(null);
+        jButtonSair1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSair1ActionPerformed(evt);
             }
         });
 
@@ -237,9 +247,11 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jButtonMenu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1157, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonSair1)
+                .addGap(30, 30, 30)
                 .addComponent(jButtonSair)
-                .addGap(25, 25, 25))
+                .addGap(35, 35, 35))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +259,8 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jButtonSair)
-                    .addComponent(jButtonMenu))
+                    .addComponent(jButtonMenu)
+                    .addComponent(jButtonSair1))
                 .addGap(17, 17, 17))
         );
 
@@ -380,11 +393,14 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
     
     private void jButtonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuActionPerformed
         // TODO add your handling code here:
+        TelaPrincipal inicio = new TelaPrincipal();
+        inicio.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonMenuActionPerformed
 
     private void jButtonCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClienteActionPerformed
         // TODO add your handling code here:
-        TelaExibirVeiculos cliente = new TelaExibirVeiculos();
+        TelaExibirClientes cliente = new TelaExibirClientes();
         cliente.setVisible(true);
         dispose();
 
@@ -392,6 +408,9 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
 
     private void jButtonCadastrarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarVeiculoActionPerformed
         // TODO add your handling code here:
+        TelaExibirVeiculos veiculo = new TelaExibirVeiculos();
+        veiculo.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonCadastrarVeiculoActionPerformed
 
     private void jButtonOrdemServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoActionPerformed
@@ -412,7 +431,7 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
 
     private void jButtonCadastrarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarColaboradorActionPerformed
         // TODO add your handling code here:
-        TelaFuncionario funcionario = new TelaFuncionario();
+        TelaExibirClolaboradores funcionario = new TelaExibirClolaboradores();
         funcionario.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
@@ -434,16 +453,20 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField16ActionPerformed
 
-    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
+    private void jTextFieldPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeActionPerformed
+    }//GEN-LAST:event_jTextFieldPesquisaActionPerformed
 
-    private void jButtonNovoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoClienteActionPerformed
+    private void jButtonNovoVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoVeiculoActionPerformed
         // TODO add your handling code here:
-        TelaCadastrarClientes novoCliente = new TelaCadastrarClientes();
-        novoCliente.setVisible(true);
+        TelaCadastrarVeiculos veiculo = new TelaCadastrarVeiculos();
+        veiculo.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButtonNovoClienteActionPerformed
+    }//GEN-LAST:event_jButtonNovoVeiculoActionPerformed
+
+    private void jButtonSair1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSair1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSair1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -484,10 +507,11 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCadastrarPecas;
     private javax.swing.JButton jButtonCadastrarVeiculo;
     private javax.swing.JButton jButtonMenu;
-    private javax.swing.JButton jButtonNovoCliente;
+    private javax.swing.JButton jButtonNovoVeiculo;
     private javax.swing.JButton jButtonOrdemServico;
     private javax.swing.JButton jButtonPagar;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JButton jButtonSair1;
     private javax.swing.JButton jButtonServico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
@@ -518,6 +542,6 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextField jTextFieldNome;
+    private javax.swing.JTextField jTextFieldPesquisa;
     // End of variables declaration//GEN-END:variables
 }
