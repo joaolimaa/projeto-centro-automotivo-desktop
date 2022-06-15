@@ -1,14 +1,15 @@
 package projetomecanica.entidades.enums;
 
-public enum TipoDeDocumento {
+public enum FasesDocumento {
     
-    ORCAMENTO("Orçamento"),
-    ORDEM_DE_SERVICO("Ordem de Serviço"),
-    NOTA_FISCAL("Nota Fiscal");
+    ATIVO("Ativo"),
+    APROVADO("Aprovado"),
+    FINALIZADO("Finalizado"),
+    INATIVO("Inativo");
     
     private String descricao;
     
-    TipoDeDocumento(String descricao) {
+    FasesDocumento(String descricao) {
         this.descricao = descricao;
     }
 

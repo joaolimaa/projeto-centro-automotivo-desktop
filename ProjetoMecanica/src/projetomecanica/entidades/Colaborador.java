@@ -28,6 +28,7 @@ public class Colaborador {
         if (!Utils.validaNumero(salarioBase)) throw new Exception("Salario inválido");
         if (!Utils.validaNumero(valorHora)) throw new Exception("Valor hora inválido");
         if (!Utils.dataIsValida(dataNascimento)) throw new Exception("Data de nascimento inválida");
+        if (!Utils.validaSenha(senha)) throw new Exception("Senha inválida, deve ser 8 caracteres");
         this.nomeCompleto = nomeCompleto;
         this.telefone1 = telefone1;
         this.telefone2 = telefone2;

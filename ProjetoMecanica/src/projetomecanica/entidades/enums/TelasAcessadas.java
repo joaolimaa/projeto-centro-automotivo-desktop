@@ -1,0 +1,21 @@
+package projetomecanica.entidades.enums;
+
+public enum TelasAcessadas {
+    
+    CADASTRO_CLIENTE,
+    CADASTRO_VEICULO,
+    CADASTRO_COLABORADOR,
+    CADASTRO_PECA,
+    CADASTRO_OS,
+    CADASTRO_ORCAMENTO,
+    CADASTRO_NF,
+    LISTAGEM_CLIENTE,
+    LISTAGEM_VEICULO,
+    LISTAGEM_COLABORADOR,
+    LISTAGEM_PECA,
+    LISTAGEM_OS,
+    LISTAGEM_ORCAMENTO,
+    LISTAGEM_NF,
+    CONFIGURACOES;
+    
+}
