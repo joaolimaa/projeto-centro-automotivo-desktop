@@ -14,6 +14,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import projetomecanica.telas.clientes.*;
 import projetomecanica.telas.funcionarios.*;
+import projetomecanica.telas.veiculos.TelaExibirVeiculos;
 /**
  *
  * @author Dell
@@ -40,12 +41,8 @@ public class TelaExibirClientes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        jTextField27 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -53,7 +50,6 @@ public class TelaExibirClientes extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jTextField15 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
@@ -68,10 +64,11 @@ public class TelaExibirClientes extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCadastros = new javax.swing.JTable();
-        jTextFieldNome = new javax.swing.JTextField();
+        jTextFieldPesquisa = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
+        jButtonSair1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButtonCadastrarCliente = new javax.swing.JButton();
         jButtonCadastrarVeiculo = new javax.swing.JButton();
@@ -81,28 +78,11 @@ public class TelaExibirClientes extends javax.swing.JFrame {
         jButtonCadastrarColaborador = new javax.swing.JButton();
         jButtonCadastrarPecas = new javax.swing.JButton();
 
-        jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
-
-        jMenuItem1.setText("jMenuItem1");
-
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel6.setText("Data de Nascimento*");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-
         jLabel26.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel26.setText("E-mail*");
-
-        jTextField27.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField27ActionPerformed(evt);
-            }
-        });
 
         jLabel12.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel12.setText("Bairro*");
@@ -115,12 +95,6 @@ public class TelaExibirClientes extends javax.swing.JFrame {
 
         jLabel27.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel27.setText("Cidade");
-
-        jTextField16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField16ActionPerformed(evt);
-            }
-        });
 
         jLabel18.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel18.setText("Estado*");
@@ -166,11 +140,11 @@ public class TelaExibirClientes extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTableCadastros);
 
-        jTextFieldNome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldNome.setText("Pesquisar");
-        jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldPesquisa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldPesquisa.setText("Pesquisar");
+        jTextFieldPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNomeActionPerformed(evt);
+                jTextFieldPesquisaActionPerformed(evt);
             }
         });
 
@@ -184,10 +158,10 @@ public class TelaExibirClientes extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addGroup(jPanelFundoLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 693, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
                         .addComponent(jButtonNovoCliente)))
                 .addGap(65, 65, 65))
@@ -198,7 +172,7 @@ public class TelaExibirClientes extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jButtonNovoCliente)
-                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel1))
                 .addGap(25, 25, 25)
@@ -221,11 +195,20 @@ public class TelaExibirClientes extends javax.swing.JFrame {
         });
 
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 14.png")); // NOI18N
+        jButtonSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\1x\\Ativo 43.png")); // NOI18N
         jButtonSair.setBorder(null);
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSairActionPerformed(evt);
+            }
+        });
+
+        jButtonSair1.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonSair1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\1x\\Ativo 42.png")); // NOI18N
+        jButtonSair1.setBorder(null);
+        jButtonSair1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSair1ActionPerformed(evt);
             }
         });
 
@@ -236,9 +219,11 @@ public class TelaExibirClientes extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jButtonMenu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1157, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonSair1)
+                .addGap(30, 30, 30)
                 .addComponent(jButtonSair)
-                .addGap(25, 25, 25))
+                .addGap(35, 35, 35))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,7 +231,8 @@ public class TelaExibirClientes extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jButtonSair)
-                    .addComponent(jButtonMenu))
+                    .addComponent(jButtonMenu)
+                    .addComponent(jButtonSair1))
                 .addGap(17, 17, 17))
         );
 
@@ -379,6 +365,9 @@ public class TelaExibirClientes extends javax.swing.JFrame {
     
     private void jButtonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuActionPerformed
         // TODO add your handling code here:
+        TelaPrincipal inicio = new TelaPrincipal();
+        inicio.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonMenuActionPerformed
 
     private void jButtonCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClienteActionPerformed
@@ -391,6 +380,9 @@ public class TelaExibirClientes extends javax.swing.JFrame {
 
     private void jButtonCadastrarVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarVeiculoActionPerformed
         // TODO add your handling code here:
+        TelaExibirVeiculos veiculo = new TelaExibirVeiculos();
+        veiculo.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonCadastrarVeiculoActionPerformed
 
     private void jButtonOrdemServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoActionPerformed
@@ -411,7 +403,7 @@ public class TelaExibirClientes extends javax.swing.JFrame {
 
     private void jButtonCadastrarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarColaboradorActionPerformed
         // TODO add your handling code here:
-        TelaFuncionario funcionario = new TelaFuncionario();
+        TelaExibirClolaboradores funcionario = new TelaExibirClolaboradores();
         funcionario.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
@@ -421,27 +413,20 @@ public class TelaExibirClientes extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButtonSairActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTextFieldPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField27ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField27ActionPerformed
-
-    private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField16ActionPerformed
-
-    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeActionPerformed
+    }//GEN-LAST:event_jTextFieldPesquisaActionPerformed
 
     private void jButtonNovoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoClienteActionPerformed
         // TODO add your handling code here:
-        new TelaExibirClientes().setVisible(true);
+        TelaCadastrarClientes cliente = new TelaCadastrarClientes();
+        cliente.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonNovoClienteActionPerformed
+
+    private void jButtonSair1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSair1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSair1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -486,6 +471,7 @@ public class TelaExibirClientes extends javax.swing.JFrame {
     private javax.swing.JButton jButtonOrdemServico;
     private javax.swing.JButton jButtonPagar;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JButton jButtonSair1;
     private javax.swing.JButton jButtonServico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
@@ -499,11 +485,9 @@ public class TelaExibirClientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelFundo;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableCadastros;
     private javax.swing.JTextField jTextField11;
@@ -511,11 +495,8 @@ public class TelaExibirClientes extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField27;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextField jTextFieldNome;
+    private javax.swing.JTextField jTextFieldPesquisa;
     // End of variables declaration//GEN-END:variables
 }
