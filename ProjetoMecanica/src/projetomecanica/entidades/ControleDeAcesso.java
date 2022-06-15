@@ -3,27 +3,28 @@ package projetomecanica.entidades;
 public class ControleDeAcesso {
     
     private int id = 0;
-    private String descricao;
-    private boolean acessoCliente;
-    private boolean acessoColaborador;
-    private boolean acessoPeca;
-    private boolean acessoServico;
-    private boolean acessoVeiculo;
-    private boolean acessoDocumento;
-    private boolean acessoOrdemDeServico;
-    private boolean acessoConfiguracao;
+    private String descricao = "";
+    private boolean acessoCliente = false;
+    private boolean acessoColaborador = false;
+    private boolean acessoPeca = false;
+    private boolean acessoServico = false;
+    private boolean acessoVeiculo = false;
+    private boolean acessoOrcamento = false;
+    private boolean acessoNotaFiscal = false;
+    private boolean acessoOrdemDeServico = false;
+    private boolean acessoConfiguracao = false;
 
     public ControleDeAcesso() {
     }
 
-    public ControleDeAcesso(String descricao, boolean acessoCliente, boolean acessoColaborador, boolean acessoPeca, boolean acessoServico, boolean acessoVeiculo, boolean acessoDocumento, boolean acessoOrdemDeServico, boolean acessoConfiguracao) {
+    public ControleDeAcesso(String descricao, boolean acessoCliente, boolean acessoColaborador, boolean acessoPeca, boolean acessoServico, boolean acessoVeiculo, boolean acessoOrcamento, boolean acessoNotaFiscal, boolean acessoOrdemDeServico, boolean acessoConfiguracao) {
         this.descricao = descricao;
         this.acessoCliente = acessoCliente;
         this.acessoColaborador = acessoColaborador;
         this.acessoPeca = acessoPeca;
         this.acessoServico = acessoServico;
         this.acessoVeiculo = acessoVeiculo;
-        this.acessoDocumento = acessoDocumento;
+        this.acessoOrcamento = acessoOrcamento;
         this.acessoOrdemDeServico = acessoOrdemDeServico;
         this.acessoConfiguracao = acessoConfiguracao;
     }
@@ -84,12 +85,12 @@ public class ControleDeAcesso {
         this.acessoVeiculo = acessoVeiculo;
     }
 
-    public boolean isAcessoDocumento() {
-        return acessoDocumento;
+    public boolean isAcessoOrcamento() {
+        return acessoOrcamento;
     }
 
-    public void setAcessoDocumento(boolean acessoDocumento) {
-        this.acessoDocumento = acessoDocumento;
+    public void setAcessoOrcamento(boolean acessoOrcamento) {
+        this.acessoOrcamento = acessoOrcamento;
     }
 
     public boolean isAcessoOrdemDeServico() {
@@ -108,9 +109,17 @@ public class ControleDeAcesso {
         this.acessoConfiguracao = acessoConfiguracao;
     }
 
+    public boolean isAcessoNotaFiscal() {
+        return acessoNotaFiscal;
+    }
+
+    public void setAcessoNotaFiscal(boolean acessoNotaFiscal) {
+        this.acessoNotaFiscal = acessoNotaFiscal;
+    }
+
     @Override
     public String toString() {
-        return id + ";" + descricao + ";" + acessoCliente + ";" + acessoColaborador + ";" + acessoPeca + ";" + acessoServico + ";" + acessoVeiculo + ";" + acessoDocumento + ";" + acessoOrdemDeServico + ";" + acessoConfiguracao;
+        return id + ";" + descricao + ";" + acessoCliente + ";" + acessoColaborador + ";" + acessoPeca + ";" + acessoServico + ";" + acessoVeiculo + ";" + acessoOrcamento + ";" + acessoNotaFiscal + ";" + acessoOrdemDeServico + ";" + acessoConfiguracao;
     }
     
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import projetomecanica.entidades.Colaborador;
+import projetomecanica.entidades.ControleDeAcesso;
 import projetomecanica.entidades.Endereco;
 import projetomecanica.entidades.Telefone;
 import projetomecanica.entidades.enums.*;
@@ -300,21 +301,54 @@ public class ColaboradorDAO implements IDaoGenerico<Colaborador>{
         
     }
     
-    public boolean isAcessoLiberado(int idControleDeAcesso) throws Exception {
+    public boolean isAcessoLiberado(int idControleDeAcesso, TelasAcessadas tela) throws Exception {
+        
+        try {
+            
+            ControleDeAcessoDAO controleDeAcessoDAO = new ControleDeAcessoDAO();
+            
+            ControleDeAcesso controleDeAcesso = controleDeAcessoDAO.consultarPorId(idControleDeAcesso);
+            
+            if (tela.equals(TelasAcessadas.CONFIGURACOES) && controleDeAcesso.isAcessoConfiguracao()) return true;
+            if (tela.equals(TelasAcessadas.CADASTRO_CLIENTE) && controleDeAcesso.isAcessoCliente()) return true;
+            if (tela.equals(TelasAcessadas.CADASTRO_COLABORADOR) && controleDeAcesso.isAcessoColaborador()) return true;
+            if (tela.equals(TelasAcessadas.CADASTRO_NF) && controleDeAcesso.isAcessoNotaFiscal()) return true;
+            if (tela.equals(TelasAcessadas.CADASTRO_ORCAMENTO) && controleDeAcesso.isAcessoOrcamento()) return true;
+            if (tela.equals(TelasAcessadas.CADASTRO_PECA) && controleDeAcesso.isAcessoPeca()) return true;
+            if (tela.equals(TelasAcessadas.CADASTRO_VEICULO) && controleDeAcesso.isAcessoVeiculo()) return true;
+            if (tela.equals(TelasAcessadas.CADASTRO_OS) && controleDeAcesso.isAcessoOrdemDeServico()) return true;
+            if (tela.equals(TelasAcessadas.LISTAGEM_CLIENTE) && controleDeAcesso.isAcessoCliente()) return true;
+            if (tela.equals(TelasAcessadas.LISTAGEM_COLABORADOR) && controleDeAcesso.isAcessoColaborador()) return true;
+            if (tela.equals(TelasAcessadas.LISTAGEM_NF) && controleDeAcesso.isAcessoNotaFiscal()) return true;
+            if (tela.equals(TelasAcessadas.LISTAGEM_ORCAMENTO) && controleDeAcesso.isAcessoOrcamento()) return true;
+            if (tela.equals(TelasAcessadas.LISTAGEM_OS) && controleDeAcesso.isAcessoOrdemDeServico()) return true;
+            if (tela.equals(TelasAcessadas.LISTAGEM_PECA) && controleDeAcesso.isAcessoPeca()) return true;
+            if (tela.equals(TelasAcessadas.LISTAGEM_VEICULO) && controleDeAcesso.isAcessoVeiculo()) return true;
+            
+            return false;
+            
+        } catch (Exception erro) {
+            throw erro;
+        }
+        
+    }
+    
+    public void login(String email, String senha) throws Exception {
         
         try {
             
             ArrayList<Colaborador> listaDeColaboradores = this.obterTodasEntidades();
-            
-            FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
-            
-            BufferedWriter bw = new BufferedWriter(fw);
+            Colaborador colaborador = new Colaborador();
             
             for (int i = 0; i < listaDeColaboradores.size(); i++) {
-                if (listaDeColaboradores.get(i).getId() != id) bw.write(listaDeColaboradores.get(i).toString()+"\n");
+                if (listaDeColaboradores.get(i).getEmail().equals(email)) {
+                    colaborador = listaDeColaboradores.get(i);
+                    break;
+                }
+                if (i == listaDeColaboradores.size()) throw new Exception("Email incorreto!");
             }
+            if (!colaborador.getSenha().equals(senha)) throw new Exception("Senha incorreta!");
             
-            bw.close();
             
         } catch (Exception erro) {
             throw erro;
