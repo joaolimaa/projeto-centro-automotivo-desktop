@@ -81,7 +81,7 @@ public class ControleDeAcessoDAO implements IDaoGenerico<ControleDeAcesso>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 11) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 12) throw new Exception("Faltam dados na String");
                 
                 objetoControleDeAcesso.setId(Integer.parseInt(vetorString[0]));
                 
@@ -93,9 +93,10 @@ public class ControleDeAcessoDAO implements IDaoGenerico<ControleDeAcesso>{
                     objetoControleDeAcesso.setAcessoPeca(Boolean.getBoolean(vetorString[4]));
                     objetoControleDeAcesso.setAcessoServico(Boolean.getBoolean(vetorString[6]));
                     objetoControleDeAcesso.setAcessoVeiculo(Boolean.getBoolean(vetorString[7]));
-                    objetoControleDeAcesso.setAcessoDocumento(Boolean.getBoolean(vetorString[8]));
-                    objetoControleDeAcesso.setAcessoOrdemDeServico(Boolean.getBoolean(vetorString[9]));
-                    objetoControleDeAcesso.setAcessoConfiguracao(Boolean.getBoolean(vetorString[10]));
+                    objetoControleDeAcesso.setAcessoOrcamento(Boolean.getBoolean(vetorString[8]));
+                    objetoControleDeAcesso.setAcessoNotaFiscal(Boolean.getBoolean(vetorString[9]));
+                    objetoControleDeAcesso.setAcessoOrdemDeServico(Boolean.getBoolean(vetorString[10]));
+                    objetoControleDeAcesso.setAcessoConfiguracao(Boolean.getBoolean(vetorString[11]));
                 
                     br.close();
                     
@@ -158,7 +159,7 @@ public class ControleDeAcessoDAO implements IDaoGenerico<ControleDeAcesso>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 8) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 12) throw new Exception("Faltam dados na String");
                 
                 objetoControleDeAcesso.setId(Integer.parseInt(vetorString[0]));
                 objetoControleDeAcesso.setDescricao(vetorString[1]);
@@ -167,9 +168,10 @@ public class ControleDeAcessoDAO implements IDaoGenerico<ControleDeAcesso>{
                 objetoControleDeAcesso.setAcessoPeca(Boolean.getBoolean(vetorString[4]));
                 objetoControleDeAcesso.setAcessoServico(Boolean.getBoolean(vetorString[6]));
                 objetoControleDeAcesso.setAcessoVeiculo(Boolean.getBoolean(vetorString[7]));
-                objetoControleDeAcesso.setAcessoDocumento(Boolean.getBoolean(vetorString[8]));
-                objetoControleDeAcesso.setAcessoOrdemDeServico(Boolean.getBoolean(vetorString[9]));
-                objetoControleDeAcesso.setAcessoConfiguracao(Boolean.getBoolean(vetorString[10]));
+                objetoControleDeAcesso.setAcessoOrcamento(Boolean.getBoolean(vetorString[8]));
+                objetoControleDeAcesso.setAcessoNotaFiscal(Boolean.getBoolean(vetorString[9]));
+                objetoControleDeAcesso.setAcessoOrdemDeServico(Boolean.getBoolean(vetorString[10]));
+                objetoControleDeAcesso.setAcessoConfiguracao(Boolean.getBoolean(vetorString[11]));
                         
                 listaDeControleDeAcessos.add(objetoControleDeAcesso);
             }
@@ -190,9 +192,7 @@ public class ControleDeAcessoDAO implements IDaoGenerico<ControleDeAcesso>{
             
             ArrayList<ControleDeAcesso> listaDeControleDeAcessos = obterTodasEntidades();
             
-            List<ControleDeAcesso> listaDeControleDeAcessosAtivos = listaDeControleDeAcessos.stream()
-                    //.filter(i -> i.getStatus().equals(StatusPeca.EM_ESPERA) && i.getStatus().equals(StatusPeca.EM_MANUTENCAO))
-                    .collect(Collectors.toList());
+            List<ControleDeAcesso> listaDeControleDeAcessosAtivos = listaDeControleDeAcessos.stream().collect(Collectors.toList());
             
             return listaDeControleDeAcessosAtivos;
             

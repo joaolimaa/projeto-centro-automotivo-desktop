@@ -210,6 +210,11 @@ public class Utils {
         return numero >= 0;
     }
     
+    public static boolean validaSenha(String senha) {
+        if(!senha.matches("[a-zA-Z0-9]{5}")) return false;
+        return true;
+    }
+    
     public static boolean validaRenavam(String renavam) {
         
         if(renavam.matches("^([0-9]{9})$")) renavam = "00" + renavam;
