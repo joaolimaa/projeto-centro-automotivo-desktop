@@ -1,5 +1,6 @@
  package projetomecanica.entidades;
 
+import projetomecanica.entidades.dao.VeiculoDAO;
 import projetomecanica.entidades.enums.StatusPessoa;
 import projetomecanica.entidades.enums.TipoDeCliente;
 import projetomecanica.servicos.Utils;
@@ -147,6 +148,13 @@ public class Cliente {
 
     public void setNomeFantasia(String nomeFantasia) {
         this.nomeFantasia = nomeFantasia;
+    }
+    
+    public Object[] listaValoresTabela(int id) throws Exception {
+        VeiculoDAO veiculoDAO = new VeiculoDAO();
+        int qtdVeiculos = veiculoDAO.listarTodosPorCliente(id).size();
+        if (tipo.equals(TipoDeCliente.PESSOA_FISICA)) return new Object[] {razaoSocial, cpf_cnpj, qtdVeiculos, status};
+        return new Object[] {razaoSocial, cpf_cnpj, qtdVeiculos, status};
     }
 
     @Override

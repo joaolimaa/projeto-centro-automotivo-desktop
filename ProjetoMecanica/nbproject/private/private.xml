@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/projetomecanica/telas/funcionarios/TelaCadastrarColaborador.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>813</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/leona/OneDrive/Área%20de%20Trabalho/Eduardo/Projeto%20Integrador/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/entidades/NotaFiscal.java</file>
-            <file>file:/C:/Users/leona/OneDrive/Área%20de%20Trabalho/Eduardo/Projeto%20Integrador/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/entidades/Orcamento.java</file>
+            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/entidades/Cliente.java</file>
+            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/clientes/TelaCadastrarClientes.java</file>
+            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/visao/TelaLogin.java</file>
+            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/clientes/TelaExibirClientes.java</file>
         </group>
     </open-files>
 </project-private>

@@ -95,9 +95,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\1x\\Ativo 43.png")); // NOI18N
         jButtonSair.setBorder(null);
-        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSairActionPerformed(evt);
+        jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonSairMouseClicked(evt);
             }
         });
 
@@ -107,11 +107,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonConfigurarMouseClicked(evt);
-            }
-        });
-        jButtonConfigurar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConfigurarActionPerformed(evt);
             }
         });
 
@@ -440,10 +435,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
 
-    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jButtonSairActionPerformed
-
     private void jButtonCadastrarClienteMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClienteMenuActionPerformed
         // TODO add your handling code here:
         TelaExibirClientes cliente = new TelaExibirClientes();
@@ -474,7 +465,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         final JPopupMenu popup = new JPopupMenu();
         final JFrame frame = this;
         // New project menu item
-        JMenuItem menuItem = new JMenuItem("New Project...",
+        JMenuItem menuItem = new JMenuItem("Cadastrar Marcas de Veículo",
                 new ImageIcon("images/newproject.png"));
         menuItem.setMnemonic(KeyEvent.VK_P);
         menuItem.getAccessibleContext().setAccessibleDescription(
@@ -488,7 +479,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         popup.add(menuItem);
         
         
-        JMenuItem menuItem2 = new JMenuItem("New Project...",
+        JMenuItem menuItem2 = new JMenuItem("Cadastrar Modelos de Veículo",
                 new ImageIcon("images/newproject.png"));
         menuItem2.setMnemonic(KeyEvent.VK_P);
         menuItem2.getAccessibleContext().setAccessibleDescription(
@@ -503,12 +494,43 @@ public class TelaPrincipal extends javax.swing.JFrame {
         popup.add(menuItem2);
         
         
+        JMenuItem menuItem3 = new JMenuItem("Configurar Usuário",
+                new ImageIcon("images/newproject.png"));
+        menuItem3.setMnemonic(KeyEvent.VK_P);
+        menuItem3.getAccessibleContext().setAccessibleDescription(
+                "New Project");
+        menuItem3.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(frame, "New Project clicked!");
+            }
+        });
+        
+        popup.add(menuItem3);
+        
+        
         popup.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_jButtonConfigurarMouseClicked
 
-    private void jButtonConfigurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfigurarActionPerformed
+    private void jButtonSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSairMouseClicked
+        // TODO add your handling code here:
+        final JPopupMenu popup = new JPopupMenu();
+        final JFrame frame = this;
+        // New project menu item
+        JMenuItem menuItem = new JMenuItem("Sair",
+                new ImageIcon("images/newproject.png"));
+        menuItem.setMnemonic(KeyEvent.VK_P);
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "New Project");
+        menuItem.addActionListener(new ActionListener() {
 
-    }//GEN-LAST:event_jButtonConfigurarActionPerformed
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        popup.add(menuItem);
+        popup.show(evt.getComponent(), evt.getX(), evt.getY());
+    }//GEN-LAST:event_jButtonSairMouseClicked
 
     /**
      * @param args the command line arguments

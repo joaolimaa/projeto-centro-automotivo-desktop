@@ -345,7 +345,7 @@ public class ColaboradorDAO implements IDaoGenerico<Colaborador>{
                     colaborador = listaDeColaboradores.get(i);
                     break;
                 }
-                if (i == listaDeColaboradores.size()) throw new Exception("Email incorreto!");
+                if (i == listaDeColaboradores.size()-1) throw new Exception("Email incorreto!");
             }
             if (!colaborador.getSenha().equals(senha)) throw new Exception("Senha incorreta!");
             

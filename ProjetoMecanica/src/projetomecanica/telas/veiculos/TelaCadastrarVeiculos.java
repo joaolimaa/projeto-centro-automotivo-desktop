@@ -8,9 +8,16 @@ import projetomecanica.telas.clientes.*;
 import projetomecanica.telas.funcionarios.*;
 import projetomecanica.telas.visao.*;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import projetomecanica.telas.clientes.*;
@@ -88,7 +95,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
-        jButtonSair1 = new javax.swing.JButton();
+        jButtonConfigurar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButtonCadastrarCliente = new javax.swing.JButton();
         jButtonCadastrarVeiculo = new javax.swing.JButton();
@@ -365,18 +372,18 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\1x\\Ativo 43.png")); // NOI18N
         jButtonSair.setBorder(null);
-        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSairActionPerformed(evt);
+        jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonSairMouseClicked(evt);
             }
         });
 
-        jButtonSair1.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonSair1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\1x\\Ativo 42.png")); // NOI18N
-        jButtonSair1.setBorder(null);
-        jButtonSair1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSair1ActionPerformed(evt);
+        jButtonConfigurar.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonConfigurar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\1x\\Ativo 42.png")); // NOI18N
+        jButtonConfigurar.setBorder(null);
+        jButtonConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonConfigurarMouseClicked(evt);
             }
         });
 
@@ -388,7 +395,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jButtonMenu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonSair1)
+                .addComponent(jButtonConfigurar)
                 .addGap(30, 30, 30)
                 .addComponent(jButtonSair)
                 .addGap(35, 35, 35))
@@ -400,7 +407,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jButtonSair)
                     .addComponent(jButtonMenu)
-                    .addComponent(jButtonSair1))
+                    .addComponent(jButtonConfigurar))
                 .addGap(17, 17, 17))
         );
 
@@ -576,11 +583,6 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
 
-    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jButtonSairActionPerformed
-
     private void jTextFieldAnoModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnoModeloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldAnoModeloActionPerformed
@@ -600,9 +602,95 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldKilometragemActionPerformed
 
-    private void jButtonSair1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSair1ActionPerformed
+    private void jButtonSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSairMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSair1ActionPerformed
+        final JPopupMenu popup = new JPopupMenu();
+        final JFrame frame = this;
+        // New project menu item
+        JMenuItem menuItem = new JMenuItem("Voltar",
+                new ImageIcon("images/newproject.png"));
+        menuItem.setMnemonic(KeyEvent.VK_P);
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "New Project");
+        menuItem.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                TelaExibirVeiculos veiculo = new TelaExibirVeiculos();
+                veiculo.setVisible(true);
+                dispose();
+                
+            }
+        });
+        popup.add(menuItem);
+        
+        
+        JMenuItem menuItem2 = new JMenuItem("Sair",
+                new ImageIcon("images/newproject.png"));
+        menuItem2.setMnemonic(KeyEvent.VK_P);
+        menuItem2.getAccessibleContext().setAccessibleDescription(
+                "New Project");
+        menuItem2.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+                
+            }
+        });
+        popup.add(menuItem2);
+        popup.show(evt.getComponent(), evt.getX(), evt.getY());
+    }//GEN-LAST:event_jButtonSairMouseClicked
+
+    private void jButtonConfigurarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConfigurarMouseClicked
+        // TODO add your handling code here:
+        final JPopupMenu popup = new JPopupMenu();
+        final JFrame frame = this;
+        // New project menu item
+        JMenuItem menuItem = new JMenuItem("Cadastrar Marcas de Veículo",
+                new ImageIcon("images/newproject.png"));
+        menuItem.setMnemonic(KeyEvent.VK_P);
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "New Project");
+        menuItem.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(frame, "New Project clicked!");
+            }
+        });
+        popup.add(menuItem);
+        
+        
+        JMenuItem menuItem2 = new JMenuItem("Cadastrar Modelos de Veículo",
+                new ImageIcon("images/newproject.png"));
+        menuItem2.setMnemonic(KeyEvent.VK_P);
+        menuItem2.getAccessibleContext().setAccessibleDescription(
+                "New Project");
+        menuItem2.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(frame, "New Project clicked!");
+            }
+        });
+        
+        popup.add(menuItem2);
+        
+        
+        JMenuItem menuItem3 = new JMenuItem("Configurar Usuário",
+                new ImageIcon("images/newproject.png"));
+        menuItem3.setMnemonic(KeyEvent.VK_P);
+        menuItem3.getAccessibleContext().setAccessibleDescription(
+                "New Project");
+        menuItem3.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(frame, "New Project clicked!");
+            }
+        });
+        
+        popup.add(menuItem3);
+        
+        
+        popup.show(evt.getComponent(), evt.getX(), evt.getY());
+    }//GEN-LAST:event_jButtonConfigurarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -643,11 +731,11 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCadastrarPecas;
     private javax.swing.JButton jButtonCadastrarVeiculo;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonConfigurar;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JButton jButtonOrdemServico;
     private javax.swing.JButton jButtonPagar;
     private javax.swing.JButton jButtonSair;
-    private javax.swing.JButton jButtonSair1;
     private javax.swing.JButton jButtonSalvarCadastro;
     private javax.swing.JButton jButtonServico;
     private javax.swing.JComboBox<String> jComboBoxMarca;

@@ -7,11 +7,21 @@ package projetomecanica.telas.clientes;
 import projetomecanica.telas.funcionarios.*;
 import projetomecanica.telas.visao.*;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import projetomecanica.entidades.Cliente;
+import projetomecanica.entidades.dao.ClienteDAO;
 import projetomecanica.telas.clientes.*;
 import projetomecanica.telas.funcionarios.*;
 import projetomecanica.telas.veiculos.TelaExibirVeiculos;
@@ -25,11 +35,22 @@ public class TelaExibirClientes extends javax.swing.JFrame {
      * Creates new form TelaTechnocar
      */
     public TelaExibirClientes() {
-        initComponents();
-         if(this.getExtendedState()!= TelaExibirClientes.MAXIMIZED_BOTH){
-            this.setExtendedState(TelaExibirClientes.MAXIMIZED_BOTH);
+        try {
+            initComponents();
+            if(this.getExtendedState()!= TelaExibirClientes.MAXIMIZED_BOTH){
+                this.setExtendedState(TelaExibirClientes.MAXIMIZED_BOTH);
+            }
+            setLocationRelativeTo(null);
+            ClienteDAO clienteDAO = new ClienteDAO();
+            ArrayList<Cliente> listaDeClientes = clienteDAO.obterTodasEntidades();
+            
+            DefaultTableModel tabela = (DefaultTableModel) jTableListagemDeCLientes.getModel();
+            for(int i = 0; i < listaDeClientes.size(); i++) {
+                tabela.addRow(listaDeClientes.get(i).listaValoresTabela(listaDeClientes.get(i).getId()));
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
         }
-        setLocationRelativeTo(null);
     }
 
     /**
@@ -63,12 +84,12 @@ public class TelaExibirClientes extends javax.swing.JFrame {
         jButtonNovoCliente = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableCadastros = new javax.swing.JTable();
+        jTableListagemDeCLientes = new javax.swing.JTable();
         jTextFieldPesquisa = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
-        jButtonSair1 = new javax.swing.JButton();
+        jButtonConfigurar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButtonCadastrarCliente = new javax.swing.JButton();
         jButtonCadastrarVeiculo = new javax.swing.JButton();
@@ -129,16 +150,31 @@ public class TelaExibirClientes extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 36.png")); // NOI18N
 
-        jTableCadastros.setForeground(new java.awt.Color(255, 255, 255));
-        jTableCadastros.setModel(new javax.swing.table.DefaultTableModel(
+        jTableListagemDeCLientes.setForeground(new java.awt.Color(255, 255, 255));
+        jTableListagemDeCLientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome Completo", "CPF", "Data de Nascimento", "Veículo", "Placa", "Data de Cadastro", "Status", "Ações"
+                "Nome / Razão Social", "CPF / CNPJ", "Data de Nascimento", "QTD de Veículos", "Status"
             }
-        ));
-        jScrollPane2.setViewportView(jTableCadastros);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTableListagemDeCLientes);
+        if (jTableListagemDeCLientes.getColumnModel().getColumnCount() > 0) {
+            jTableListagemDeCLientes.getColumnModel().getColumn(0).setResizable(false);
+            jTableListagemDeCLientes.getColumnModel().getColumn(1).setResizable(false);
+            jTableListagemDeCLientes.getColumnModel().getColumn(2).setResizable(false);
+            jTableListagemDeCLientes.getColumnModel().getColumn(3).setResizable(false);
+            jTableListagemDeCLientes.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         jTextFieldPesquisa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldPesquisa.setText("Pesquisar");
@@ -197,18 +233,18 @@ public class TelaExibirClientes extends javax.swing.JFrame {
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\1x\\Ativo 43.png")); // NOI18N
         jButtonSair.setBorder(null);
-        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSairActionPerformed(evt);
+        jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonSairMouseClicked(evt);
             }
         });
 
-        jButtonSair1.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonSair1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\1x\\Ativo 42.png")); // NOI18N
-        jButtonSair1.setBorder(null);
-        jButtonSair1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSair1ActionPerformed(evt);
+        jButtonConfigurar.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonConfigurar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\1x\\Ativo 42.png")); // NOI18N
+        jButtonConfigurar.setBorder(null);
+        jButtonConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonConfigurarMouseClicked(evt);
             }
         });
 
@@ -220,7 +256,7 @@ public class TelaExibirClientes extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jButtonMenu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonSair1)
+                .addComponent(jButtonConfigurar)
                 .addGap(30, 30, 30)
                 .addComponent(jButtonSair)
                 .addGap(35, 35, 35))
@@ -232,7 +268,7 @@ public class TelaExibirClientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jButtonSair)
                     .addComponent(jButtonMenu)
-                    .addComponent(jButtonSair1))
+                    .addComponent(jButtonConfigurar))
                 .addGap(17, 17, 17))
         );
 
@@ -408,11 +444,6 @@ public class TelaExibirClientes extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
 
-    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jButtonSairActionPerformed
-
     private void jTextFieldPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldPesquisaActionPerformed
@@ -424,9 +455,95 @@ public class TelaExibirClientes extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonNovoClienteActionPerformed
 
-    private void jButtonSair1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSair1ActionPerformed
+    private void jButtonConfigurarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConfigurarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSair1ActionPerformed
+        final JPopupMenu popup = new JPopupMenu();
+        final JFrame frame = this;
+        // New project menu item
+        JMenuItem menuItem = new JMenuItem("Cadastrar Marcas de Veículo",
+                new ImageIcon("images/newproject.png"));
+        menuItem.setMnemonic(KeyEvent.VK_P);
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "New Project");
+        menuItem.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(frame, "New Project clicked!");
+            }
+        });
+        popup.add(menuItem);
+        
+        
+        JMenuItem menuItem2 = new JMenuItem("Cadastrar Modelos de Veículo",
+                new ImageIcon("images/newproject.png"));
+        menuItem2.setMnemonic(KeyEvent.VK_P);
+        menuItem2.getAccessibleContext().setAccessibleDescription(
+                "New Project");
+        menuItem2.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(frame, "New Project clicked!");
+            }
+        });
+        
+        popup.add(menuItem2);
+        
+        
+        JMenuItem menuItem3 = new JMenuItem("Configurar Usuário",
+                new ImageIcon("images/newproject.png"));
+        menuItem3.setMnemonic(KeyEvent.VK_P);
+        menuItem3.getAccessibleContext().setAccessibleDescription(
+                "New Project");
+        menuItem3.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(frame, "New Project clicked!");
+            }
+        });
+        
+        popup.add(menuItem3);
+        
+        
+        popup.show(evt.getComponent(), evt.getX(), evt.getY());
+    }//GEN-LAST:event_jButtonConfigurarMouseClicked
+
+    private void jButtonSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSairMouseClicked
+        // TODO add your handling code here:
+        final JPopupMenu popup = new JPopupMenu();
+        final JFrame frame = this;
+        // New project menu item
+        JMenuItem menuItem = new JMenuItem("Voltar",
+                new ImageIcon("images/newproject.png"));
+        menuItem.setMnemonic(KeyEvent.VK_P);
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "New Project");
+        menuItem.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                TelaPrincipal inicio = new TelaPrincipal();
+                inicio.setVisible(true);
+                dispose();
+                
+            }
+        });
+        popup.add(menuItem);
+        
+        
+        JMenuItem menuItem2 = new JMenuItem("Sair",
+                new ImageIcon("images/newproject.png"));
+        menuItem2.setMnemonic(KeyEvent.VK_P);
+        menuItem2.getAccessibleContext().setAccessibleDescription(
+                "New Project");
+        menuItem2.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+                
+            }
+        });
+        popup.add(menuItem2);
+        popup.show(evt.getComponent(), evt.getX(), evt.getY());
+    }//GEN-LAST:event_jButtonSairMouseClicked
 
     /**
      * @param args the command line arguments
@@ -466,12 +583,12 @@ public class TelaExibirClientes extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCadastrarColaborador;
     private javax.swing.JButton jButtonCadastrarPecas;
     private javax.swing.JButton jButtonCadastrarVeiculo;
+    private javax.swing.JButton jButtonConfigurar;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JButton jButtonNovoCliente;
     private javax.swing.JButton jButtonOrdemServico;
     private javax.swing.JButton jButtonPagar;
     private javax.swing.JButton jButtonSair;
-    private javax.swing.JButton jButtonSair1;
     private javax.swing.JButton jButtonServico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
@@ -489,7 +606,7 @@ public class TelaExibirClientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelFundo;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableCadastros;
+    private javax.swing.JTable jTableListagemDeCLientes;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;

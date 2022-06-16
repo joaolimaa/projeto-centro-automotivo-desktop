@@ -586,7 +586,7 @@
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Component id="jButtonMenu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jButtonSair1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonConfigurar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jButtonSair" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
@@ -600,7 +600,7 @@
                   <Group type="103" groupAlignment="2" attributes="0">
                       <Component id="jButtonSair" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonMenu" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonSair1" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonConfigurar" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="17" pref="17" max="-2" attributes="0"/>
               </Group>
@@ -640,10 +640,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSairActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonSairMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonSair1">
+        <Component class="javax.swing.JButton" name="jButtonConfigurar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -656,7 +656,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSair1ActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonConfigurarMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
