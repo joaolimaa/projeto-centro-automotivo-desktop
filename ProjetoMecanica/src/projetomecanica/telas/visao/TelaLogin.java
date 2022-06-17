@@ -71,6 +71,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 44.png"))); // NOI18N
         jLabel4.setText("jLabel4");
 
         jPasswordFieldSenha.setText("jPasswordField1");

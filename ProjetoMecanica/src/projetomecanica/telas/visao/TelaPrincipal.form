@@ -108,7 +108,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\1x\Ativo 20.png"/>
+              <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 20.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -127,7 +127,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Dell\Desktop\1x\Ativo 43.png"/>
+              <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 43.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -143,7 +143,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Dell\Desktop\1x\Ativo 42.png"/>
+              <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 42.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -261,7 +261,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\Ativo 5.png"/>
+                  <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 5.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="   Ve&#xed;culos"/>
               </Properties>
@@ -281,7 +281,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\1x\Ativo 37.png"/>
+                  <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 10.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="    Colaboradores"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -304,7 +304,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\Ativo 8.png"/>
+                  <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 8.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="     Servi&#xe7;os"/>
               </Properties>
@@ -321,7 +321,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\1x\Ativo 18.png"/>
+                  <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 18.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="   Estoque"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -341,7 +341,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\Ativo 4.png"/>
+                  <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 4.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="  Clientes"/>
               </Properties>
@@ -361,7 +361,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\Ativo 7.png"/>
+                  <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 7.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="     OS&apos;s"/>
               </Properties>
@@ -381,7 +381,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\Ativo 9.png"/>
+                  <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 9.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="  Pagamento"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -455,7 +455,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\Ativo 4.png"/>
+              <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 4.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -471,7 +471,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\Ativo 5.png"/>
+              <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 5.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -487,7 +487,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\Ativo 7.png"/>
+              <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 7.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -503,7 +503,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\Ativo 8.png"/>
+              <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 8.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -519,7 +519,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\Ativo 9.png"/>
+              <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 9.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -535,7 +535,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\Ativo 10.png"/>
+              <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 10.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -551,7 +551,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\1x\Ativo 18.png"/>
+              <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 18.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
