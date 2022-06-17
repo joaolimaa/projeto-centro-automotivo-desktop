@@ -550,7 +550,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(8, 83, 148));
 
         jButtonMenu.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 20.png")); // NOI18N
+        jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 20.png"))); // NOI18N
         jButtonMenu.setBorder(null);
         jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -560,7 +560,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         });
 
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\1x\\Ativo 43.png")); // NOI18N
+        jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 43.png"))); // NOI18N
         jButtonSair.setBorder(null);
         jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -569,7 +569,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         });
 
         jButtonConfigurar.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonConfigurar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\1x\\Ativo 42.png")); // NOI18N
+        jButtonConfigurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 42.png"))); // NOI18N
         jButtonConfigurar.setBorder(null);
         jButtonConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -607,7 +607,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(83, 578));
 
         jButtonCadastrarCliente.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 4.png")); // NOI18N
+        jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 4.png"))); // NOI18N
         jButtonCadastrarCliente.setBorder(null);
         jButtonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -616,7 +616,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         });
 
         jButtonCadastrarVeiculo.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonCadastrarVeiculo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 5.png")); // NOI18N
+        jButtonCadastrarVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 5.png"))); // NOI18N
         jButtonCadastrarVeiculo.setBorder(null);
         jButtonCadastrarVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -625,7 +625,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         });
 
         jButtonOrdemServico.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonOrdemServico.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 7.png")); // NOI18N
+        jButtonOrdemServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 7.png"))); // NOI18N
         jButtonOrdemServico.setBorder(null);
         jButtonOrdemServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -634,7 +634,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         });
 
         jButtonServico.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonServico.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 8.png")); // NOI18N
+        jButtonServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 8.png"))); // NOI18N
         jButtonServico.setBorder(null);
         jButtonServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -643,7 +643,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         });
 
         jButtonPagar.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonPagar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 9.png")); // NOI18N
+        jButtonPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 9.png"))); // NOI18N
         jButtonPagar.setBorder(null);
         jButtonPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -652,7 +652,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         });
 
         jButtonCadastrarColaborador.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonCadastrarColaborador.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 10.png")); // NOI18N
+        jButtonCadastrarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 10.png"))); // NOI18N
         jButtonCadastrarColaborador.setBorder(null);
         jButtonCadastrarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -661,7 +661,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         });
 
         jButtonCadastrarPecas.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonCadastrarPecas.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 18.png")); // NOI18N
+        jButtonCadastrarPecas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 18.png"))); // NOI18N
         jButtonCadastrarPecas.setBorder(null);
         jButtonCadastrarPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1064,7 +1064,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         popup.add(menuItem);
         
         
-        JMenuItem menuItem2 = new JMenuItem("Cadastrar Modelos de Veículo",
+        JMenuItem menuItem2 = new JMenuItem("Configurar Usuário",
                 new ImageIcon("images/newproject.png"));
         menuItem2.setMnemonic(KeyEvent.VK_P);
         menuItem2.getAccessibleContext().setAccessibleDescription(
@@ -1072,26 +1072,13 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         menuItem2.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(frame, "New Project clicked!");
+                TelaControleAcesso usuario = new TelaControleAcesso();
+                usuario.setVisible(true);
+                dispose();
             }
         });
         
         popup.add(menuItem2);
-        
-        
-        JMenuItem menuItem3 = new JMenuItem("Configurar Usuário",
-                new ImageIcon("images/newproject.png"));
-        menuItem3.setMnemonic(KeyEvent.VK_P);
-        menuItem3.getAccessibleContext().setAccessibleDescription(
-                "New Project");
-        menuItem3.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(frame, "New Project clicked!");
-            }
-        });
-        
-        popup.add(menuItem3);
         
         
         popup.show(evt.getComponent(), evt.getX(), evt.getY());

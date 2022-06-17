@@ -78,6 +78,8 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCadastros = new javax.swing.JTable();
         jTextFieldPesquisa = new javax.swing.JTextField();
+        jButtonExcluir = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
@@ -163,7 +165,7 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 36.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 36.png"))); // NOI18N
 
         jTableCadastros.setForeground(new java.awt.Color(255, 255, 255));
         jTableCadastros.setModel(new javax.swing.table.DefaultTableModel(
@@ -184,6 +186,24 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
             }
         });
 
+        jButtonExcluir.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonExcluir.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
+
+        jButtonEditar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonEditar.setText("Editar");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelFundoLayout = new javax.swing.GroupLayout(jPanelFundo);
         jPanelFundo.setLayout(jPanelFundoLayout);
         jPanelFundoLayout.setHorizontalGroup(
@@ -198,22 +218,28 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonEditar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonExcluir)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonNovoColaborador)))
                 .addGap(65, 65, 65))
         );
         jPanelFundoLayout.setVerticalGroup(
             jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFundoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jButtonNovoColaborador)
+                    .addComponent(jLabel1)
+                    .addComponent(jButtonExcluir)
+                    .addComponent(jButtonEditar)
                     .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel3))
                 .addGap(25, 25, 25)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -221,7 +247,7 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(8, 83, 148));
 
         jButtonMenu.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonMenu.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 20.png")); // NOI18N
+        jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 20.png"))); // NOI18N
         jButtonMenu.setBorder(null);
         jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -231,7 +257,7 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
         });
 
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonSair.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\1x\\Ativo 43.png")); // NOI18N
+        jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 43.png"))); // NOI18N
         jButtonSair.setBorder(null);
         jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -240,7 +266,7 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
         });
 
         jButtonConfigurar.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonConfigurar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\1x\\Ativo 42.png")); // NOI18N
+        jButtonConfigurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 42.png"))); // NOI18N
         jButtonConfigurar.setBorder(null);
         jButtonConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -278,7 +304,7 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(83, 578));
 
         jButtonCadastrarCliente.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 4.png")); // NOI18N
+        jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 4.png"))); // NOI18N
         jButtonCadastrarCliente.setBorder(null);
         jButtonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,7 +313,7 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
         });
 
         jButtonCadastrarVeiculo.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonCadastrarVeiculo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 5.png")); // NOI18N
+        jButtonCadastrarVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 5.png"))); // NOI18N
         jButtonCadastrarVeiculo.setBorder(null);
         jButtonCadastrarVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,7 +322,7 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
         });
 
         jButtonOrdemServico.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonOrdemServico.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 7.png")); // NOI18N
+        jButtonOrdemServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 7.png"))); // NOI18N
         jButtonOrdemServico.setBorder(null);
         jButtonOrdemServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,7 +331,7 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
         });
 
         jButtonServico.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonServico.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 8.png")); // NOI18N
+        jButtonServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 8.png"))); // NOI18N
         jButtonServico.setBorder(null);
         jButtonServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,7 +340,7 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
         });
 
         jButtonPagar.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonPagar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 9.png")); // NOI18N
+        jButtonPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 9.png"))); // NOI18N
         jButtonPagar.setBorder(null);
         jButtonPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -323,7 +349,7 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
         });
 
         jButtonCadastrarColaborador.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonCadastrarColaborador.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\Ativo 10.png")); // NOI18N
+        jButtonCadastrarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 10.png"))); // NOI18N
         jButtonCadastrarColaborador.setBorder(null);
         jButtonCadastrarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,7 +358,7 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
         });
 
         jButtonCadastrarPecas.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonCadastrarPecas.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 18.png")); // NOI18N
+        jButtonCadastrarPecas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 18.png"))); // NOI18N
         jButtonCadastrarPecas.setBorder(null);
         jButtonCadastrarPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -524,7 +550,7 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
         popup.add(menuItem);
         
         
-        JMenuItem menuItem2 = new JMenuItem("Cadastrar Modelos de Veículo",
+        JMenuItem menuItem2 = new JMenuItem("Configurar Usuário",
                 new ImageIcon("images/newproject.png"));
         menuItem2.setMnemonic(KeyEvent.VK_P);
         menuItem2.getAccessibleContext().setAccessibleDescription(
@@ -532,30 +558,25 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
         menuItem2.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(frame, "New Project clicked!");
+                TelaControleAcesso usuario = new TelaControleAcesso();
+                usuario.setVisible(true);
+                dispose();
             }
         });
         
         popup.add(menuItem2);
         
         
-        JMenuItem menuItem3 = new JMenuItem("Configurar Usuário",
-                new ImageIcon("images/newproject.png"));
-        menuItem3.setMnemonic(KeyEvent.VK_P);
-        menuItem3.getAccessibleContext().setAccessibleDescription(
-                "New Project");
-        menuItem3.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(frame, "New Project clicked!");
-            }
-        });
-        
-        popup.add(menuItem3);
-        
-        
         popup.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_jButtonConfigurarMouseClicked
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -596,6 +617,8 @@ public class TelaExibirClolaboradores extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCadastrarPecas;
     private javax.swing.JButton jButtonCadastrarVeiculo;
     private javax.swing.JButton jButtonConfigurar;
+    private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JButton jButtonNovoColaborador;
     private javax.swing.JButton jButtonOrdemServico;
