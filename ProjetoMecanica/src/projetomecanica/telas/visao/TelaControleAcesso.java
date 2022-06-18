@@ -23,6 +23,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import projetomecanica.telas.clientes.*;
 import projetomecanica.telas.funcionarios.*;
+import projetomecanica.telas.pecas.TelaPecas;
+import projetomecanica.telas.servicos.TelaServicos;
 /**
  *
  * @author Dell
@@ -442,6 +444,9 @@ public class TelaControleAcesso extends javax.swing.JFrame {
 
     private void jButtonServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServicoActionPerformed
         // TODO add your handling code here:
+        TelaServicos servico = new TelaServicos();
+        servico.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonServicoActionPerformed
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
@@ -450,11 +455,14 @@ public class TelaControleAcesso extends javax.swing.JFrame {
 
     private void jButtonCadastrarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarPecasActionPerformed
         // TODO add your handling code here:
+        TelaPecas pecas = new TelaPecas();
+        pecas.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonCadastrarPecasActionPerformed
 
     private void jButtonCadastrarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarColaboradorActionPerformed
         // TODO add your handling code here:
-        TelaExibirClolaboradores funcionario = new TelaExibirClolaboradores();
+        TelaExibirColaboradores funcionario = new TelaExibirColaboradores();
         funcionario.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
@@ -517,7 +525,9 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         menuItem.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(frame, "New Project clicked!");
+                TelaCadastrarMarcas marca = new TelaCadastrarMarcas();
+                marca.setVisible(true);
+                dispose();
             }
         });
         popup.add(menuItem);
@@ -531,7 +541,7 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         menuItem2.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(frame, "New Project clicked!");
+                JOptionPane.showMessageDialog(frame, "Você está aqui!");
             }
         });
         

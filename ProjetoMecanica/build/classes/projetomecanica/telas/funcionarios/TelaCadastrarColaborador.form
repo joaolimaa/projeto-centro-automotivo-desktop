@@ -191,13 +191,13 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 20.png"/>
+              <Image iconType="3" name="/projetomecanica/telas/visao/icones/New Car white.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Hand Cursor"/>
             </Property>
           </Properties>
           <Events>
@@ -215,6 +215,9 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonSairMouseClicked"/>
@@ -230,6 +233,9 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
             </Property>
           </Properties>
           <Events>
@@ -257,19 +263,19 @@
               <Group type="102" attributes="0">
                   <EmptySpace pref="126" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTextFieldFuncao" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jTextFieldBairro" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabel10" alignment="0" pref="145" max="32767" attributes="0"/>
-                      <Component id="jTextFieldNome" alignment="0" max="32767" attributes="0"/>
                       <Component id="jComboBoxTipoLogradouro" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jLabel10" alignment="0" pref="145" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel34" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel34" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="jTextFieldBairro" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jComboBoxTipoColaborador" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jTextFieldNome" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="35" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -280,7 +286,7 @@
                       <Component id="jTextFieldLogradouro" alignment="0" pref="120" max="32767" attributes="0"/>
                       <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextField2" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jFormattedTextFieldCPF" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="35" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -290,8 +296,8 @@
                       <Component id="jLabel32" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextFieldValorHora" max="32767" attributes="0"/>
-                      <Component id="jFormattedTextField1" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jFormattedTextField6" max="32767" attributes="0"/>
+                      <Component id="jFormattedTextFieldDataNascimento" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jFormattedTextFieldCEP" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="35" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -308,22 +314,22 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jFormattedTextField11" min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="jFormattedTextFieldDDD3" min="-2" pref="43" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jFormattedTextField10" max="32767" attributes="0"/>
+                              <Component id="jFormattedTextFieldNumero3" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jFormattedTextField9" min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="jFormattedTextFieldDDD2" min="-2" pref="43" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jFormattedTextField8" max="32767" attributes="0"/>
+                              <Component id="jFormattedTextFieldNumero2" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel35" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jFormattedTextField5" min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="jFormattedTextFieldDDD1" min="-2" pref="43" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jFormattedTextField7" min="-2" pref="76" max="-2" attributes="0"/>
+                              <Component id="jFormattedTextFieldNumero1" min="-2" pref="76" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jButtonCancelar" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -360,7 +366,7 @@
                       <Component id="jLabel1" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                  <EmptySpace pref="70" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
                       <Component id="jLabel4" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="2" min="-2" max="-2" attributes="0"/>
@@ -374,10 +380,10 @@
                       <Component id="jTextFieldNome" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldEmail" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jComboBoxTipoTelefone1" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextField2" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextField1" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextField7" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextField5" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextFieldCPF" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextFieldDataNascimento" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextFieldNumero1" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextFieldDDD1" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="31" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
@@ -395,8 +401,8 @@
                       <Component id="jTextFieldEstado" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldLogradouro" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jComboBoxTipoLogradouro" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextField8" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextField9" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextFieldNumero2" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextFieldDDD2" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="32" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
@@ -413,9 +419,9 @@
                       <Component id="jTextFieldComplemento" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldNumEndereco" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldBairro" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextField6" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextField10" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jFormattedTextField11" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextFieldCEP" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextFieldNumero3" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jFormattedTextFieldDDD3" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="34" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
@@ -429,9 +435,9 @@
                       <Component id="jTextFieldMatricula" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldValorHora" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldSalarioMensal" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldFuncao" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonSalvarCadastro" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonCancelar" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxTipoColaborador" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="94" max="32767" attributes="0"/>
               </Group>
@@ -485,10 +491,10 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+                <StringItem index="0" value=" "/>
+                <StringItem index="1" value="Residencial"/>
+                <StringItem index="2" value="Comercial"/>
+                <StringItem index="3" value="Pessoal"/>
               </StringArray>
             </Property>
           </Properties>
@@ -508,10 +514,10 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+                <StringItem index="0" value=" "/>
+                <StringItem index="1" value="Residencial"/>
+                <StringItem index="2" value="Comercial"/>
+                <StringItem index="3" value="Pessoal"/>
               </StringArray>
             </Property>
           </Properties>
@@ -603,8 +609,6 @@
             <Property name="text" type="java.lang.String" value="Fun&#xe7;&#xe3;o*"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldFuncao">
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel36">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -638,11 +642,52 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxTipoLogradouro">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="45">
+                <StringItem index="0" value=" "/>
+                <StringItem index="1" value="aeroporto"/>
+                <StringItem index="2" value="alameda"/>
+                <StringItem index="3" value="&#xe1;rea"/>
+                <StringItem index="4" value="avenida"/>
+                <StringItem index="5" value="campo"/>
+                <StringItem index="6" value="ch&#xe1;cara"/>
+                <StringItem index="7" value="col&#xf4;nia"/>
+                <StringItem index="8" value="condom&#xed;nio"/>
+                <StringItem index="9" value="conjunto"/>
+                <StringItem index="10" value="distrito"/>
+                <StringItem index="11" value="esplanada"/>
+                <StringItem index="12" value="esta&#xe7;&#xe3;o"/>
+                <StringItem index="13" value="estrada"/>
+                <StringItem index="14" value="favela"/>
+                <StringItem index="15" value="fazenda"/>
+                <StringItem index="16" value="feira"/>
+                <StringItem index="17" value="jardim"/>
+                <StringItem index="18" value="ladeira"/>
+                <StringItem index="19" value="lago"/>
+                <StringItem index="20" value="lagoa"/>
+                <StringItem index="21" value="largo"/>
+                <StringItem index="22" value="loteamento"/>
+                <StringItem index="23" value="morro"/>
+                <StringItem index="24" value="n&#xfa;cleo"/>
+                <StringItem index="25" value="parque"/>
+                <StringItem index="26" value="passarela"/>
+                <StringItem index="27" value="p&#xe1;tio"/>
+                <StringItem index="28" value="pra&#xe7;a"/>
+                <StringItem index="29" value="quadra"/>
+                <StringItem index="30" value="recanto"/>
+                <StringItem index="31" value="residencial"/>
+                <StringItem index="32" value="rodovia"/>
+                <StringItem index="33" value="rua"/>
+                <StringItem index="34" value="setor"/>
+                <StringItem index="35" value="s&#xed;tio"/>
+                <StringItem index="36" value="travessa"/>
+                <StringItem index="37" value="trecho"/>
+                <StringItem index="38" value="trevo"/>
+                <StringItem index="39" value="vale"/>
+                <StringItem index="40" value="vereda"/>
+                <StringItem index="41" value="via"/>
+                <StringItem index="42" value="viaduto"/>
+                <StringItem index="43" value="viela"/>
+                <StringItem index="44" value="vila"/>
               </StringArray>
             </Property>
           </Properties>
@@ -688,10 +733,10 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+                <StringItem index="0" value=" "/>
+                <StringItem index="1" value="Residencial"/>
+                <StringItem index="2" value="Comercial"/>
+                <StringItem index="3" value="Pessoal"/>
               </StringArray>
             </Property>
           </Properties>
@@ -711,6 +756,9 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Salvar Cadastro"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSalvarCadastroActionPerformed"/>
@@ -727,7 +775,7 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\1x\Ativo 22.png"/>
+              <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 22.png"/>
             </Property>
           </Properties>
         </Component>
@@ -753,68 +801,83 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField2">
+        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldCPF">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="###.###.###-##" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldDataNascimento">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="##/##/####" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField6">
+        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldCEP">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="#####-###" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField5">
+        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldDDD1">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="(##)" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField7">
+        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldNumero1">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="#####-####" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField8">
+        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldNumero2">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="#####-####" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField9">
+        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldDDD2">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="(##)" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField10">
+        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldNumero3">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="#####-####" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField11">
+        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldDDD3">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="(##)" subtype="-1" type="5"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jComboBoxTipoColaborador">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -888,6 +951,9 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCadastrarClienteActionPerformed"/>
@@ -903,6 +969,9 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
             </Property>
           </Properties>
           <Events>
@@ -920,6 +989,9 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonOrdemServicoActionPerformed"/>
@@ -935,6 +1007,9 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
             </Property>
           </Properties>
           <Events>
@@ -952,6 +1027,9 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPagarActionPerformed"/>
@@ -968,6 +1046,9 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCadastrarColaboradorActionPerformed"/>
@@ -983,6 +1064,9 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
             </Property>
           </Properties>
           <Events>

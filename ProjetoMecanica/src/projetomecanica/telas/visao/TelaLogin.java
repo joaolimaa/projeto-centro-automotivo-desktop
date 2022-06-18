@@ -65,13 +65,14 @@ public class TelaLogin extends javax.swing.JFrame {
         jButtonEntrar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonEntrar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonEntrar.setText("Entrar");
+        jButtonEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEntrarActionPerformed(evt);
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 44.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/New Car.png"))); // NOI18N
         jLabel4.setText("jLabel4");
 
         jPasswordFieldSenha.setText("jPasswordField1");
