@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,6 +23,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import projetomecanica.telas.clientes.*;
 import projetomecanica.telas.funcionarios.*;
+import projetomecanica.telas.pecas.TelaPecas;
+import projetomecanica.telas.servicos.TelaServicos;
 /**
  *
  * @author Dell
@@ -39,6 +42,11 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
+    public void upload(String pasta, String nomeDoArquivo) { 
+
+            String caminhoArquivo = pasta + "/" + nomeDoArquivo; 
+            File novoArquivo = new File(caminhoArquivo); 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -145,7 +153,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 27)); // NOI18N
         jLabel1.setText("Veículo");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 22.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 22.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 1, 27)); // NOI18N
         jLabel2.setText("Novo Veículo");
@@ -184,6 +192,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonSalvarCadastro.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonSalvarCadastro.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalvarCadastro.setText("Salvar Cadastro");
+        jButtonSalvarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButtonCancelar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonCancelar.setText("Cancelar");
@@ -228,6 +237,11 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jLabelQuadroo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelQuadroo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 45.png"))); // NOI18N
         jLabelQuadroo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jLabelQuadroo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelQuadrooMouseClicked(evt);
+            }
+        });
 
         jLabelQuadro.setBackground(new java.awt.Color(255, 255, 255));
         jLabelQuadro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -246,8 +260,8 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jLabel5.setText("Insira foto do Veículo");
+        jLabel5.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
+        jLabel5.setText("Inserir foto do Veículo");
 
         javax.swing.GroupLayout jPanelFundoLayout = new javax.swing.GroupLayout(jPanelFundo);
         jPanelFundo.setLayout(jPanelFundoLayout);
@@ -275,6 +289,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelFundoLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
                                         .addComponent(jLabel5)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(jPanelFundoLayout.createSequentialGroup()
@@ -367,7 +382,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
                                         .addComponent(jLabelQuadroo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel5)
-                                .addGap(97, 97, 97)
+                                .addGap(101, 101, 101)
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButtonSalvarCadastro)
                                     .addComponent(jButtonCancelar)))
@@ -380,9 +395,9 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(8, 83, 148));
 
         jButtonMenu.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 20.png"))); // NOI18N
+        jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/New Car white.png"))); // NOI18N
         jButtonMenu.setBorder(null);
-        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMenuActionPerformed(evt);
@@ -392,6 +407,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 43.png"))); // NOI18N
         jButtonSair.setBorder(null);
+        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonSairMouseClicked(evt);
@@ -401,6 +417,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonConfigurar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonConfigurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 42.png"))); // NOI18N
         jButtonConfigurar.setBorder(null);
+        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonConfigurarMouseClicked(evt);
@@ -439,6 +456,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonCadastrarCliente.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 4.png"))); // NOI18N
         jButtonCadastrarCliente.setBorder(null);
+        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarClienteActionPerformed(evt);
@@ -448,6 +466,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonCadastrarVeiculo.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 5.png"))); // NOI18N
         jButtonCadastrarVeiculo.setBorder(null);
+        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCadastrarVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarVeiculoActionPerformed(evt);
@@ -457,6 +476,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonOrdemServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonOrdemServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 7.png"))); // NOI18N
         jButtonOrdemServico.setBorder(null);
+        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonOrdemServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonOrdemServicoActionPerformed(evt);
@@ -466,6 +486,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 8.png"))); // NOI18N
         jButtonServico.setBorder(null);
+        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonServicoActionPerformed(evt);
@@ -475,6 +496,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonPagar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 9.png"))); // NOI18N
         jButtonPagar.setBorder(null);
+        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPagarActionPerformed(evt);
@@ -484,6 +506,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonCadastrarColaborador.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 10.png"))); // NOI18N
         jButtonCadastrarColaborador.setBorder(null);
+        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCadastrarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarColaboradorActionPerformed(evt);
@@ -493,6 +516,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonCadastrarPecas.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarPecas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 18.png"))); // NOI18N
         jButtonCadastrarPecas.setBorder(null);
+        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCadastrarPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarPecasActionPerformed(evt);
@@ -586,6 +610,9 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
 
     private void jButtonServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServicoActionPerformed
         // TODO add your handling code here:
+        TelaServicos servico = new TelaServicos();
+        servico.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonServicoActionPerformed
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
@@ -594,11 +621,14 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
 
     private void jButtonCadastrarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarPecasActionPerformed
         // TODO add your handling code here:
+        TelaPecas pecas = new TelaPecas();
+        pecas.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonCadastrarPecasActionPerformed
 
     private void jButtonCadastrarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarColaboradorActionPerformed
         // TODO add your handling code here:
-        TelaExibirClolaboradores funcionario = new TelaExibirClolaboradores();
+        TelaExibirColaboradores funcionario = new TelaExibirColaboradores();
         funcionario.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
@@ -673,7 +703,9 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         menuItem.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(frame, "New Project clicked!");
+                TelaCadastrarMarcas marca = new TelaCadastrarMarcas();
+                marca.setVisible(true);
+                dispose();
             }
         });
         popup.add(menuItem);
@@ -756,6 +788,10 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
     private void jTextFieldAnoModelo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnoModelo1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldAnoModelo1ActionPerformed
+
+    private void jLabelQuadrooMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelQuadrooMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelQuadrooMouseClicked
 
     /**
      * @param args the command line arguments

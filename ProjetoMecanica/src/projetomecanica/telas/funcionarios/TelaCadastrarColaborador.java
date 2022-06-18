@@ -18,8 +18,17 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import projetomecanica.entidades.Colaborador;
+import projetomecanica.entidades.Endereco;
+import projetomecanica.entidades.Telefone;
+import projetomecanica.entidades.dao.ColaboradorDAO;
+import projetomecanica.entidades.enums.TipoDeLogradouro;
+import projetomecanica.entidades.enums.TipoDeTelefone;
 import projetomecanica.telas.clientes.*;
 import projetomecanica.telas.funcionarios.*;
+import projetomecanica.telas.pecas.TelaPecas;
+import projetomecanica.telas.servicos.TelaServicos;
+import projetomecanica.telas.veiculos.TelaCadastrarMarcas;
 import projetomecanica.telas.veiculos.TelaExibirVeiculos;
 /**
  *
@@ -27,6 +36,9 @@ import projetomecanica.telas.veiculos.TelaExibirVeiculos;
  */
 public class TelaCadastrarColaborador extends javax.swing.JFrame {
 
+    Colaborador colaborador = new Colaborador();
+    ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
+    boolean validador = false;
     /**
      * Creates new form TelaTechnocar
      */
@@ -94,7 +106,6 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jTextFieldEmail = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        jTextFieldFuncao = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
         jTextFieldValorHora = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
@@ -113,15 +124,16 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButtonCancelar = new javax.swing.JButton();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField6 = new javax.swing.JFormattedTextField();
-        jFormattedTextField5 = new javax.swing.JFormattedTextField();
-        jFormattedTextField7 = new javax.swing.JFormattedTextField();
-        jFormattedTextField8 = new javax.swing.JFormattedTextField();
-        jFormattedTextField9 = new javax.swing.JFormattedTextField();
-        jFormattedTextField10 = new javax.swing.JFormattedTextField();
-        jFormattedTextField11 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldCPF = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldDataNascimento = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldCEP = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldDDD1 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldNumero1 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldNumero2 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldDDD2 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldNumero3 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldDDD3 = new javax.swing.JFormattedTextField();
+        jComboBoxTipoColaborador = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jButtonCadastrarCliente = new javax.swing.JButton();
         jButtonCadastrarVeiculo = new javax.swing.JButton();
@@ -168,9 +180,9 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(8, 83, 148));
 
         jButtonMenu.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 20.png"))); // NOI18N
+        jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/New Car white.png"))); // NOI18N
         jButtonMenu.setBorder(null);
-        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMenuActionPerformed(evt);
@@ -180,6 +192,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 43.png"))); // NOI18N
         jButtonSair.setBorder(null);
+        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonSairMouseClicked(evt);
@@ -189,6 +202,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jButtonConfigurar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonConfigurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 42.png"))); // NOI18N
         jButtonConfigurar.setBorder(null);
+        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonConfigurarMouseClicked(evt);
@@ -238,12 +252,12 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel23.setText("Tipo do Telefone 2");
 
-        jComboBoxTipoTelefone2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTipoTelefone2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Residencial", "Comercial", "Pessoal" }));
 
         jLabel24.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel24.setText("Tipo do Telefone 1*");
 
-        jComboBoxTipoTelefone1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTipoTelefone1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Residencial", "Comercial", "Pessoal" }));
 
         jLabel7.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel7.setText("Data de Nascimento*");
@@ -281,7 +295,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jLabel38.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel38.setText("Matrícula*");
 
-        jComboBoxTipoLogradouro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTipoLogradouro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "aeroporto", "alameda", "área", "avenida", "campo", "chácara", "colônia", "condomínio", "conjunto", "distrito", "esplanada", "estação", "estrada", "favela", "fazenda", "feira", "jardim", "ladeira", "lago", "lagoa", "largo", "loteamento", "morro", "núcleo", "parque", "passarela", "pátio", "praça", "quadra", "recanto", "residencial", "rodovia", "rua", "setor", "sítio", "travessa", "trecho", "trevo", "vale", "vereda", "via", "viaduto", "viela", "vila" }));
 
         jLabel10.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel10.setText("Tipo do Logradouro*");
@@ -295,12 +309,13 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jLabel39.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel39.setText("Tipo do Telefone 3");
 
-        jComboBoxTipoTelefone3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTipoTelefone3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Residencial", "Comercial", "Pessoal" }));
 
         jButtonSalvarCadastro.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSalvarCadastro.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonSalvarCadastro.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalvarCadastro.setText("Salvar Cadastro");
+        jButtonSalvarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonSalvarCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarCadastroActionPerformed(evt);
@@ -310,7 +325,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 27)); // NOI18N
         jLabel1.setText("Colaborador");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Dell\\Desktop\\Imagens PI\\1x\\Ativo 22.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 22.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 1, 27)); // NOI18N
         jLabel2.setText("Novo Colaborador");
@@ -325,58 +340,60 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         });
 
         try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            jFormattedTextFieldCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            jFormattedTextFieldDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            jFormattedTextField6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+            jFormattedTextFieldCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)")));
+            jFormattedTextFieldDDD1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            jFormattedTextField7.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-####")));
+            jFormattedTextFieldNumero1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            jFormattedTextField8.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-####")));
+            jFormattedTextFieldNumero2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            jFormattedTextField9.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)")));
+            jFormattedTextFieldDDD2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            jFormattedTextField10.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-####")));
+            jFormattedTextFieldNumero3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            jFormattedTextField11.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)")));
+            jFormattedTextFieldDDD3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        jComboBoxTipoColaborador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanelFundoLayout = new javax.swing.GroupLayout(jPanelFundo);
         jPanelFundo.setLayout(jPanelFundoLayout);
@@ -385,17 +402,17 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
             .addGroup(jPanelFundoLayout.createSequentialGroup()
                 .addContainerGap(126, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldFuncao)
-                    .addComponent(jTextFieldBairro)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                    .addComponent(jTextFieldNome)
                     .addComponent(jComboBoxTipoLogradouro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                     .addGroup(jPanelFundoLayout.createSequentialGroup()
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel34)
+                            .addComponent(jLabel4)
                             .addComponent(jLabel13)
-                            .addComponent(jLabel4))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabel34))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jTextFieldBairro)
+                    .addComponent(jComboBoxTipoColaborador, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldNome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldSalarioMensal, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
@@ -405,7 +422,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
                     .addComponent(jTextFieldLogradouro, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel5)
-                    .addComponent(jFormattedTextField2))
+                    .addComponent(jFormattedTextFieldCPF))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jTextFieldEstado, javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,8 +431,8 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
                     .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldValorHora)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFormattedTextField6))
+                    .addComponent(jFormattedTextFieldDataNascimento, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jFormattedTextFieldCEP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldCidade, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
@@ -430,20 +447,20 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanelFundoLayout.createSequentialGroup()
-                            .addComponent(jFormattedTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFieldDDD3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jFormattedTextField10))
+                            .addComponent(jFormattedTextFieldNumero3))
                         .addGroup(jPanelFundoLayout.createSequentialGroup()
-                            .addComponent(jFormattedTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFieldDDD2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jFormattedTextField8))
+                            .addComponent(jFormattedTextFieldNumero2))
                         .addComponent(jLabel21)
                         .addComponent(jLabel22)
                         .addComponent(jLabel35)
                         .addGroup(jPanelFundoLayout.createSequentialGroup()
-                            .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFieldDDD1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jFormattedTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jFormattedTextFieldNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jButtonCancelar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -472,7 +489,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3))
-                .addGap(70, 70, 70)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
@@ -485,10 +502,10 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
                     .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxTipoTelefone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldDDD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel10)
@@ -504,8 +521,8 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
                     .addComponent(jTextFieldEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxTipoLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextFieldNumero2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldDDD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel39)
@@ -520,9 +537,9 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
                     .addComponent(jTextFieldComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldNumEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldNumero3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldDDD3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel38)
@@ -534,9 +551,9 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
                     .addComponent(jTextFieldMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldValorHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldSalarioMensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonSalvarCadastro)
-                    .addComponent(jButtonCancelar))
+                    .addComponent(jButtonCancelar)
+                    .addComponent(jComboBoxTipoColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(94, Short.MAX_VALUE))
         );
 
@@ -548,6 +565,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jButtonCadastrarCliente.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 4.png"))); // NOI18N
         jButtonCadastrarCliente.setBorder(null);
+        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarClienteActionPerformed(evt);
@@ -557,6 +575,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jButtonCadastrarVeiculo.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 5.png"))); // NOI18N
         jButtonCadastrarVeiculo.setBorder(null);
+        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCadastrarVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarVeiculoActionPerformed(evt);
@@ -566,6 +585,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jButtonOrdemServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonOrdemServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 7.png"))); // NOI18N
         jButtonOrdemServico.setBorder(null);
+        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonOrdemServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonOrdemServicoActionPerformed(evt);
@@ -575,6 +595,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jButtonServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 8.png"))); // NOI18N
         jButtonServico.setBorder(null);
+        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonServicoActionPerformed(evt);
@@ -584,6 +605,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jButtonPagar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 9.png"))); // NOI18N
         jButtonPagar.setBorder(null);
+        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPagarActionPerformed(evt);
@@ -593,6 +615,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jButtonCadastrarColaborador.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 10.png"))); // NOI18N
         jButtonCadastrarColaborador.setBorder(null);
+        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCadastrarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarColaboradorActionPerformed(evt);
@@ -602,6 +625,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         jButtonCadastrarPecas.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarPecas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 18.png"))); // NOI18N
         jButtonCadastrarPecas.setBorder(null);
+        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCadastrarPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarPecasActionPerformed(evt);
@@ -694,6 +718,9 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
 
     private void jButtonServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServicoActionPerformed
         // TODO add your handling code here:
+        TelaServicos servico = new TelaServicos();
+        servico.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonServicoActionPerformed
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
@@ -702,25 +729,102 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
 
     private void jButtonCadastrarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarPecasActionPerformed
         // TODO add your handling code here:
+        TelaPecas pecas = new TelaPecas();
+        pecas.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonCadastrarPecasActionPerformed
 
     private void jButtonCadastrarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarColaboradorActionPerformed
         // TODO add your handling code here:
-        TelaExibirClolaboradores funcionario = new TelaExibirClolaboradores();
+        TelaExibirColaboradores funcionario = new TelaExibirColaboradores();
         funcionario.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
 
     private void jButtonSalvarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarCadastroActionPerformed
-        // TODO add your handling code here:
-        TelaExibirClolaboradores funcionario = new TelaExibirClolaboradores();
-        funcionario.setVisible(true);
-        dispose();
+        try {
+            //Validar Campos Obrigatórios
+                
+            if (jTextFieldNome.getText().equals("") || //Valida se os campos estão preenchidos
+                    jFormattedTextFieldCPF.getText().equals("") ||
+                    jFormattedTextFieldDataNascimento.getText().equals("") ||
+                    jComboBoxTipoLogradouro.getSelectedItem().equals("") ||
+                    jTextFieldLogradouro.getText().equals("") ||
+                    jTextFieldEstado.getText().equals("") ||
+                    jTextFieldCidade.getText().equals("") ||
+                    jTextFieldBairro.getText().equals("") ||
+                    jTextFieldNumEndereco.getText().equals("") ||
+                    jFormattedTextFieldCPF.getText().equals("") ||
+                    jFormattedTextFieldDDD1.getText().equals("") ||
+                    jFormattedTextFieldNumero1.getText().equals("")||
+                     
+                   jTextFieldEmail.getText().equals("")) throw new Exception("Preencha todos os campos obrigatórios (*)");
+            else validador = true;
+            
+            String DDD1 = jFormattedTextFieldDDD1.getText(1, 2);
+            String numero1 = jFormattedTextFieldNumero1.getText().replace("-", "");
+            String DDD2 = jFormattedTextFieldDDD2.getText(1, 2);
+            String numero2 = jFormattedTextFieldNumero2.getText().replace("-", "");
+            String DDD3 = jFormattedTextFieldDDD3.getText(1, 2);
+            String numero3 = jFormattedTextFieldNumero3.getText().replace("-", "");
+            String cep = jFormattedTextFieldCEP.getText().replace("-", "");
+            
+            colaborador.setNomeCompleto(jTextFieldNome.getText());
+            colaborador.setEmail(jTextFieldEmail.getText());
+            colaborador.setCpf(jFormattedTextFieldCPF.getText());
+            colaborador.setDataNascimento(jFormattedTextFieldDataNascimento.getText());
+            
+            Telefone telefone1 = new Telefone();
+            telefone1.setNumero(Integer.parseInt(DDD1), Integer.parseInt(numero1));
+            TipoDeTelefone tipoTelefone1 = TipoDeTelefone.valueOf(jComboBoxTipoTelefone1.getSelectedItem().toString());
+            telefone1.setTipo(tipoTelefone1);
+            colaborador.setTelefone1(telefone1);
+            
+            Telefone telefone2 = new Telefone();
+            telefone2.setNumero(Integer.parseInt(DDD2), Integer.parseInt(numero2));
+            TipoDeTelefone tipoTelefone2 = TipoDeTelefone.valueOf(jComboBoxTipoTelefone2.getSelectedItem().toString());
+            telefone1.setTipo(tipoTelefone2);
+            colaborador.setTelefone2(telefone2);
+            
+            Telefone telefone3 = new Telefone();
+            telefone3.setNumero(Integer.parseInt(DDD3), Integer.parseInt(numero3));
+            TipoDeTelefone tipoTelefone3 = TipoDeTelefone.valueOf(jComboBoxTipoTelefone3.getSelectedItem().toString());
+            telefone1.setTipo(tipoTelefone3);
+            colaborador.setTelefone3(telefone3);
+            
+            Endereco endereco = new Endereco();
+            TipoDeLogradouro tipoDeLogradouro = TipoDeLogradouro.valueOf(jComboBoxTipoLogradouro.getSelectedItem().toString());
+            endereco.setTipoLogradouro(tipoDeLogradouro);
+            endereco.setBairro(jTextFieldBairro.getText());
+            endereco.setCep(Integer.parseInt(cep));
+            endereco.setCidade(jTextFieldCidade.getText());
+            endereco.setComplemento(jTextFieldComplemento.getText());
+            endereco.setLogradouro(jTextFieldLogradouro.getText());
+            endereco.setEstado(jTextFieldEstado.getText());
+            endereco.setNumero(Integer.parseInt(jTextFieldNumEndereco.getText()));
+            colaborador.setEndereco(endereco);
+            
+        } catch (Exception erro) {
+            validador = false;
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        } finally {
+            try {
+                if (validador) {
+                    colaboradorDAO.incluir(colaborador);
+                    JOptionPane.showMessageDialog(null, "Colaborador cadastrado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    TelaExibirColaboradores funcionario = new TelaExibirColaboradores();
+                    funcionario.setVisible(true);
+                    dispose();
+                }
+            } catch (Exception erro) {
+                JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_jButtonSalvarCadastroActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
-        TelaExibirClolaboradores funcionario = new TelaExibirClolaboradores();
+        TelaExibirColaboradores funcionario = new TelaExibirColaboradores();
         funcionario.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -738,7 +842,9 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         menuItem.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(frame, "New Project clicked!");
+                TelaCadastrarMarcas marca = new TelaCadastrarMarcas();
+                marca.setVisible(true);
+                dispose();
             }
         });
         popup.add(menuItem);
@@ -777,7 +883,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         menuItem.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                TelaExibirClolaboradores funcionario = new TelaExibirClolaboradores();
+                TelaExibirColaboradores funcionario = new TelaExibirColaboradores();
                 funcionario.setVisible(true);
                 dispose();
                 
@@ -848,19 +954,20 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonSalvarCadastro;
     private javax.swing.JButton jButtonServico;
+    private javax.swing.JComboBox<String> jComboBoxTipoColaborador;
     private javax.swing.JComboBox<String> jComboBoxTipoLogradouro;
     private javax.swing.JComboBox<String> jComboBoxTipoTelefone1;
     private javax.swing.JComboBox<String> jComboBoxTipoTelefone2;
     private javax.swing.JComboBox<String> jComboBoxTipoTelefone3;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField10;
-    private javax.swing.JFormattedTextField jFormattedTextField11;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField5;
-    private javax.swing.JFormattedTextField jFormattedTextField6;
-    private javax.swing.JFormattedTextField jFormattedTextField7;
-    private javax.swing.JFormattedTextField jFormattedTextField8;
-    private javax.swing.JFormattedTextField jFormattedTextField9;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCEP;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCPF;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDDD1;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDDD2;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDDD3;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDataNascimento;
+    private javax.swing.JFormattedTextField jFormattedTextFieldNumero1;
+    private javax.swing.JFormattedTextField jFormattedTextFieldNumero2;
+    private javax.swing.JFormattedTextField jFormattedTextFieldNumero3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -911,7 +1018,6 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldComplemento;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldEstado;
-    private javax.swing.JTextField jTextFieldFuncao;
     private javax.swing.JTextField jTextFieldLogradouro;
     private javax.swing.JTextField jTextFieldMatricula;
     private javax.swing.JTextField jTextFieldNome;
