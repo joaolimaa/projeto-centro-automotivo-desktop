@@ -385,7 +385,7 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Dell\Desktop\Imagens PI\1x\Ativo 22.png"/>
+              <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 22.png"/>
             </Property>
           </Properties>
         </Component>
@@ -468,11 +468,52 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxTipoLogradouro">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="45">
+                <StringItem index="0" value=" "/>
+                <StringItem index="1" value="aeroporto"/>
+                <StringItem index="2" value="alameda"/>
+                <StringItem index="3" value="&#xe1;rea"/>
+                <StringItem index="4" value="avenida"/>
+                <StringItem index="5" value="campo"/>
+                <StringItem index="6" value="ch&#xe1;cara"/>
+                <StringItem index="7" value="col&#xf4;nia"/>
+                <StringItem index="8" value="condom&#xed;nio"/>
+                <StringItem index="9" value="conjunto"/>
+                <StringItem index="10" value="distrito"/>
+                <StringItem index="11" value="esplanada"/>
+                <StringItem index="12" value="esta&#xe7;&#xe3;o"/>
+                <StringItem index="13" value="estrada"/>
+                <StringItem index="14" value="favela"/>
+                <StringItem index="15" value="fazenda"/>
+                <StringItem index="16" value="feira"/>
+                <StringItem index="17" value="jardim"/>
+                <StringItem index="18" value="ladeira"/>
+                <StringItem index="19" value="lago"/>
+                <StringItem index="20" value="lagoa"/>
+                <StringItem index="21" value="largo"/>
+                <StringItem index="22" value="loteamento"/>
+                <StringItem index="23" value="morro"/>
+                <StringItem index="24" value="n&#xfa;cleo"/>
+                <StringItem index="25" value="parque"/>
+                <StringItem index="26" value="passarela"/>
+                <StringItem index="27" value="p&#xe1;tio"/>
+                <StringItem index="28" value="pra&#xe7;a"/>
+                <StringItem index="29" value="quadra"/>
+                <StringItem index="30" value="recanto"/>
+                <StringItem index="31" value="residencial"/>
+                <StringItem index="32" value="rodovia"/>
+                <StringItem index="33" value="rua"/>
+                <StringItem index="34" value="setor"/>
+                <StringItem index="35" value="s&#xed;tio"/>
+                <StringItem index="36" value="travessa"/>
+                <StringItem index="37" value="trecho"/>
+                <StringItem index="38" value="trevo"/>
+                <StringItem index="39" value="vale"/>
+                <StringItem index="40" value="vereda"/>
+                <StringItem index="41" value="via"/>
+                <StringItem index="42" value="viaduto"/>
+                <StringItem index="43" value="viela"/>
+                <StringItem index="44" value="vila"/>
               </StringArray>
             </Property>
           </Properties>
@@ -550,10 +591,10 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+                <StringItem index="0" value=" "/>
+                <StringItem index="1" value="Residencial"/>
+                <StringItem index="2" value="Comercial"/>
+                <StringItem index="3" value="Pessoal"/>
               </StringArray>
             </Property>
           </Properties>
@@ -576,10 +617,10 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+                <StringItem index="0" value=" "/>
+                <StringItem index="1" value="Residencial"/>
+                <StringItem index="2" value="Comercial"/>
+                <StringItem index="3" value="Pessoal"/>
               </StringArray>
             </Property>
           </Properties>
@@ -607,10 +648,10 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+                <StringItem index="0" value=" "/>
+                <StringItem index="1" value="Residencial"/>
+                <StringItem index="2" value="Comercial"/>
+                <StringItem index="3" value="Pessoal"/>
               </StringArray>
             </Property>
           </Properties>
@@ -688,6 +729,9 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Salvar Cadastro"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSalvarCadastroActionPerformed"/>
@@ -829,13 +873,13 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/projetomecanica/telas/visao/icones/Ativo 20.png"/>
+              <Image iconType="3" name="/projetomecanica/telas/visao/icones/New Car white.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Hand Cursor"/>
             </Property>
           </Properties>
           <Events>
@@ -853,6 +897,9 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonSairMouseClicked"/>
@@ -868,6 +915,9 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
             </Property>
           </Properties>
           <Events>
@@ -946,6 +996,9 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCadastrarClienteActionPerformed"/>
@@ -961,6 +1014,9 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
             </Property>
           </Properties>
           <Events>
@@ -978,6 +1034,9 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonOrdemServicoActionPerformed"/>
@@ -993,6 +1052,9 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
             </Property>
           </Properties>
           <Events>
@@ -1010,6 +1072,9 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPagarActionPerformed"/>
@@ -1026,6 +1091,9 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCadastrarColaboradorActionPerformed"/>
@@ -1041,6 +1109,9 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
             </Property>
           </Properties>
           <Events>
