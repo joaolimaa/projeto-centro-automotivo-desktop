@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
 public class Utils {
     
     public static boolean isCPF(String CPF) throws Exception {
+        CPF = CPF.replace(".", "");
+        CPF = CPF.replace("-", "");
         // considera-se erro CPF's formados por uma sequencia de numeros iguais
         if (CPF.equals("00000000000") || CPF.equals("11111111111") ||
             CPF.equals("22222222222") || CPF.equals("33333333333") ||
@@ -67,6 +69,9 @@ public class Utils {
     }
     
     public static boolean isCNPJ(String CNPJ) {
+        CNPJ = CNPJ.replace(".", "");
+        CNPJ = CNPJ.replace("-", "");
+        CNPJ = CNPJ.replace("/", "");
 // considera-se erro CNPJ's formados por uma sequencia de numeros iguais
         if (CNPJ.equals("00000000000000") || CNPJ.equals("11111111111111") ||
             CNPJ.equals("22222222222222") || CNPJ.equals("33333333333333") ||
@@ -188,7 +193,7 @@ public class Utils {
         
         String cepString = ""+cep;
         
-        if (cepString.length() == 7) return true;
+        if (cepString.length() == 8) return true;
         else return false;
         
     }

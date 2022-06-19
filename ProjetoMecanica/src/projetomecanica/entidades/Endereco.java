@@ -99,7 +99,7 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return this.tipoLogradouro.getDescricao() + ";" + this.logradouro + ";" + this.complemento + ";" + this.bairro + ";" + this.cidade + ";" + this.cep + ";" + this.estado + ";" + this.numero;
+        return this.tipoLogradouro + ";" + this.logradouro + ";" + this.complemento + ";" + this.bairro + ";" + this.cidade + ";" + this.cep + ";" + this.estado + ";" + this.numero;
     }
     
 }

@@ -14,6 +14,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,6 +24,8 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import projetomecanica.entidades.Peca;
+import projetomecanica.entidades.dao.PecaDAO;
 import projetomecanica.telas.clientes.*;
 import projetomecanica.telas.documentos.TelaExibirOrcamento;
 import projetomecanica.telas.funcionarios.*;
@@ -33,16 +36,54 @@ import projetomecanica.telas.documentos.TelaListagemOS;
  * @author Dell
  */
 public class TelaPecas extends javax.swing.JFrame {
-
-    /**
-     * Creates new form TelaTechnocar
-     */
+    PecaDAO pecaDAO = new PecaDAO();
+    ArrayList<Integer> pecasId = new ArrayList<>();
+    Peca peca = new Peca();
+    boolean validador = false;
+    
     public TelaPecas() {
-        initComponents();
-         if(this.getExtendedState()!= TelaPecas.MAXIMIZED_BOTH){
-            this.setExtendedState(TelaPecas.MAXIMIZED_BOTH);
+        try {
+            initComponents();
+            if(this.getExtendedState()!= TelaPecas.MAXIMIZED_BOTH){
+               this.setExtendedState(TelaPecas.MAXIMIZED_BOTH);
+            }
+            setLocationRelativeTo(null);
+            ArrayList<Peca> listaDePecas = pecaDAO.obterTodasEntidades();
+            
+            DefaultTableModel tabela = (DefaultTableModel) jTableListagemPecas.getModel();
+            for(int i = 0; i < listaDePecas.size(); i++) {
+                pecasId.add(listaDePecas.get(i).getId());
+                tabela.addRow(listaDePecas.get(i).listaValoresTabela());
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
         }
-        setLocationRelativeTo(null);
+    }
+    
+    public TelaPecas(int pecaId) {
+        try {
+            initComponents();
+            if(this.getExtendedState()!= TelaPecas.MAXIMIZED_BOTH){
+               this.setExtendedState(TelaPecas.MAXIMIZED_BOTH);
+            }
+            setLocationRelativeTo(null);
+            ArrayList<Peca> listaDePecas = pecaDAO.obterTodasEntidades();
+            
+            DefaultTableModel tabela = (DefaultTableModel) jTableListagemPecas.getModel();
+            for(int i = 0; i < listaDePecas.size(); i++) {
+                pecasId.add(listaDePecas.get(i).getId());
+                tabela.addRow(listaDePecas.get(i).listaValoresTabela());
+            }
+            peca = pecaDAO.consultarPorId(pecaId);
+            jTextFieldCodigo.setText(peca.getCodigo()+"");
+            jTextFieldDescricao.setText(peca.getDescricao());
+            jTextFieldValor.setText(peca.getValorUnitario()+"");
+            jSpinnerQtdEstoque.setValue(peca.getQtdEstoque());
+            jSpinnerQtdMinimaEstoque.setValue(peca.getQtdMinEstoque());
+            jTextFieldVidaUtil.setText(peca.getVidaUtilEmDias()+"");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     /**
@@ -75,24 +116,24 @@ public class TelaPecas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jButtonSalvarCadastro = new javax.swing.JButton();
-        jButtonCancelar = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableInformacoes = new javax.swing.JTable();
+        jTableListagemPecas = new javax.swing.JTable();
         jLabel21 = new javax.swing.JLabel();
-        jTextFieldAnoModelo2 = new javax.swing.JTextField();
-        jTextFieldAnoModelo3 = new javax.swing.JTextField();
+        jTextFieldDescricao = new javax.swing.JTextField();
+        jTextFieldCodigo = new javax.swing.JTextField();
         jButtonExcluir = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextFieldAnoModelo4 = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
+        jTextFieldValor = new javax.swing.JTextField();
+        jSpinnerQtdEstoque = new javax.swing.JSpinner();
         jLabel13 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
+        jSpinnerQtdMinimaEstoque = new javax.swing.JSpinner();
         jLabel20 = new javax.swing.JLabel();
-        jTextFieldAnoModelo5 = new javax.swing.JTextField();
+        jTextFieldVidaUtil = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        jButtonCancelar1 = new javax.swing.JButton();
+        jButtonLimpar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
@@ -152,23 +193,25 @@ public class TelaPecas extends javax.swing.JFrame {
         jButtonSalvarCadastro.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonSalvarCadastro.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalvarCadastro.setText("Salvar Cadastro");
-        jButtonSalvarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jButtonCancelar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonCancelar.setText("Editar");
-        jButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSalvarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonSalvarCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelarActionPerformed(evt);
+                jButtonSalvarCadastroActionPerformed(evt);
             }
         });
 
-        jTableInformacoes.setModel(new javax.swing.table.DefaultTableModel(
+        jButtonEditar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonEditar.setText("Editar");
+        jButtonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
+
+        jTableListagemPecas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Código", "Descrição", "Valor", "QTD Estoque"
@@ -182,26 +225,26 @@ public class TelaPecas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableInformacoes);
-        if (jTableInformacoes.getColumnModel().getColumnCount() > 0) {
-            jTableInformacoes.getColumnModel().getColumn(0).setResizable(false);
-            jTableInformacoes.getColumnModel().getColumn(1).setResizable(false);
-            jTableInformacoes.getColumnModel().getColumn(2).setResizable(false);
-            jTableInformacoes.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(jTableListagemPecas);
+        if (jTableListagemPecas.getColumnModel().getColumnCount() > 0) {
+            jTableListagemPecas.getColumnModel().getColumn(0).setResizable(false);
+            jTableListagemPecas.getColumnModel().getColumn(1).setResizable(false);
+            jTableListagemPecas.getColumnModel().getColumn(2).setResizable(false);
+            jTableListagemPecas.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jLabel21.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel21.setText("Descrição*");
 
-        jTextFieldAnoModelo2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldDescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAnoModelo2ActionPerformed(evt);
+                jTextFieldDescricaoActionPerformed(evt);
             }
         });
 
-        jTextFieldAnoModelo3.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAnoModelo3ActionPerformed(evt);
+                jTextFieldCodigoActionPerformed(evt);
             }
         });
 
@@ -209,7 +252,7 @@ public class TelaPecas extends javax.swing.JFrame {
         jButtonExcluir.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonExcluir.setForeground(new java.awt.Color(255, 255, 255));
         jButtonExcluir.setText("Excluir");
-        jButtonExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonExcluirActionPerformed(evt);
@@ -224,9 +267,9 @@ public class TelaPecas extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel11.setText("Valor Unitário*");
 
-        jTextFieldAnoModelo4.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAnoModelo4ActionPerformed(evt);
+                jTextFieldValorActionPerformed(evt);
             }
         });
 
@@ -236,21 +279,21 @@ public class TelaPecas extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel20.setText("Qtd mínima no Estoque*");
 
-        jTextFieldAnoModelo5.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldVidaUtil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAnoModelo5ActionPerformed(evt);
+                jTextFieldVidaUtilActionPerformed(evt);
             }
         });
 
         jLabel22.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel22.setText("Vida útil (dias)*");
 
-        jButtonCancelar1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonCancelar1.setText("Limpar");
-        jButtonCancelar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonCancelar1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLimpar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonLimpar.setText("Limpar");
+        jButtonLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelar1ActionPerformed(evt);
+                jButtonLimparActionPerformed(evt);
             }
         });
 
@@ -273,33 +316,33 @@ public class TelaPecas extends javax.swing.JFrame {
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelFundoLayout.createSequentialGroup()
                                 .addGap(35, 35, 35)
-                                .addComponent(jButtonCancelar)
+                                .addComponent(jButtonEditar)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonExcluir)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldAnoModelo4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel11)
-                                    .addComponent(jTextFieldAnoModelo3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel10))
                                 .addGap(50, 50, 50)
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSpinner2)
+                                    .addComponent(jSpinnerQtdMinimaEstoque)
                                     .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldAnoModelo2)
+                                    .addComponent(jTextFieldDescricao)
                                     .addComponent(jLabel21))
                                 .addGap(50, 50, 50)
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldAnoModelo5)
+                                    .addComponent(jTextFieldVidaUtil)
                                     .addComponent(jLabel22)
-                                    .addComponent(jSpinner1)
+                                    .addComponent(jSpinnerQtdEstoque)
                                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
                                 .addGap(47, 47, 47)
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButtonSalvarCadastro)
-                                    .addComponent(jButtonCancelar1))
+                                    .addComponent(jButtonLimpar))
                                 .addContainerGap(204, Short.MAX_VALUE))))))
         );
         jPanelFundoLayout.setVerticalGroup(
@@ -323,24 +366,24 @@ public class TelaPecas extends javax.swing.JFrame {
                             .addComponent(jLabel13))
                         .addGap(3, 3, 3)
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jTextFieldAnoModelo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldAnoModelo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinnerQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jLabel22)
                             .addComponent(jLabel20)
                             .addComponent(jLabel11)
-                            .addComponent(jButtonCancelar1))
+                            .addComponent(jButtonLimpar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jTextFieldAnoModelo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldAnoModelo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldVidaUtil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSpinnerQtdMinimaEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonSalvarCadastro))
                         .addGap(143, 143, 143)
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonCancelar)
+                            .addComponent(jButtonEditar)
                             .addComponent(jButtonExcluir))))
                 .addContainerGap(90, Short.MAX_VALUE))
         );
@@ -352,7 +395,7 @@ public class TelaPecas extends javax.swing.JFrame {
         jButtonMenu.setBackground(new java.awt.Color(0, 0, 0));
         jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 20.png"))); // NOI18N
         jButtonMenu.setBorder(null);
-        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMenuActionPerformed(evt);
@@ -362,7 +405,7 @@ public class TelaPecas extends javax.swing.JFrame {
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 43.png"))); // NOI18N
         jButtonSair.setBorder(null);
-        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonSairMouseClicked(evt);
@@ -372,7 +415,7 @@ public class TelaPecas extends javax.swing.JFrame {
         jButtonConfigurar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonConfigurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 42.png"))); // NOI18N
         jButtonConfigurar.setBorder(null);
-        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonConfigurarMouseClicked(evt);
@@ -411,7 +454,7 @@ public class TelaPecas extends javax.swing.JFrame {
         jButtonCadastrarCliente.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 4.png"))); // NOI18N
         jButtonCadastrarCliente.setBorder(null);
-        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarClienteActionPerformed(evt);
@@ -421,7 +464,7 @@ public class TelaPecas extends javax.swing.JFrame {
         jButtonCadastrarVeiculo.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 5.png"))); // NOI18N
         jButtonCadastrarVeiculo.setBorder(null);
-        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarVeiculoActionPerformed(evt);
@@ -431,7 +474,7 @@ public class TelaPecas extends javax.swing.JFrame {
         jButtonOrdemServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonOrdemServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 7.png"))); // NOI18N
         jButtonOrdemServico.setBorder(null);
-        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonOrdemServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonOrdemServicoActionPerformed(evt);
@@ -441,7 +484,7 @@ public class TelaPecas extends javax.swing.JFrame {
         jButtonServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 8.png"))); // NOI18N
         jButtonServico.setBorder(null);
-        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonServicoActionPerformed(evt);
@@ -451,7 +494,7 @@ public class TelaPecas extends javax.swing.JFrame {
         jButtonPagar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 9.png"))); // NOI18N
         jButtonPagar.setBorder(null);
-        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPagarActionPerformed(evt);
@@ -461,7 +504,7 @@ public class TelaPecas extends javax.swing.JFrame {
         jButtonCadastrarColaborador.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 10.png"))); // NOI18N
         jButtonCadastrarColaborador.setBorder(null);
-        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarColaboradorActionPerformed(evt);
@@ -471,7 +514,7 @@ public class TelaPecas extends javax.swing.JFrame {
         jButtonCadastrarPecas.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarPecas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 18.png"))); // NOI18N
         jButtonCadastrarPecas.setBorder(null);
-        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarPecasActionPerformed(evt);
@@ -593,12 +636,19 @@ public class TelaPecas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
 
-    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        // TODO add your handling code here:
-        TelaExibirVeiculos veiculo = new TelaExibirVeiculos();
-        veiculo.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButtonCancelarActionPerformed
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        try {
+            int index = jTableListagemPecas.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione uma peça na tabela");
+            else {
+                TelaPecas telaPecas = new TelaPecas(pecasId.get(index));
+                telaPecas.setVisible(true);
+                dispose();
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSairMouseClicked
         // TODO add your handling code here:
@@ -679,29 +729,83 @@ public class TelaPecas extends javax.swing.JFrame {
         popup.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_jButtonConfigurarMouseClicked
 
-    private void jTextFieldAnoModelo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnoModelo2ActionPerformed
+    private void jTextFieldDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDescricaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAnoModelo2ActionPerformed
+    }//GEN-LAST:event_jTextFieldDescricaoActionPerformed
 
-    private void jTextFieldAnoModelo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnoModelo3ActionPerformed
+    private void jTextFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAnoModelo3ActionPerformed
+    }//GEN-LAST:event_jTextFieldCodigoActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        // TODO add your handling code here:
+        try {
+            int index = jTableListagemPecas.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione uma peça na tabela");
+            else {
+                pecaDAO.excluir(pecasId.get(index));
+                TelaPecas telaPecas = new TelaPecas();
+                telaPecas.setVisible(true);
+                dispose();
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
-    private void jTextFieldAnoModelo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnoModelo4ActionPerformed
+    private void jTextFieldValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldValorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAnoModelo4ActionPerformed
+    }//GEN-LAST:event_jTextFieldValorActionPerformed
 
-    private void jTextFieldAnoModelo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnoModelo5ActionPerformed
+    private void jTextFieldVidaUtilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldVidaUtilActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAnoModelo5ActionPerformed
+    }//GEN-LAST:event_jTextFieldVidaUtilActionPerformed
 
-    private void jButtonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCancelar1ActionPerformed
+    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        jTextFieldCodigo.setText("");
+        jTextFieldDescricao.setText("");
+        jTextFieldValor.setText("");
+        jSpinnerQtdEstoque.setValue(0);
+        jSpinnerQtdMinimaEstoque.setValue(0);
+        jTextFieldVidaUtil.setText("");
+    }//GEN-LAST:event_jButtonLimparActionPerformed
+
+    private void jButtonSalvarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarCadastroActionPerformed
+        try {
+            if (jTextFieldDescricao.getText().equals("") || 
+                    jTextFieldValor.getText().equals("") ||
+                    jTextFieldCodigo.getText().equals("") ||
+                    jTextFieldVidaUtil.getText().equals("") ||
+                    jSpinnerQtdEstoque.getValue().equals(0) ||
+                    jSpinnerQtdMinimaEstoque.getValue().equals(0)) throw new Exception("Preencha todos os campos obrigatórios (*)");
+            else validador = true;
+            
+            peca.setDescricao(jTextFieldDescricao.getText());
+            peca.setValorUnitario(Float.parseFloat(jTextFieldValor.getText()));
+            peca.setCodigo(Integer.parseInt(jTextFieldCodigo.getText()));
+            peca.setQtdEstoque((int) jSpinnerQtdEstoque.getValue());
+            peca.setQtdMinEstoque((int) jSpinnerQtdMinimaEstoque.getValue());
+            peca.setVidaUtilEmDias(Integer.parseInt(jTextFieldVidaUtil.getText()));
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        } finally {
+            try {
+                if (validador) {
+                    if (peca.getId() != 0) {
+                        pecaDAO.alterar(peca);
+                        JOptionPane.showMessageDialog(null, "Peça editado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        pecaDAO.incluir(peca);
+                        JOptionPane.showMessageDialog(null, "Peça cadastrado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    TelaPecas telaPecas = new TelaPecas();
+                    telaPecas.setVisible(true);
+                    dispose();
+                }
+            } catch (Exception erro) {
+                JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButtonSalvarCadastroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -741,10 +845,10 @@ public class TelaPecas extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCadastrarColaborador;
     private javax.swing.JButton jButtonCadastrarPecas;
     private javax.swing.JButton jButtonCadastrarVeiculo;
-    private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonCancelar1;
     private javax.swing.JButton jButtonConfigurar;
+    private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JButton jButtonOrdemServico;
     private javax.swing.JButton jButtonPagar;
@@ -774,9 +878,9 @@ public class TelaPecas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelFundo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTable jTableInformacoes;
+    private javax.swing.JSpinner jSpinnerQtdEstoque;
+    private javax.swing.JSpinner jSpinnerQtdMinimaEstoque;
+    private javax.swing.JTable jTableListagemPecas;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
@@ -784,9 +888,9 @@ public class TelaPecas extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextField jTextFieldAnoModelo2;
-    private javax.swing.JTextField jTextFieldAnoModelo3;
-    private javax.swing.JTextField jTextFieldAnoModelo4;
-    private javax.swing.JTextField jTextFieldAnoModelo5;
+    private javax.swing.JTextField jTextFieldCodigo;
+    private javax.swing.JTextField jTextFieldDescricao;
+    private javax.swing.JTextField jTextFieldValor;
+    private javax.swing.JTextField jTextFieldVidaUtil;
     // End of variables declaration//GEN-END:variables
 }

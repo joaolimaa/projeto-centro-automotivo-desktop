@@ -13,6 +13,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,6 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import projetomecanica.entidades.Servico;
+import projetomecanica.entidades.dao.ServicoDAO;
 import projetomecanica.telas.clientes.*;
 import projetomecanica.telas.documentos.TelaExibirOrcamento;
 import projetomecanica.telas.documentos.TelaGerarOS;
@@ -34,15 +37,50 @@ import projetomecanica.telas.pecas.TelaPecas;
  */
 public class TelaServicos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaTechnocar
-     */
+    ServicoDAO servicoDAO = new ServicoDAO();
+    ArrayList<Integer> servicosId = new ArrayList<>();
+    Servico servico = new Servico();
+    boolean validador = false;
+    
     public TelaServicos() {
-        initComponents();
-         if(this.getExtendedState()!= TelaServicos.MAXIMIZED_BOTH){
-            this.setExtendedState(TelaServicos.MAXIMIZED_BOTH);
+        try {
+            initComponents();
+            if(this.getExtendedState()!= TelaServicos.MAXIMIZED_BOTH){
+               this.setExtendedState(TelaServicos.MAXIMIZED_BOTH);
+            }
+            setLocationRelativeTo(null);
+            ArrayList<Servico> listaDeServicos = servicoDAO.obterTodasEntidades();
+            
+            DefaultTableModel tabela = (DefaultTableModel) jTableListagemServico.getModel();
+            for(int i = 0; i < listaDeServicos.size(); i++) {
+                servicosId.add(listaDeServicos.get(i).getId());
+                tabela.addRow(listaDeServicos.get(i).listaValoresTabela());
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
         }
-        setLocationRelativeTo(null);
+    }
+    
+    public TelaServicos(int servicoId) {
+        try {
+            initComponents();
+            if(this.getExtendedState()!= TelaServicos.MAXIMIZED_BOTH){
+               this.setExtendedState(TelaServicos.MAXIMIZED_BOTH);
+            }
+            setLocationRelativeTo(null);
+            ArrayList<Servico> listaDeServicos = servicoDAO.obterTodasEntidades();
+            
+            DefaultTableModel tabela = (DefaultTableModel) jTableListagemServico.getModel();
+            for(int i = 0; i < listaDeServicos.size(); i++) {
+                servicosId.add(listaDeServicos.get(i).getId());
+                tabela.addRow(listaDeServicos.get(i).listaValoresTabela());
+            }
+            servico = servicoDAO.consultarPorId(servicoId);
+            jTextFieldDescricao.setText(servico.getDescricao());
+            jTextFieldValor.setText(servico.getValor()+"");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     /**
@@ -54,36 +92,20 @@ public class TelaServicos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel6 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
         jPanelFundo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jButtonSalvarCadastro = new javax.swing.JButton();
-        jButtonCancelar = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableInformacoes = new javax.swing.JTable();
+        jTableListagemServico = new javax.swing.JTable();
         jLabel21 = new javax.swing.JLabel();
-        jTextFieldAnoModelo2 = new javax.swing.JTextField();
-        jTextFieldAnoModelo3 = new javax.swing.JTextField();
-        jButtonExcluir = new javax.swing.JButton();
+        jTextFieldValor = new javax.swing.JTextField();
+        jTextFieldDescricao = new javax.swing.JTextField();
+        jButtonLimpar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButtonExcluir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
@@ -96,36 +118,6 @@ public class TelaServicos extends javax.swing.JFrame {
         jButtonPagar = new javax.swing.JButton();
         jButtonCadastrarColaborador = new javax.swing.JButton();
         jButtonCadastrarPecas = new javax.swing.JButton();
-
-        jLabel6.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jLabel6.setText("Data de Nascimento*");
-
-        jLabel26.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jLabel26.setText("E-mail*");
-
-        jLabel12.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jLabel12.setText("Bairro*");
-
-        jLabel15.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jLabel15.setText("Número*");
-
-        jLabel14.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jLabel14.setText("Complemento");
-
-        jLabel27.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jLabel27.setText("Cidade");
-
-        jLabel18.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jLabel18.setText("Estado*");
-
-        jLabel17.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jLabel17.setText("CEP*");
-
-        jLabel16.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jLabel16.setText("Função*");
-
-        jLabel19.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jLabel19.setText("Setor*");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,23 +135,25 @@ public class TelaServicos extends javax.swing.JFrame {
         jButtonSalvarCadastro.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonSalvarCadastro.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalvarCadastro.setText("Salvar Cadastro");
-        jButtonSalvarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jButtonCancelar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonCancelar.setText("Editar");
-        jButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSalvarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonSalvarCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelarActionPerformed(evt);
+                jButtonSalvarCadastroActionPerformed(evt);
             }
         });
 
-        jTableInformacoes.setModel(new javax.swing.table.DefaultTableModel(
+        jButtonEditar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonEditar.setText("Editar");
+        jButtonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
+
+        jTableListagemServico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Descrição", "Valor"
@@ -173,35 +167,35 @@ public class TelaServicos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableInformacoes);
-        if (jTableInformacoes.getColumnModel().getColumnCount() > 0) {
-            jTableInformacoes.getColumnModel().getColumn(0).setResizable(false);
-            jTableInformacoes.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane1.setViewportView(jTableListagemServico);
+        if (jTableListagemServico.getColumnModel().getColumnCount() > 0) {
+            jTableListagemServico.getColumnModel().getColumn(0).setResizable(false);
+            jTableListagemServico.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jLabel21.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel21.setText("Valor*");
 
-        jTextFieldAnoModelo2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldValor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAnoModelo2ActionPerformed(evt);
+                jTextFieldValorActionPerformed(evt);
             }
         });
 
-        jTextFieldAnoModelo3.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldDescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAnoModelo3ActionPerformed(evt);
+                jTextFieldDescricaoActionPerformed(evt);
             }
         });
 
-        jButtonExcluir.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonExcluir.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonExcluir.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonExcluir.setText("Excluir");
-        jButtonExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLimpar.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonLimpar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonLimpar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonLimpar.setText("Limpar");
+        jButtonLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluirActionPerformed(evt);
+                jButtonLimparActionPerformed(evt);
             }
         });
 
@@ -209,6 +203,17 @@ public class TelaServicos extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 1, 27)); // NOI18N
         jLabel2.setText("Novo Serviço");
+
+        jButtonExcluir.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonExcluir.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelFundoLayout = new javax.swing.GroupLayout(jPanelFundo);
         jPanelFundo.setLayout(jPanelFundoLayout);
@@ -228,19 +233,21 @@ public class TelaServicos extends javax.swing.JFrame {
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelFundoLayout.createSequentialGroup()
                                 .addGap(28, 28, 28)
-                                .addComponent(jButtonCancelar))
+                                .addComponent(jButtonEditar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonExcluir))
                             .addGroup(jPanelFundoLayout.createSequentialGroup()
                                 .addGap(128, 128, 128)
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10)
-                                    .addComponent(jTextFieldAnoModelo3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(34, 34, 34)
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel21)
                                     .addGroup(jPanelFundoLayout.createSequentialGroup()
-                                        .addComponent(jTextFieldAnoModelo2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(31, 31, 31)
-                                        .addComponent(jButtonExcluir)
+                                        .addComponent(jButtonLimpar)
                                         .addGap(18, 18, 18)
                                         .addComponent(jButtonSalvarCadastro)))))))
                 .addContainerGap(247, Short.MAX_VALUE))
@@ -268,12 +275,14 @@ public class TelaServicos extends javax.swing.JFrame {
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jTextFieldAnoModelo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldAnoModelo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonExcluir)
+                            .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonLimpar)
                             .addComponent(jButtonSalvarCadastro))
                         .addGap(176, 176, 176)
-                        .addComponent(jButtonCancelar)))
+                        .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonEditar)
+                            .addComponent(jButtonExcluir))))
                 .addContainerGap(90, Short.MAX_VALUE))
         );
 
@@ -284,7 +293,7 @@ public class TelaServicos extends javax.swing.JFrame {
         jButtonMenu.setBackground(new java.awt.Color(0, 0, 0));
         jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 20.png"))); // NOI18N
         jButtonMenu.setBorder(null);
-        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMenuActionPerformed(evt);
@@ -294,7 +303,7 @@ public class TelaServicos extends javax.swing.JFrame {
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 43.png"))); // NOI18N
         jButtonSair.setBorder(null);
-        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonSairMouseClicked(evt);
@@ -304,7 +313,7 @@ public class TelaServicos extends javax.swing.JFrame {
         jButtonConfigurar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonConfigurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 42.png"))); // NOI18N
         jButtonConfigurar.setBorder(null);
-        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonConfigurarMouseClicked(evt);
@@ -343,7 +352,7 @@ public class TelaServicos extends javax.swing.JFrame {
         jButtonCadastrarCliente.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 4.png"))); // NOI18N
         jButtonCadastrarCliente.setBorder(null);
-        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarClienteActionPerformed(evt);
@@ -353,7 +362,7 @@ public class TelaServicos extends javax.swing.JFrame {
         jButtonCadastrarVeiculo.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 5.png"))); // NOI18N
         jButtonCadastrarVeiculo.setBorder(null);
-        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarVeiculoActionPerformed(evt);
@@ -363,7 +372,7 @@ public class TelaServicos extends javax.swing.JFrame {
         jButtonOrdemServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonOrdemServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 7.png"))); // NOI18N
         jButtonOrdemServico.setBorder(null);
-        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonOrdemServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonOrdemServicoActionPerformed(evt);
@@ -373,7 +382,7 @@ public class TelaServicos extends javax.swing.JFrame {
         jButtonServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 8.png"))); // NOI18N
         jButtonServico.setBorder(null);
-        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonServicoActionPerformed(evt);
@@ -383,7 +392,7 @@ public class TelaServicos extends javax.swing.JFrame {
         jButtonPagar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 9.png"))); // NOI18N
         jButtonPagar.setBorder(null);
-        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPagarActionPerformed(evt);
@@ -393,7 +402,7 @@ public class TelaServicos extends javax.swing.JFrame {
         jButtonCadastrarColaborador.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 10.png"))); // NOI18N
         jButtonCadastrarColaborador.setBorder(null);
-        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarColaboradorActionPerformed(evt);
@@ -403,7 +412,7 @@ public class TelaServicos extends javax.swing.JFrame {
         jButtonCadastrarPecas.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarPecas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 18.png"))); // NOI18N
         jButtonCadastrarPecas.setBorder(null);
-        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarPecasActionPerformed(evt);
@@ -525,12 +534,19 @@ public class TelaServicos extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
 
-    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        // TODO add your handling code here:
-        TelaExibirVeiculos veiculo = new TelaExibirVeiculos();
-        veiculo.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButtonCancelarActionPerformed
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        try {
+            int index = jTableListagemServico.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione um servico na tabela");
+            else {
+                TelaServicos servico = new TelaServicos(servicosId.get(index));
+                servico.setVisible(true);
+                dispose();
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSairMouseClicked
         // TODO add your handling code here:
@@ -611,17 +627,62 @@ public class TelaServicos extends javax.swing.JFrame {
         popup.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_jButtonConfigurarMouseClicked
 
-    private void jTextFieldAnoModelo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnoModelo2ActionPerformed
+    private void jTextFieldValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldValorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAnoModelo2ActionPerformed
+    }//GEN-LAST:event_jTextFieldValorActionPerformed
 
-    private void jTextFieldAnoModelo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnoModelo3ActionPerformed
+    private void jTextFieldDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDescricaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAnoModelo3ActionPerformed
+    }//GEN-LAST:event_jTextFieldDescricaoActionPerformed
+
+    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        jTextFieldDescricao.setText("");
+        jTextFieldValor.setText("");
+    }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        // TODO add your handling code here:
+        try {
+            int index = jTableListagemServico.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione um serviço na tabela");
+            else {
+                servicoDAO.excluir(servicosId.get(index));
+                TelaServicos telaServico = new TelaServicos();
+                telaServico.setVisible(true);
+                dispose();
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jButtonSalvarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarCadastroActionPerformed
+        try {
+            if (jTextFieldDescricao.getText().equals("") || jTextFieldValor.getText().equals("")) throw new Exception("Preencha todos os campos obrigatórios (*)");
+            else validador = true;
+            
+            servico.setDescricao(jTextFieldDescricao.getText());
+            servico.setValor(Float.parseFloat(jTextFieldValor.getText()));
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        } finally {
+            try {
+                if (validador) {
+                    if (servico.getId() != 0) {
+                        servicoDAO.alterar(servico);
+                        JOptionPane.showMessageDialog(null, "Serviço editado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        servicoDAO.incluir(servico);
+                        JOptionPane.showMessageDialog(null, "Serviço cadastrado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    TelaServicos telaServico = new TelaServicos();
+                    telaServico.setVisible(true);
+                    dispose();
+                }
+            } catch (Exception erro) {
+                JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButtonSalvarCadastroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -661,9 +722,10 @@ public class TelaServicos extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCadastrarColaborador;
     private javax.swing.JButton jButtonCadastrarPecas;
     private javax.swing.JButton jButtonCadastrarVeiculo;
-    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonConfigurar;
+    private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JButton jButtonOrdemServico;
     private javax.swing.JButton jButtonPagar;
@@ -672,32 +734,15 @@ public class TelaServicos extends javax.swing.JFrame {
     private javax.swing.JButton jButtonServico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelFundo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableInformacoes;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextField jTextFieldAnoModelo2;
-    private javax.swing.JTextField jTextFieldAnoModelo3;
+    private javax.swing.JTable jTableListagemServico;
+    private javax.swing.JTextField jTextFieldDescricao;
+    private javax.swing.JTextField jTextFieldValor;
     // End of variables declaration//GEN-END:variables
 }

@@ -109,7 +109,7 @@ public class Orcamento {
     }
 
     public void setQtdPecas(int qtdPecas) {
-        this.qtdPecas = pecas.size();
+        this.qtdPecas = qtdPecas;
     }
 
     public float getTotalPecas() {
@@ -132,8 +132,8 @@ public class Orcamento {
         return qtdServicos;
     }
 
-    public void setQtdServicos() {
-        this.qtdServicos = servicos.size();
+    public void setQtdServicos(int qtdServicos) {
+        this.qtdServicos = qtdServicos;
     }
 
     public float getTotalServicos() {

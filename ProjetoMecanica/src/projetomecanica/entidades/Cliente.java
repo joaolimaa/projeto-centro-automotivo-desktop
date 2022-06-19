@@ -159,7 +159,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return id + ";" + nomeCompleto + ";" + telefone1.toString() + ";" + telefone2.toString() + ";" + telefone3.toString() + ";" + email + ";" + endereco.toString() + ";" + tipo.getDescricao() + ";" + cpf_cnpj + ";" + razaoSocial + ";" + dataNascimento + ";" + status.getDescricao() + ";" + nomeFantasia;
+        return id + ";" + nomeCompleto + ";" + telefone1.toString() + ";" + telefone2.toString() + ";" + telefone3.toString() + ";" + email + ";" + endereco.toString() + ";" + tipo + ";" + cpf_cnpj + ";" + razaoSocial + ";" + dataNascimento + ";" + status + ";" + nomeFantasia;
     }
     
 }

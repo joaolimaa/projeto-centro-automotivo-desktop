@@ -230,7 +230,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel10.setText("Tipo do Logradouro*");
 
-        jComboBoxTipoLogradouro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "aeroporto", "alameda", "área", "avenida", "campo", "chácara", "colônia", "condomínio", "conjunto", "distrito", "esplanada", "estação", "estrada", "favela", "fazenda", "feira", "jardim", "ladeira", "lago", "lagoa", "largo", "loteamento", "morro", "núcleo", "parque", "passarela", "pátio", "praça", "quadra", "recanto", "residencial", "rodovia", "rua", "setor", "sítio", "travessa", "trecho", "trevo", "vale", "vereda", "via", "viaduto", "viela", "vila" }));
+        jComboBoxTipoLogradouro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RUA", "AVENIDA" }));
 
         jLabel11.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel11.setText("Logradouro*");
@@ -253,7 +253,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel24.setText("Tipo do Telefone*");
 
-        jComboBoxTipoTelefone1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Residencial", "Comercial", "Pessoal" }));
+        jComboBoxTipoTelefone1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RESIDENCIAL", "TRABALHO", "CELULAR" }));
         jComboBoxTipoTelefone1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxTipoTelefone1ActionPerformed(evt);
@@ -263,7 +263,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jLabel28.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel28.setText("Tipo do Telefone 3");
 
-        jComboBoxTipoTelefone3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Residencial", "Comercial", "Pessoal" }));
+        jComboBoxTipoTelefone3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RESIDENCIAL", "TRABALHO", "CELULAR" }));
 
         jLabel35.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel35.setText("Telefone 2");
@@ -271,7 +271,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jLabel25.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel25.setText("Tipo do Telefone 2");
 
-        jComboBoxTipoTelefone2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Residencial", "Comercial", "Pessoal" }));
+        jComboBoxTipoTelefone2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RESIDENCIAL", "TRABALHO", "CELULAR" }));
 
         jLabel36.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel36.setText("Cidade*");
@@ -289,7 +289,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jButtonIrParaTelaVeiculo.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonIrParaTelaVeiculo.setForeground(new java.awt.Color(255, 255, 255));
         jButtonIrParaTelaVeiculo.setText("Cadastrar Veículo");
-        jButtonIrParaTelaVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonIrParaTelaVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonIrParaTelaVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonIrParaTelaVeiculoActionPerformed(evt);
@@ -300,7 +300,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jButtonSalvarCadastro.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonSalvarCadastro.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalvarCadastro.setText("Salvar Cadastro");
-        jButtonSalvarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSalvarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonSalvarCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarCadastroActionPerformed(evt);
@@ -309,7 +309,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
 
         jButtonCancelar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonCancelar.setText("Cancelar");
-        jButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
@@ -559,7 +559,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jButtonMenu.setBackground(new java.awt.Color(0, 0, 0));
         jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/New Car white.png"))); // NOI18N
         jButtonMenu.setBorder(null);
-        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMenuActionPerformed(evt);
@@ -569,7 +569,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 43.png"))); // NOI18N
         jButtonSair.setBorder(null);
-        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonSairMouseClicked(evt);
@@ -579,7 +579,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jButtonConfigurar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonConfigurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 42.png"))); // NOI18N
         jButtonConfigurar.setBorder(null);
-        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonConfigurarMouseClicked(evt);
@@ -618,7 +618,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jButtonCadastrarCliente.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 4.png"))); // NOI18N
         jButtonCadastrarCliente.setBorder(null);
-        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarClienteActionPerformed(evt);
@@ -628,7 +628,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jButtonCadastrarVeiculo.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 5.png"))); // NOI18N
         jButtonCadastrarVeiculo.setBorder(null);
-        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarVeiculoActionPerformed(evt);
@@ -638,7 +638,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jButtonOrdemServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonOrdemServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 7.png"))); // NOI18N
         jButtonOrdemServico.setBorder(null);
-        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonOrdemServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonOrdemServicoActionPerformed(evt);
@@ -648,7 +648,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jButtonServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 8.png"))); // NOI18N
         jButtonServico.setBorder(null);
-        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonServicoActionPerformed(evt);
@@ -658,7 +658,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jButtonPagar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 9.png"))); // NOI18N
         jButtonPagar.setBorder(null);
-        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPagarActionPerformed(evt);
@@ -668,7 +668,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jButtonCadastrarColaborador.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 10.png"))); // NOI18N
         jButtonCadastrarColaborador.setBorder(null);
-        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarColaboradorActionPerformed(evt);
@@ -678,7 +678,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jButtonCadastrarPecas.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarPecas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 18.png"))); // NOI18N
         jButtonCadastrarPecas.setBorder(null);
-        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarPecasActionPerformed(evt);
@@ -737,7 +737,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)
                     .addComponent(jPanelFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -885,20 +885,28 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
             cliente.setRazaoSocial(jTextFieldRazaoSocial.getText());
             cliente.setNomeFantasia(jTextFieldNomeFantasia.getText());
             
+            String DDD1 = jFormattedTextFieldDDD1.getText(1, 2);
+            String numero1 = jFormattedTextFieldNum1.getText().replace("-", "");
+            String DDD2 = jFormattedTextFieldDDD2.getText(1, 2);
+            String numero2 = jFormattedTextFieldNum2.getText().replace("-", "");
+            String DDD3 = jFormattedTextFieldDDD3.getText(1, 2);
+            String numero3 = jFormattedTextFieldNum3.getText().replace("-", "");
+            String cep = jFormattedTextFieldCEP.getText().replace("-", "");
+            
             Telefone telefone1 = new Telefone();
-            telefone1.setNumero(Integer.parseInt(jFormattedTextFieldDDD1.getText()), Integer.parseInt(jFormattedTextFieldNum1.getText()));
+            telefone1.setNumero(Integer.parseInt(DDD1), Integer.parseInt(numero1));
             TipoDeTelefone tipoTelefone1 = TipoDeTelefone.valueOf(jComboBoxTipoTelefone1.getSelectedItem().toString());
             telefone1.setTipo(tipoTelefone1);
             cliente.setTelefone1(telefone1);
             
             Telefone telefone2 = new Telefone();
-            telefone2.setNumero(Integer.parseInt(jFormattedTextFieldDDD2.getText()), Integer.parseInt(jFormattedTextFieldNum2.getText()));
+            telefone2.setNumero(Integer.parseInt(DDD2), Integer.parseInt(numero2));
             TipoDeTelefone tipoTelefone2 = TipoDeTelefone.valueOf(jComboBoxTipoTelefone2.getSelectedItem().toString());
             telefone1.setTipo(tipoTelefone2);
             cliente.setTelefone2(telefone2);
             
             Telefone telefone3 = new Telefone();
-            telefone3.setNumero(Integer.parseInt(jFormattedTextFieldDDD3.getText()), Integer.parseInt(jFormattedTextFieldNum3.getText()));
+            telefone3.setNumero(Integer.parseInt(DDD3), Integer.parseInt(numero3));
             TipoDeTelefone tipoTelefone3 = TipoDeTelefone.valueOf(jComboBoxTipoTelefone3.getSelectedItem().toString());
             telefone1.setTipo(tipoTelefone3);
             cliente.setTelefone3(telefone3);
