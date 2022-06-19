@@ -5,28 +5,15 @@
             <url>src/projetomecanica/telas/funcionarios/TelaCadastrarColaborador.java</url>
             <bookmark id="1">
                 <name/>
-                <line>894</line>
+                <line>902</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/veiculos/TelaCadastrarMarcas.java</file>
-            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/visao/TelaControleAcesso.java</file>
-            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/documentos/TelaGerarNF.java</file>
             <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/veiculos/TelaCadastrarVeiculos.java</file>
-            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/clientes/TelaCadastrarClientes.java</file>
             <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/veiculos/TelaExibirVeiculos.java</file>
-            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/clientes/TelaExibirClientes.java</file>
-            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/pecas/TelaPecas.java</file>
-            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/documentos/TelaExibirOrcamento.java</file>
-            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/documentos/TelaGerarOrcamento.java</file>
-            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/servicos/TelaServicos.java</file>
-            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/funcionarios/TelaCadastrarColaborador.java</file>
-            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/visao/TelaLogin.java</file>
-            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/visao/TelaPrincipal.java</file>
-            <file>file:/C:/Users/Dell/Desktop/Projeto%20Oficina/projeto-centro-automotivo/ProjetoMecanica/src/projetomecanica/telas/documentos/TelaGerarOS.java</file>
         </group>
     </open-files>
 </project-private>
