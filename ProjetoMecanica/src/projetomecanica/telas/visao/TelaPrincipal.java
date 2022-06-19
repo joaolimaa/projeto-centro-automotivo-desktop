@@ -19,7 +19,9 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import projetomecanica.telas.clientes.*;
+import projetomecanica.telas.documentos.TelaExibirOrcamento;
 import projetomecanica.telas.documentos.TelaGerarOS;
+import projetomecanica.telas.documentos.TelaListagemOS;
 import projetomecanica.telas.funcionarios.*;
 import projetomecanica.telas.pecas.TelaPecas;
 import projetomecanica.telas.servicos.TelaServicos;
@@ -224,6 +226,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonPagarMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 9.png"))); // NOI18N
         jButtonPagarMenu.setText("  Pagamento");
         jButtonPagarMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonPagarMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPagarMenuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -440,7 +447,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonOrdemServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoActionPerformed
         // TODO add your handling code here:
-        TelaGerarOS ordemServico = new TelaGerarOS();
+        TelaListagemOS ordemServico = new TelaListagemOS();
         ordemServico.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonOrdemServicoActionPerformed
@@ -454,6 +461,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
+        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        pagamento.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
 
     private void jButtonCadastrarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarPecasActionPerformed
@@ -479,6 +489,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonOrdemServicoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoMenuActionPerformed
         // TODO add your handling code here:
+        TelaListagemOS ordemServico = new TelaListagemOS();
+        ordemServico.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonOrdemServicoMenuActionPerformed
 
     private void jButtonCadastrarColaboradorMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarColaboradorMenuActionPerformed
@@ -569,6 +582,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pecas.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonCadastrarPecasMenuActionPerformed
+
+    private void jButtonPagarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarMenuActionPerformed
+        // TODO add your handling code here:
+        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        pagamento.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonPagarMenuActionPerformed
 
     /**
      * @param args the command line arguments

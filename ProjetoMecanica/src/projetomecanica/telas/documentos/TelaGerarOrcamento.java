@@ -71,10 +71,10 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
         jTextField17 = new javax.swing.JTextField();
         jPanelFundo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButtonCancelar = new javax.swing.JButton();
+        jButtonRemoverServicos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableInformacoes = new javax.swing.JTable();
-        jButtonExcluir = new javax.swing.JButton();
+        jButtonAdicionarServicos = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -83,26 +83,26 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
         jTableInformacoes1 = new javax.swing.JTable();
         jSpinner4 = new javax.swing.JSpinner();
         jLabel5 = new javax.swing.JLabel();
-        jButtonExcluir1 = new javax.swing.JButton();
-        jButtonCancelar2 = new javax.swing.JButton();
+        jButtonAdicionarPecas = new javax.swing.JButton();
+        jButtonRemoverPecas = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableInformacoes2 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        jButtonCancelar3 = new javax.swing.JButton();
-        jButtonExcluir2 = new javax.swing.JButton();
+        jButtonRemoverVeiculos = new javax.swing.JButton();
+        jButtonAdicionarVeiculos = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableInformacoes3 = new javax.swing.JTable();
-        jButtonCancelar4 = new javax.swing.JButton();
-        jButtonExcluir3 = new javax.swing.JButton();
+        jButtonRemoverColaborador = new javax.swing.JButton();
+        jButtonAdicionarColaborador = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTableInformacoes4 = new javax.swing.JTable();
         jTextFieldNome = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextFieldNome1 = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        jButtonExcluir4 = new javax.swing.JButton();
-        jButtonCancelar5 = new javax.swing.JButton();
+        jButtonGerarOrcamento = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
@@ -155,12 +155,12 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 27)); // NOI18N
         jLabel1.setText("Orçamento");
 
-        jButtonCancelar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonCancelar.setText("Remover");
-        jButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRemoverServicos.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonRemoverServicos.setText("Remover");
+        jButtonRemoverServicos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonRemoverServicos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelarActionPerformed(evt);
+                jButtonRemoverServicosActionPerformed(evt);
             }
         });
 
@@ -177,14 +177,14 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableInformacoes);
 
-        jButtonExcluir.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonExcluir.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonExcluir.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonExcluir.setText("Adicionar");
-        jButtonExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAdicionarServicos.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonAdicionarServicos.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonAdicionarServicos.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonAdicionarServicos.setText("Adicionar");
+        jButtonAdicionarServicos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonAdicionarServicos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluirActionPerformed(evt);
+                jButtonAdicionarServicosActionPerformed(evt);
             }
         });
 
@@ -212,23 +212,23 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel5.setText("Serviços");
 
-        jButtonExcluir1.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonExcluir1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonExcluir1.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonExcluir1.setText("Adicionar");
-        jButtonExcluir1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonExcluir1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAdicionarPecas.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonAdicionarPecas.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonAdicionarPecas.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonAdicionarPecas.setText("Adicionar");
+        jButtonAdicionarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonAdicionarPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluir1ActionPerformed(evt);
+                jButtonAdicionarPecasActionPerformed(evt);
             }
         });
 
-        jButtonCancelar2.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonCancelar2.setText("Remover");
-        jButtonCancelar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonCancelar2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRemoverPecas.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonRemoverPecas.setText("Remover");
+        jButtonRemoverPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonRemoverPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelar2ActionPerformed(evt);
+                jButtonRemoverPecasActionPerformed(evt);
             }
         });
 
@@ -248,23 +248,23 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel7.setText("Veículos");
 
-        jButtonCancelar3.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonCancelar3.setText("Remover");
-        jButtonCancelar3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonCancelar3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRemoverVeiculos.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonRemoverVeiculos.setText("Remover");
+        jButtonRemoverVeiculos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonRemoverVeiculos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelar3ActionPerformed(evt);
+                jButtonRemoverVeiculosActionPerformed(evt);
             }
         });
 
-        jButtonExcluir2.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonExcluir2.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonExcluir2.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonExcluir2.setText("Adicionar");
-        jButtonExcluir2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonExcluir2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAdicionarVeiculos.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonAdicionarVeiculos.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonAdicionarVeiculos.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonAdicionarVeiculos.setText("Adicionar");
+        jButtonAdicionarVeiculos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonAdicionarVeiculos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluir2ActionPerformed(evt);
+                jButtonAdicionarVeiculosActionPerformed(evt);
             }
         });
 
@@ -284,23 +284,23 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(jTableInformacoes3);
 
-        jButtonCancelar4.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonCancelar4.setText("Remover");
-        jButtonCancelar4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonCancelar4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRemoverColaborador.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonRemoverColaborador.setText("Remover");
+        jButtonRemoverColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonRemoverColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelar4ActionPerformed(evt);
+                jButtonRemoverColaboradorActionPerformed(evt);
             }
         });
 
-        jButtonExcluir3.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonExcluir3.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonExcluir3.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonExcluir3.setText("Adicionar");
-        jButtonExcluir3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonExcluir3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAdicionarColaborador.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonAdicionarColaborador.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonAdicionarColaborador.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonAdicionarColaborador.setText("Adicionar");
+        jButtonAdicionarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonAdicionarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluir3ActionPerformed(evt);
+                jButtonAdicionarColaboradorActionPerformed(evt);
             }
         });
 
@@ -323,23 +323,23 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel23.setText("Total*");
 
-        jButtonExcluir4.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonExcluir4.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonExcluir4.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonExcluir4.setText("Gerar Orçamento");
-        jButtonExcluir4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonExcluir4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGerarOrcamento.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonGerarOrcamento.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonGerarOrcamento.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonGerarOrcamento.setText("Gerar Orçamento");
+        jButtonGerarOrcamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonGerarOrcamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluir4ActionPerformed(evt);
+                jButtonGerarOrcamentoActionPerformed(evt);
             }
         });
 
-        jButtonCancelar5.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonCancelar5.setText("Cancelar");
-        jButtonCancelar5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonCancelar5.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCancelar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelar5ActionPerformed(evt);
+                jButtonCancelarActionPerformed(evt);
             }
         });
 
@@ -369,11 +369,11 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
                                 .addGap(27, 27, 27)
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jButtonExcluir1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButtonCancelar2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jButtonAdicionarPecas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonRemoverPecas, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addComponent(jButtonAdicionarServicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonRemoverServicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(jPanelFundoLayout.createSequentialGroup()
                                     .addComponent(jLabel4)
@@ -389,11 +389,11 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButtonExcluir2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonCancelar3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButtonAdicionarVeiculos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonRemoverVeiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButtonExcluir3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonCancelar4, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jButtonAdicionarColaborador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonRemoverColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(73, 73, 73)
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelFundoLayout.createSequentialGroup()
@@ -405,9 +405,9 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
                                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(24, 24, 24)
-                                .addComponent(jButtonCancelar5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButtonExcluir4))
+                                .addComponent(jButtonGerarOrcamento))
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(49, 49, 49))))
         );
@@ -421,9 +421,9 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
-                        .addComponent(jButtonCancelar2)
+                        .addComponent(jButtonRemoverPecas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonExcluir1)
+                        .addComponent(jButtonAdicionarPecas)
                         .addGap(300, 300, 300))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -443,7 +443,7 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
                                         .addGap(39, 39, 39)
-                                        .addComponent(jButtonExcluir4))
+                                        .addComponent(jButtonGerarOrcamento))
                                     .addGroup(jPanelFundoLayout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -456,26 +456,26 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
                                                 .addGap(4, 4, 4)
                                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                     .addComponent(jTextFieldNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jButtonCancelar5))))))
+                                                    .addComponent(jButtonCancelar))))))
                                 .addGap(85, 85, 85))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
-                                        .addComponent(jButtonCancelar3)
+                                        .addComponent(jButtonRemoverVeiculos)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButtonExcluir2)))
+                                        .addComponent(jButtonAdicionarVeiculos)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                                         .addGroup(jPanelFundoLayout.createSequentialGroup()
-                                            .addComponent(jButtonCancelar4)
+                                            .addComponent(jButtonRemoverColaborador)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jButtonExcluir3))
+                                            .addComponent(jButtonAdicionarColaborador))
                                         .addGroup(jPanelFundoLayout.createSequentialGroup()
-                                            .addComponent(jButtonCancelar)
+                                            .addComponent(jButtonRemoverServicos)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jButtonExcluir)))
+                                            .addComponent(jButtonAdicionarServicos)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
                                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                                             .addComponent(jLabel8)
@@ -704,6 +704,9 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
 
     private void jButtonOrdemServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoActionPerformed
         // TODO add your handling code here:
+        TelaListagemOS ordemServico = new TelaListagemOS();
+        ordemServico.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonOrdemServicoActionPerformed
 
     private void jButtonServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServicoActionPerformed
@@ -715,12 +718,16 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
+        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        pagamento.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
 
     private void jButtonCadastrarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarPecasActionPerformed
         // TODO add your handling code here:
-        final JFrame frame = this;
-        JOptionPane.showMessageDialog(frame, "Você está aqui!");
+        TelaPecas pecas = new TelaPecas();
+        pecas.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonCadastrarPecasActionPerformed
 
     private void jButtonCadastrarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarColaboradorActionPerformed
@@ -730,12 +737,12 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
 
-    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+    private void jButtonRemoverServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverServicosActionPerformed
         // TODO add your handling code here:
         TelaExibirVeiculos veiculo = new TelaExibirVeiculos();
         veiculo.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButtonCancelarActionPerformed
+    }//GEN-LAST:event_jButtonRemoverServicosActionPerformed
 
     private void jButtonSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSairMouseClicked
         // TODO add your handling code here:
@@ -816,41 +823,41 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
         popup.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_jButtonConfigurarMouseClicked
 
-    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+    private void jButtonAdicionarServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarServicosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluirActionPerformed
+    }//GEN-LAST:event_jButtonAdicionarServicosActionPerformed
 
-    private void jButtonExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluir1ActionPerformed
+    private void jButtonAdicionarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarPecasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluir1ActionPerformed
+    }//GEN-LAST:event_jButtonAdicionarPecasActionPerformed
 
-    private void jButtonCancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelar2ActionPerformed
+    private void jButtonRemoverPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverPecasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCancelar2ActionPerformed
+    }//GEN-LAST:event_jButtonRemoverPecasActionPerformed
 
-    private void jButtonCancelar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelar3ActionPerformed
+    private void jButtonRemoverVeiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverVeiculosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCancelar3ActionPerformed
+    }//GEN-LAST:event_jButtonRemoverVeiculosActionPerformed
 
-    private void jButtonExcluir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluir2ActionPerformed
+    private void jButtonAdicionarVeiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarVeiculosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluir2ActionPerformed
+    }//GEN-LAST:event_jButtonAdicionarVeiculosActionPerformed
 
-    private void jButtonCancelar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelar4ActionPerformed
+    private void jButtonRemoverColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverColaboradorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCancelar4ActionPerformed
+    }//GEN-LAST:event_jButtonRemoverColaboradorActionPerformed
 
-    private void jButtonExcluir3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluir3ActionPerformed
+    private void jButtonAdicionarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarColaboradorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluir3ActionPerformed
+    }//GEN-LAST:event_jButtonAdicionarColaboradorActionPerformed
 
-    private void jButtonExcluir4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluir4ActionPerformed
+    private void jButtonGerarOrcamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGerarOrcamentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluir4ActionPerformed
+    }//GEN-LAST:event_jButtonGerarOrcamentoActionPerformed
 
-    private void jButtonCancelar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelar5ActionPerformed
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCancelar5ActionPerformed
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -886,24 +893,24 @@ public class TelaGerarOrcamento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAdicionarColaborador;
+    private javax.swing.JButton jButtonAdicionarPecas;
+    private javax.swing.JButton jButtonAdicionarServicos;
+    private javax.swing.JButton jButtonAdicionarVeiculos;
     private javax.swing.JButton jButtonCadastrarCliente;
     private javax.swing.JButton jButtonCadastrarColaborador;
     private javax.swing.JButton jButtonCadastrarPecas;
     private javax.swing.JButton jButtonCadastrarVeiculo;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonCancelar2;
-    private javax.swing.JButton jButtonCancelar3;
-    private javax.swing.JButton jButtonCancelar4;
-    private javax.swing.JButton jButtonCancelar5;
     private javax.swing.JButton jButtonConfigurar;
-    private javax.swing.JButton jButtonExcluir;
-    private javax.swing.JButton jButtonExcluir1;
-    private javax.swing.JButton jButtonExcluir2;
-    private javax.swing.JButton jButtonExcluir3;
-    private javax.swing.JButton jButtonExcluir4;
+    private javax.swing.JButton jButtonGerarOrcamento;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JButton jButtonOrdemServico;
     private javax.swing.JButton jButtonPagar;
+    private javax.swing.JButton jButtonRemoverColaborador;
+    private javax.swing.JButton jButtonRemoverPecas;
+    private javax.swing.JButton jButtonRemoverServicos;
+    private javax.swing.JButton jButtonRemoverVeiculos;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonServico;
     private javax.swing.JLabel jLabel1;
