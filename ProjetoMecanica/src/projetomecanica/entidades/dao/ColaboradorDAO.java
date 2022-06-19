@@ -85,7 +85,7 @@ public class ColaboradorDAO implements IDaoGenerico<Colaborador>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 27) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 29) throw new Exception("Faltam dados na String");
                 
                 objetoColaborador.setId(Integer.parseInt(vetorString[0]));
                 
@@ -137,6 +137,8 @@ public class ColaboradorDAO implements IDaoGenerico<Colaborador>{
                     objetoColaborador.setStatus(status);
                     objetoColaborador.setSenha(vetorString[25]);
                     objetoColaborador.setIdControleDeAcesso(Integer.parseInt(vetorString[26]));
+                    objetoColaborador.setCpf(vetorString[27]);
+                    objetoColaborador.setMatricula(vetorString[28]);
                 
                     br.close();
                     
@@ -199,7 +201,7 @@ public class ColaboradorDAO implements IDaoGenerico<Colaborador>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 27) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 29) throw new Exception("Faltam dados na String");
                 
                 objetoColaborador.setId(Integer.parseInt(vetorString[0]));
                 objetoColaborador.setNomeCompleto(vetorString[1]);
@@ -248,6 +250,8 @@ public class ColaboradorDAO implements IDaoGenerico<Colaborador>{
                 objetoColaborador.setStatus(status);
                 objetoColaborador.setSenha(vetorString[25]);
                 objetoColaborador.setIdControleDeAcesso(Integer.parseInt(vetorString[26]));
+                objetoColaborador.setCpf(vetorString[27]);
+                objetoColaborador.setMatricula(vetorString[28]);
                 
                 listaDeColaboradores.add(objetoColaborador);
             }

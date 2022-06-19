@@ -1,5 +1,7 @@
 package projetomecanica.entidades;
 
+import projetomecanica.servicos.Utils;
+
 public class Peca {
     
     private int id = 0;
@@ -13,7 +15,13 @@ public class Peca {
     
     public Peca() {}
 
-    public Peca(int codigo, String descricao, int qtdEstoque, int qtdMinEstoque, int reservadas, float valorUnitario, int vidaUtilEmDias) {
+    public Peca(int codigo, String descricao, int qtdEstoque, int qtdMinEstoque, int reservadas, float valorUnitario, int vidaUtilEmDias) throws Exception {
+        if (!Utils.validaNumero(codigo)) throw new Exception("Código inválido");
+        if (!Utils.validaNumero(qtdEstoque)) throw new Exception("QDT no estoque inválido");
+        if (!Utils.validaNumero(qtdMinEstoque)) throw new Exception("QDT mínima inválido");
+        if (!Utils.validaNumero(reservadas)) throw new Exception("reservadas inválido");
+        if (!Utils.validaNumero(valorUnitario)) throw new Exception("valor unitário inválido");
+        if (!Utils.validaNumero(vidaUtilEmDias)) throw new Exception("vida útil inválido");
         this.codigo = codigo;
         this.descricao = descricao;
         this.qtdEstoque = qtdEstoque;
@@ -35,7 +43,8 @@ public class Peca {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(int codigo) throws Exception {
+        if (!Utils.validaNumero(codigo)) throw new Exception("Código inválido");
         this.codigo = codigo;
     }
 
@@ -51,7 +60,8 @@ public class Peca {
         return qtdEstoque;
     }
 
-    public void setQtdEstoque(int qtdEstoque) {
+    public void setQtdEstoque(int qtdEstoque) throws Exception {
+        if (!Utils.validaNumero(qtdEstoque)) throw new Exception("QDT no estoque inválido");
         this.qtdEstoque = qtdEstoque;
     }
 
@@ -59,7 +69,8 @@ public class Peca {
         return qtdMinEstoque;
     }
 
-    public void setQtdMinEstoque(int qtdMinEstoque) {
+    public void setQtdMinEstoque(int qtdMinEstoque) throws Exception {
+        if (!Utils.validaNumero(qtdMinEstoque)) throw new Exception("QDT mínima inválido");
         this.qtdMinEstoque = qtdMinEstoque;
     }
 
@@ -67,7 +78,8 @@ public class Peca {
         return reservadas;
     }
 
-    public void setReservadas(int reservadas) {
+    public void setReservadas(int reservadas) throws Exception {
+        if (!Utils.validaNumero(reservadas)) throw new Exception("reservadas inválido");
         this.reservadas = reservadas;
     }
 
@@ -75,7 +87,8 @@ public class Peca {
         return valorUnitario;
     }
 
-    public void setValorUnitario(float valorUnitario) {
+    public void setValorUnitario(float valorUnitario) throws Exception {
+        if (!Utils.validaNumero(valorUnitario)) throw new Exception("valor unitário inválido");
         this.valorUnitario = valorUnitario;
     }
 
@@ -83,8 +96,13 @@ public class Peca {
         return vidaUtilEmDias;
     }
 
-    public void setVidaUtilEmDias(int vidaUtilEmDias) {
+    public void setVidaUtilEmDias(int vidaUtilEmDias) throws Exception {
+        if (!Utils.validaNumero(vidaUtilEmDias)) throw new Exception("vida útil inválido");
         this.vidaUtilEmDias = vidaUtilEmDias;
+    }
+    
+    public Object[] listaValoresTabela() {
+        return new Object[] {codigo, descricao, valorUnitario, qtdEstoque};
     }
 
     @Override

@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,6 +24,7 @@ import projetomecanica.entidades.Colaborador;
 import projetomecanica.entidades.Endereco;
 import projetomecanica.entidades.Telefone;
 import projetomecanica.entidades.dao.ColaboradorDAO;
+import projetomecanica.entidades.enums.TipoDeColaborador;
 import projetomecanica.entidades.enums.TipoDeLogradouro;
 import projetomecanica.entidades.enums.TipoDeTelefone;
 import projetomecanica.telas.clientes.*;
@@ -51,6 +54,56 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
             this.setExtendedState(TelaCadastrarClientes.MAXIMIZED_BOTH);
         }
         setLocationRelativeTo(null);
+    }
+    
+    public TelaCadastrarColaborador(int idColaborador) {
+        
+        try {
+            initComponents();
+            if(this.getExtendedState()!= TelaCadastrarClientes.MAXIMIZED_BOTH){
+                this.setExtendedState(TelaCadastrarClientes.MAXIMIZED_BOTH);
+            }
+            setLocationRelativeTo(null);
+            
+            colaborador = colaboradorDAO.consultarPorId(idColaborador);
+            jTextFieldNome.setText(colaborador.getNomeCompleto());
+            jFormattedTextFieldCPF.setText(colaborador.getCpf());
+            jTextFieldEmail.setText(colaborador.getEmail());
+            jFormattedTextFieldCEP.setText(colaborador.getEndereco().getCep()+"");
+            jFormattedTextFieldDDD1.setText(colaborador.getTelefone1().getDdd()+"");
+            jFormattedTextFieldDDD2.setText(colaborador.getTelefone2().getDdd()+"");
+            jFormattedTextFieldDDD3.setText(colaborador.getTelefone3().getDdd()+"");
+            jFormattedTextFieldDataNascimento.setText(colaborador.getDataNascimento());
+            jFormattedTextFieldNumero1.setText(colaborador.getTelefone1().getNumero()+"");
+            jFormattedTextFieldNumero2.setText(colaborador.getTelefone2().getNumero()+"");
+            jFormattedTextFieldNumero3.setText(colaborador.getTelefone3().getNumero()+"");
+            if(colaborador.getTipo().equals(TipoDeColaborador.ATENDENTE)) jComboBoxTipoColaborador.setSelectedIndex(0);
+            if(colaborador.getTipo().equals(TipoDeColaborador.CONSULTOR_TECNICO)) jComboBoxTipoColaborador.setSelectedIndex(3);
+            if(colaborador.getTipo().equals(TipoDeColaborador.MECANICO)) jComboBoxTipoColaborador.setSelectedIndex(1);
+            if(colaborador.getTipo().equals(TipoDeColaborador.ESTOQUISTA)) jComboBoxTipoColaborador.setSelectedIndex(2);
+            if(colaborador.getEndereco().getTipoLogradouro().equals(TipoDeLogradouro.RUA)) jComboBoxTipoLogradouro.setSelectedIndex(0);
+            if(colaborador.getEndereco().getTipoLogradouro().equals(TipoDeLogradouro.AVENIDA)) jComboBoxTipoLogradouro.setSelectedIndex(1);
+            if(colaborador.getTelefone1().getTipo().equals(TipoDeTelefone.RESIDENCIAL)) jComboBoxTipoTelefone1.setSelectedIndex(0);
+            if(colaborador.getTelefone1().getTipo().equals(TipoDeTelefone.TRABALHO)) jComboBoxTipoTelefone1.setSelectedIndex(1);
+            if(colaborador.getTelefone1().getTipo().equals(TipoDeTelefone.CELULAR)) jComboBoxTipoTelefone1.setSelectedIndex(2);
+            if(colaborador.getTelefone2().getTipo().equals(TipoDeTelefone.RESIDENCIAL)) jComboBoxTipoTelefone2.setSelectedIndex(0);
+            if(colaborador.getTelefone2().getTipo().equals(TipoDeTelefone.TRABALHO)) jComboBoxTipoTelefone2.setSelectedIndex(1);
+            if(colaborador.getTelefone2().getTipo().equals(TipoDeTelefone.CELULAR)) jComboBoxTipoTelefone2.setSelectedIndex(2);
+            if(colaborador.getTelefone3().getTipo().equals(TipoDeTelefone.RESIDENCIAL)) jComboBoxTipoTelefone3.setSelectedIndex(0);
+            if(colaborador.getTelefone3().getTipo().equals(TipoDeTelefone.TRABALHO)) jComboBoxTipoTelefone3.setSelectedIndex(1);
+            if(colaborador.getTelefone3().getTipo().equals(TipoDeTelefone.CELULAR)) jComboBoxTipoTelefone3.setSelectedIndex(2);
+            jTextFieldBairro.setText(colaborador.getEndereco().getBairro());
+            jTextFieldCidade.setText(colaborador.getEndereco().getCidade());
+            jTextFieldComplemento.setText(colaborador.getEndereco().getComplemento());
+            jTextFieldEstado.setText(colaborador.getEndereco().getEstado());
+            jTextFieldLogradouro.setText(colaborador.getEndereco().getLogradouro());
+            jTextFieldNumEndereco.setText(colaborador.getEndereco().getNumero()+"");
+            jTextFieldMatricula.setText(colaborador.getMatricula());
+            jTextFieldSalarioMensal.setText(colaborador.getSalarioBase()+"");
+            jTextFieldValorHora.setText(colaborador.getValorHora()+"");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     /**
@@ -765,7 +818,9 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
                     jFormattedTextFieldCPF.getText().equals("") ||
                     jFormattedTextFieldDDD1.getText().equals("") ||
                     jFormattedTextFieldNumero1.getText().equals("")||
-                     
+                    jTextFieldMatricula.getText().equals("")||
+                    jTextFieldSalarioMensal.getText().equals("")||
+                    jTextFieldValorHora.getText().equals("")||
                    jTextFieldEmail.getText().equals("")) throw new Exception("Preencha todos os campos obrigatórios (*)");
             else validador = true;
             
@@ -781,6 +836,9 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
             colaborador.setEmail(jTextFieldEmail.getText());
             colaborador.setCpf(jFormattedTextFieldCPF.getText());
             colaborador.setDataNascimento(jFormattedTextFieldDataNascimento.getText());
+            colaborador.setMatricula(jTextFieldMatricula.getText());
+            colaborador.setSalarioBase(Float.parseFloat(jTextFieldSalarioMensal.getText()));
+            colaborador.setValorHora(Float.parseFloat(jTextFieldValorHora.getText()));
             
             Telefone telefone1 = new Telefone();
             telefone1.setNumero(Integer.parseInt(DDD1), Integer.parseInt(numero1));
@@ -818,8 +876,13 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         } finally {
             try {
                 if (validador) {
-                    colaboradorDAO.incluir(colaborador);
-                    JOptionPane.showMessageDialog(null, "Colaborador cadastrado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    if (colaborador.getId() != 0) {
+                        colaboradorDAO.alterar(colaborador);
+                        JOptionPane.showMessageDialog(null, "Colaborador editado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        colaboradorDAO.incluir(colaborador);
+                        JOptionPane.showMessageDialog(null, "Colaborador cadastrado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    }
                     TelaExibirColaboradores funcionario = new TelaExibirColaboradores();
                     funcionario.setVisible(true);
                     dispose();

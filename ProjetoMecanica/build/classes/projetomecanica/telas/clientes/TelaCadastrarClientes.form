@@ -133,7 +133,7 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel2" pref="724" max="32767" attributes="0"/>
+                  <Component id="jPanel2" pref="735" max="32767" attributes="0"/>
                   <Component id="jPanelFundo" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -468,52 +468,9 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxTipoLogradouro">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="45">
-                <StringItem index="0" value=" "/>
-                <StringItem index="1" value="aeroporto"/>
-                <StringItem index="2" value="alameda"/>
-                <StringItem index="3" value="&#xe1;rea"/>
-                <StringItem index="4" value="avenida"/>
-                <StringItem index="5" value="campo"/>
-                <StringItem index="6" value="ch&#xe1;cara"/>
-                <StringItem index="7" value="col&#xf4;nia"/>
-                <StringItem index="8" value="condom&#xed;nio"/>
-                <StringItem index="9" value="conjunto"/>
-                <StringItem index="10" value="distrito"/>
-                <StringItem index="11" value="esplanada"/>
-                <StringItem index="12" value="esta&#xe7;&#xe3;o"/>
-                <StringItem index="13" value="estrada"/>
-                <StringItem index="14" value="favela"/>
-                <StringItem index="15" value="fazenda"/>
-                <StringItem index="16" value="feira"/>
-                <StringItem index="17" value="jardim"/>
-                <StringItem index="18" value="ladeira"/>
-                <StringItem index="19" value="lago"/>
-                <StringItem index="20" value="lagoa"/>
-                <StringItem index="21" value="largo"/>
-                <StringItem index="22" value="loteamento"/>
-                <StringItem index="23" value="morro"/>
-                <StringItem index="24" value="n&#xfa;cleo"/>
-                <StringItem index="25" value="parque"/>
-                <StringItem index="26" value="passarela"/>
-                <StringItem index="27" value="p&#xe1;tio"/>
-                <StringItem index="28" value="pra&#xe7;a"/>
-                <StringItem index="29" value="quadra"/>
-                <StringItem index="30" value="recanto"/>
-                <StringItem index="31" value="residencial"/>
-                <StringItem index="32" value="rodovia"/>
-                <StringItem index="33" value="rua"/>
-                <StringItem index="34" value="setor"/>
-                <StringItem index="35" value="s&#xed;tio"/>
-                <StringItem index="36" value="travessa"/>
-                <StringItem index="37" value="trecho"/>
-                <StringItem index="38" value="trevo"/>
-                <StringItem index="39" value="vale"/>
-                <StringItem index="40" value="vereda"/>
-                <StringItem index="41" value="via"/>
-                <StringItem index="42" value="viaduto"/>
-                <StringItem index="43" value="viela"/>
-                <StringItem index="44" value="vila"/>
+              <StringArray count="2">
+                <StringItem index="0" value="RUA"/>
+                <StringItem index="1" value="AVENIDA"/>
               </StringArray>
             </Property>
           </Properties>
@@ -590,11 +547,10 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxTipoTelefone1">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value=" "/>
-                <StringItem index="1" value="Residencial"/>
-                <StringItem index="2" value="Comercial"/>
-                <StringItem index="3" value="Pessoal"/>
+              <StringArray count="3">
+                <StringItem index="0" value="RESIDENCIAL"/>
+                <StringItem index="1" value="TRABALHO"/>
+                <StringItem index="2" value="CELULAR"/>
               </StringArray>
             </Property>
           </Properties>
@@ -616,11 +572,10 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxTipoTelefone3">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value=" "/>
-                <StringItem index="1" value="Residencial"/>
-                <StringItem index="2" value="Comercial"/>
-                <StringItem index="3" value="Pessoal"/>
+              <StringArray count="3">
+                <StringItem index="0" value="RESIDENCIAL"/>
+                <StringItem index="1" value="TRABALHO"/>
+                <StringItem index="2" value="CELULAR"/>
               </StringArray>
             </Property>
           </Properties>
@@ -647,11 +602,10 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxTipoTelefone2">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value=" "/>
-                <StringItem index="1" value="Residencial"/>
-                <StringItem index="2" value="Comercial"/>
-                <StringItem index="3" value="Pessoal"/>
+              <StringArray count="3">
+                <StringItem index="0" value="RESIDENCIAL"/>
+                <StringItem index="1" value="TRABALHO"/>
+                <StringItem index="2" value="CELULAR"/>
               </StringArray>
             </Property>
           </Properties>
@@ -710,7 +664,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Cadastrar Ve&#xed;culo"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -730,7 +684,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Salvar Cadastro"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -744,7 +698,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -879,7 +833,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -898,7 +852,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -917,7 +871,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -997,7 +951,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -1016,7 +970,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -1035,7 +989,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -1054,7 +1008,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -1073,7 +1027,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -1092,7 +1046,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -1111,7 +1065,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>

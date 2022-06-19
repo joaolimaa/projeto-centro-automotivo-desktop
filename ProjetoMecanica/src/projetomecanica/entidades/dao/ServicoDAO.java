@@ -80,11 +80,15 @@ public class ServicoDAO implements IDaoGenerico<Servico>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 8) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 3) throw new Exception("Faltam dados na String");
                 
                 objetoServico.setId(Integer.parseInt(vetorString[0]));
                 
+                
                 if (objetoServico.getId() == id) {
+                    
+                    objetoServico.setDescricao(vetorString[1]);
+                    objetoServico.setValor(Float.parseFloat(vetorString[2]));
                 
                     br.close();
                     
@@ -147,9 +151,11 @@ public class ServicoDAO implements IDaoGenerico<Servico>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 8) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 3) throw new Exception("Faltam dados na String");
                 
                 objetoServico.setId(Integer.parseInt(vetorString[0]));
+                objetoServico.setDescricao(vetorString[1]);
+                objetoServico.setValor(Float.parseFloat(vetorString[2]));
                         
                 listaDeServicos.add(objetoServico);
             }

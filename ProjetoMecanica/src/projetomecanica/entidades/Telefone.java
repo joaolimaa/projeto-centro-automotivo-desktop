@@ -46,7 +46,7 @@ public class Telefone {
 
     @Override
     public String toString() {
-        return this.ddd + ";" + this.numero + ";" + this.tipo.getDescricao();
+        return this.ddd + ";" + this.numero + ";" + this.tipo;
     }
     
 }

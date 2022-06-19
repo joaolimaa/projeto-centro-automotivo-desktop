@@ -1,5 +1,7 @@
 package projetomecanica.entidades;
 
+import projetomecanica.servicos.Utils;
+
 public class Servico {
     
     private int id = 0;
@@ -8,7 +10,8 @@ public class Servico {
     
     public Servico() {}
 
-    public Servico(int codigo, String descricao, float valor, int estimativaHora) {
+    public Servico(int codigo, String descricao, float valor, int estimativaHora) throws Exception {
+        if (!Utils.validaNumero(valor)) throw new Exception("valor inválido");
         this.descricao = descricao;
         this.valor = valor;
     }
@@ -33,8 +36,13 @@ public class Servico {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(float valor) throws Exception {
+        if (!Utils.validaNumero(valor)) throw new Exception("valor inválido");
         this.valor = valor;
+    }
+    
+    public Object[] listaValoresTabela() {
+        return new Object[] {descricao, valor};
     }
 
     @Override
