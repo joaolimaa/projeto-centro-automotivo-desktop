@@ -28,8 +28,10 @@ import projetomecanica.entidades.dao.ClienteDAO;
 import projetomecanica.entidades.enums.TipoDeLogradouro;
 import projetomecanica.entidades.enums.TipoDeTelefone;
 import projetomecanica.telas.clientes.*;
+import projetomecanica.telas.documentos.TelaExibirOrcamento;
 import projetomecanica.telas.funcionarios.*;
 import projetomecanica.telas.documentos.TelaGerarOS;
+import projetomecanica.telas.documentos.TelaListagemOS;
 import projetomecanica.telas.pecas.TelaPecas;
 import projetomecanica.telas.servicos.TelaServicos;
 import projetomecanica.telas.veiculos.TelaCadastrarMarcas;
@@ -766,7 +768,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
 
     private void jButtonOrdemServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoActionPerformed
         // TODO add your handling code here:
-        TelaGerarOS ordemServico = new TelaGerarOS();
+        TelaListagemOS ordemServico = new TelaListagemOS();
         ordemServico.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonOrdemServicoActionPerformed
@@ -780,6 +782,9 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
+        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        pagamento.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
 
     private void jButtonCadastrarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarPecasActionPerformed

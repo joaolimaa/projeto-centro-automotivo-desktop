@@ -182,12 +182,12 @@
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jButtonExcluir1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jButtonCancelar2" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
+                                          <Component id="jButtonAdicionarPecas" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jButtonRemoverPecas" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jButtonExcluir" max="32767" attributes="0"/>
-                                          <Component id="jButtonCancelar" max="32767" attributes="0"/>
+                                          <Component id="jButtonAdicionarServicos" max="32767" attributes="0"/>
+                                          <Component id="jButtonRemoverServicos" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -210,12 +210,12 @@
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jButtonExcluir2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jButtonCancelar3" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
+                                  <Component id="jButtonAdicionarVeiculos" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jButtonRemoverVeiculos" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jButtonExcluir3" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jButtonCancelar4" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
+                                  <Component id="jButtonAdicionarColaborador" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jButtonRemoverColaborador" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
@@ -231,9 +231,9 @@
                                       <Component id="jTextFieldNome1" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                  <Component id="jButtonCancelar5" min="-2" pref="93" max="-2" attributes="0"/>
+                                  <Component id="jButtonCancelar" min="-2" pref="93" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jButtonExcluir4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonGerarOrcamento" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane5" min="-2" pref="496" max="-2" attributes="0"/>
                           </Group>
@@ -254,9 +254,9 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jButtonCancelar2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonRemoverPecas" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButtonExcluir1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonAdicionarPecas" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="300" pref="300" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -280,7 +280,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                          <Component id="jButtonExcluir4" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButtonGerarOrcamento" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -295,7 +295,7 @@
                                                   <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="3" attributes="0">
                                                       <Component id="jTextFieldNome1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jButtonCancelar5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jButtonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -307,23 +307,23 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jScrollPane3" alignment="1" min="-2" pref="225" max="-2" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jButtonCancelar3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButtonRemoverVeiculos" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jButtonExcluir2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButtonAdicionarVeiculos" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" alignment="1" groupAlignment="2" attributes="0">
                                           <Group type="102" alignment="2" attributes="0">
-                                              <Component id="jButtonCancelar4" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jButtonRemoverColaborador" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jButtonExcluir3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jButtonAdicionarColaborador" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="2" attributes="0">
-                                              <Component id="jButtonCancelar" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jButtonRemoverServicos" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jButtonExcluir" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jButtonAdicionarServicos" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
@@ -357,7 +357,7 @@
             <Property name="text" type="java.lang.String" value="Or&#xe7;amento"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonCancelar">
+        <Component class="javax.swing.JButton" name="jButtonRemoverServicos">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="14" style="1"/>
@@ -368,7 +368,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRemoverServicosActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -407,7 +407,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButtonExcluir">
+        <Component class="javax.swing.JButton" name="jButtonAdicionarServicos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -424,7 +424,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExcluirActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAdicionarServicosActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -498,7 +498,7 @@
             <Property name="text" type="java.lang.String" value="Servi&#xe7;os"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonExcluir1">
+        <Component class="javax.swing.JButton" name="jButtonAdicionarPecas">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -515,10 +515,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExcluir1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAdicionarPecasActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonCancelar2">
+        <Component class="javax.swing.JButton" name="jButtonRemoverPecas">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="14" style="1"/>
@@ -529,7 +529,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelar2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRemoverPecasActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane3">
@@ -576,7 +576,7 @@
             <Property name="text" type="java.lang.String" value="Ve&#xed;culos"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonCancelar3">
+        <Component class="javax.swing.JButton" name="jButtonRemoverVeiculos">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="14" style="1"/>
@@ -587,10 +587,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelar3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRemoverVeiculosActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonExcluir2">
+        <Component class="javax.swing.JButton" name="jButtonAdicionarVeiculos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -607,7 +607,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExcluir2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAdicionarVeiculosActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
@@ -654,7 +654,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButtonCancelar4">
+        <Component class="javax.swing.JButton" name="jButtonRemoverColaborador">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="14" style="1"/>
@@ -665,10 +665,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelar4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRemoverColaboradorActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonExcluir3">
+        <Component class="javax.swing.JButton" name="jButtonAdicionarColaborador">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -685,7 +685,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExcluir3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAdicionarColaboradorActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane5">
@@ -744,7 +744,7 @@
             <Property name="text" type="java.lang.String" value="Total*"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonExcluir4">
+        <Component class="javax.swing.JButton" name="jButtonGerarOrcamento">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -761,10 +761,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExcluir4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGerarOrcamentoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonCancelar5">
+        <Component class="javax.swing.JButton" name="jButtonCancelar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="14" style="1"/>
@@ -775,7 +775,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelar5ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

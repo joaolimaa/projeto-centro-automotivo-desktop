@@ -23,8 +23,10 @@ import javax.swing.table.DefaultTableModel;
 import projetomecanica.entidades.Cliente;
 import projetomecanica.entidades.dao.ClienteDAO;
 import projetomecanica.telas.clientes.*;
+import projetomecanica.telas.documentos.TelaExibirOrcamento;
 import projetomecanica.telas.funcionarios.*;
 import projetomecanica.telas.documentos.TelaGerarOS;
+import projetomecanica.telas.documentos.TelaListagemOS;
 import projetomecanica.telas.pecas.TelaPecas;
 import projetomecanica.telas.servicos.TelaServicos;
 import projetomecanica.telas.veiculos.TelaCadastrarMarcas;
@@ -86,10 +88,8 @@ public class TelaExibirClientes extends javax.swing.JFrame {
         jPanelFundo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButtonNovoCliente = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableListagemDeCLientes = new javax.swing.JTable();
-        jTextFieldPesquisa = new javax.swing.JTextField();
         jButtonExcluir = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -155,8 +155,6 @@ public class TelaExibirClientes extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 36.png"))); // NOI18N
-
         jTableListagemDeCLientes.setForeground(new java.awt.Color(255, 255, 255));
         jTableListagemDeCLientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -182,14 +180,6 @@ public class TelaExibirClientes extends javax.swing.JFrame {
             jTableListagemDeCLientes.getColumnModel().getColumn(3).setResizable(false);
             jTableListagemDeCLientes.getColumnModel().getColumn(4).setResizable(false);
         }
-
-        jTextFieldPesquisa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldPesquisa.setText("Pesquisar");
-        jTextFieldPesquisa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPesquisaActionPerformed(evt);
-            }
-        });
 
         jButtonExcluir.setBackground(new java.awt.Color(0, 0, 0));
         jButtonExcluir.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -222,10 +212,6 @@ public class TelaExibirClientes extends javax.swing.JFrame {
                     .addGroup(jPanelFundoLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(jButtonEditar)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonExcluir)
@@ -239,8 +225,6 @@ public class TelaExibirClientes extends javax.swing.JFrame {
                 .addContainerGap(43, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jButtonNovoCliente)
-                    .addComponent(jTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
                     .addComponent(jLabel1)
                     .addComponent(jButtonExcluir)
                     .addComponent(jButtonEditar))
@@ -464,7 +448,7 @@ public class TelaExibirClientes extends javax.swing.JFrame {
 
     private void jButtonOrdemServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoActionPerformed
         // TODO add your handling code here:
-        TelaGerarOS ordemServico = new TelaGerarOS();
+        TelaListagemOS ordemServico = new TelaListagemOS();
         ordemServico.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonOrdemServicoActionPerformed
@@ -478,6 +462,9 @@ public class TelaExibirClientes extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
+        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        pagamento.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
 
     private void jButtonCadastrarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarPecasActionPerformed
@@ -493,10 +480,6 @@ public class TelaExibirClientes extends javax.swing.JFrame {
         funcionario.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
-
-    private void jTextFieldPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPesquisaActionPerformed
 
     private void jButtonNovoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoClienteActionPerformed
         // TODO add your handling code here:
@@ -649,7 +632,6 @@ public class TelaExibirClientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -663,6 +645,5 @@ public class TelaExibirClientes extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextField jTextFieldPesquisa;
     // End of variables declaration//GEN-END:variables
 }

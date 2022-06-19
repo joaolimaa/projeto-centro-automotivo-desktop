@@ -21,7 +21,9 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import projetomecanica.telas.clientes.*;
+import projetomecanica.telas.documentos.TelaExibirOrcamento;
 import projetomecanica.telas.documentos.TelaGerarOS;
+import projetomecanica.telas.documentos.TelaListagemOS;
 import projetomecanica.telas.funcionarios.*;
 import projetomecanica.telas.pecas.TelaPecas;
 import projetomecanica.telas.servicos.TelaServicos;
@@ -176,10 +178,25 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome Completo", "CPF", "Data de Nascimento", "Veículo", "Placa", "Data de Cadastro", "Status", "Ações"
+                "Marca", "Modelo", "Placa", "Nome Cliente", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jTableCadastros);
+        if (jTableCadastros.getColumnModel().getColumnCount() > 0) {
+            jTableCadastros.getColumnModel().getColumn(0).setResizable(false);
+            jTableCadastros.getColumnModel().getColumn(1).setResizable(false);
+            jTableCadastros.getColumnModel().getColumn(2).setResizable(false);
+            jTableCadastros.getColumnModel().getColumn(3).setResizable(false);
+            jTableCadastros.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         jTextFieldPesquisa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldPesquisa.setText("Pesquisar");
@@ -462,7 +479,7 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
 
     private void jButtonOrdemServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoActionPerformed
         // TODO add your handling code here:
-        TelaGerarOS ordemServico = new TelaGerarOS();
+        TelaListagemOS ordemServico = new TelaListagemOS();
         ordemServico.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonOrdemServicoActionPerformed
@@ -476,6 +493,9 @@ public class TelaExibirVeiculos extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
+        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        pagamento.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
 
     private void jButtonCadastrarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarPecasActionPerformed

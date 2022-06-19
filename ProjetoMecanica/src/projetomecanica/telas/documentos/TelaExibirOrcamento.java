@@ -84,16 +84,16 @@ public class TelaExibirOrcamento extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jTextField17 = new javax.swing.JTextField();
         jPanelFundo = new javax.swing.JPanel();
-        jButtonNovoCliente = new javax.swing.JButton();
+        jButtonNovaNF = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableListagemDeCLientes = new javax.swing.JTable();
-        jButtonExcluir = new javax.swing.JButton();
-        jButtonEditar = new javax.swing.JButton();
+        jButtonExcluirNF = new javax.swing.JButton();
+        jButtonEditarNF = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableListagemDeCLientes1 = new javax.swing.JTable();
-        jButtonNovoCliente1 = new javax.swing.JButton();
-        jButtonExcluir1 = new javax.swing.JButton();
-        jButtonEditar1 = new javax.swing.JButton();
+        jButtonNovoOrcamento = new javax.swing.JButton();
+        jButtonExcluirOrcamento = new javax.swing.JButton();
+        jButtonEditarOrcamento = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
@@ -144,14 +144,14 @@ public class TelaExibirOrcamento extends javax.swing.JFrame {
         jPanelFundo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanelFundo.setFocusable(false);
 
-        jButtonNovoCliente.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonNovoCliente.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonNovoCliente.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonNovoCliente.setText("Nova Nota Fiscal");
-        jButtonNovoCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonNovoCliente.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNovaNF.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonNovaNF.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonNovaNF.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonNovaNF.setText("Nova Nota Fiscal");
+        jButtonNovaNF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonNovaNF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNovoClienteActionPerformed(evt);
+                jButtonNovaNFActionPerformed(evt);
             }
         });
 
@@ -161,11 +161,11 @@ public class TelaExibirOrcamento extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome / Razão Social", "CPF / CNPJ", "Data de Nascimento", "QTD de Veículos", "Status"
+                "Número", "Veículo", "Cliente", "QTD Peças", "QTD Serviços", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -179,25 +179,26 @@ public class TelaExibirOrcamento extends javax.swing.JFrame {
             jTableListagemDeCLientes.getColumnModel().getColumn(2).setResizable(false);
             jTableListagemDeCLientes.getColumnModel().getColumn(3).setResizable(false);
             jTableListagemDeCLientes.getColumnModel().getColumn(4).setResizable(false);
+            jTableListagemDeCLientes.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        jButtonExcluir.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonExcluir.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonExcluir.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonExcluir.setText("Excluir");
-        jButtonExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExcluirNF.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonExcluirNF.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonExcluirNF.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonExcluirNF.setText("Excluir");
+        jButtonExcluirNF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonExcluirNF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluirActionPerformed(evt);
+                jButtonExcluirNFActionPerformed(evt);
             }
         });
 
-        jButtonEditar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonEditar.setText("Editar");
-        jButtonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEditarNF.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonEditarNF.setText("Editar");
+        jButtonEditarNF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonEditarNF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditarActionPerformed(evt);
+                jButtonEditarNFActionPerformed(evt);
             }
         });
 
@@ -207,7 +208,7 @@ public class TelaExibirOrcamento extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome / Razão Social", "CPF / CNPJ", "Data de Nascimento", "QTD de Veículos", "Status"
+                "Número", "Veículo", "Cliente", "Valor", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -227,34 +228,34 @@ public class TelaExibirOrcamento extends javax.swing.JFrame {
             jTableListagemDeCLientes1.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        jButtonNovoCliente1.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonNovoCliente1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonNovoCliente1.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonNovoCliente1.setText("Novo Orçamento");
-        jButtonNovoCliente1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonNovoCliente1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNovoOrcamento.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonNovoOrcamento.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonNovoOrcamento.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonNovoOrcamento.setText("Novo Orçamento");
+        jButtonNovoOrcamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonNovoOrcamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNovoCliente1ActionPerformed(evt);
+                jButtonNovoOrcamentoActionPerformed(evt);
             }
         });
 
-        jButtonExcluir1.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonExcluir1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonExcluir1.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonExcluir1.setText("Excluir");
-        jButtonExcluir1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonExcluir1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExcluirOrcamento.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonExcluirOrcamento.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonExcluirOrcamento.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonExcluirOrcamento.setText("Excluir");
+        jButtonExcluirOrcamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonExcluirOrcamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluir1ActionPerformed(evt);
+                jButtonExcluirOrcamentoActionPerformed(evt);
             }
         });
 
-        jButtonEditar1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonEditar1.setText("Editar");
-        jButtonEditar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonEditar1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEditarOrcamento.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonEditarOrcamento.setText("Editar");
+        jButtonEditarOrcamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonEditarOrcamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditar1ActionPerformed(evt);
+                jButtonEditarOrcamentoActionPerformed(evt);
             }
         });
 
@@ -273,20 +274,20 @@ public class TelaExibirOrcamento extends javax.swing.JFrame {
                         .addGap(365, 365, 365))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelFundoLayout.createSequentialGroup()
-                        .addComponent(jButtonEditar1)
+                        .addComponent(jButtonEditarOrcamento)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonExcluir1)
+                        .addComponent(jButtonExcluirOrcamento)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonNovoCliente1)))
+                        .addComponent(jButtonNovoOrcamento)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
-                        .addComponent(jButtonEditar)
+                        .addComponent(jButtonEditarNF)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonExcluir)
+                        .addComponent(jButtonExcluirNF)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonNovoCliente)))
+                        .addComponent(jButtonNovaNF)))
                 .addGap(65, 65, 65))
         );
         jPanelFundoLayout.setVerticalGroup(
@@ -300,12 +301,12 @@ public class TelaExibirOrcamento extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButtonNovoCliente1)
-                    .addComponent(jButtonExcluir1)
-                    .addComponent(jButtonEditar1)
-                    .addComponent(jButtonEditar)
-                    .addComponent(jButtonExcluir)
-                    .addComponent(jButtonNovoCliente))
+                    .addComponent(jButtonNovoOrcamento)
+                    .addComponent(jButtonExcluirOrcamento)
+                    .addComponent(jButtonEditarOrcamento)
+                    .addComponent(jButtonEditarNF)
+                    .addComponent(jButtonExcluirNF)
+                    .addComponent(jButtonNovaNF))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -510,8 +511,9 @@ public class TelaExibirOrcamento extends javax.swing.JFrame {
 
     private void jButtonCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarClienteActionPerformed
         // TODO add your handling code here:
-        final JFrame frame = this;
-        JOptionPane.showMessageDialog(frame, "Você está aqui!");
+        TelaExibirClientes cliente = new TelaExibirClientes();
+        cliente.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jButtonCadastrarClienteActionPerformed
 
@@ -524,17 +526,22 @@ public class TelaExibirOrcamento extends javax.swing.JFrame {
 
     private void jButtonOrdemServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoActionPerformed
         // TODO add your handling code here:
-        TelaServicos servico = new TelaServicos();
-        servico.setVisible(true);
+        TelaListagemOS ordemServico = new TelaListagemOS();
+        ordemServico.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonOrdemServicoActionPerformed
 
     private void jButtonServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServicoActionPerformed
         // TODO add your handling code here:
+        TelaServicos servico = new TelaServicos();
+        servico.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonServicoActionPerformed
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
+        final JFrame frame = this;
+        JOptionPane.showMessageDialog(frame, "Você está aqui!");
     }//GEN-LAST:event_jButtonPagarActionPerformed
 
     private void jButtonCadastrarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarPecasActionPerformed
@@ -551,12 +558,12 @@ public class TelaExibirOrcamento extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
 
-    private void jButtonNovoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoClienteActionPerformed
+    private void jButtonNovaNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaNFActionPerformed
         // TODO add your handling code here:
-        TelaCadastrarClientes cliente = new TelaCadastrarClientes();
-        cliente.setVisible(true);
+        TelaGerarNF notaFiscal = new TelaGerarNF();
+        notaFiscal.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButtonNovoClienteActionPerformed
+    }//GEN-LAST:event_jButtonNovaNFActionPerformed
 
     private void jButtonConfigurarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConfigurarMouseClicked
         // TODO add your handling code here:
@@ -637,25 +644,28 @@ public class TelaExibirOrcamento extends javax.swing.JFrame {
         popup.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_jButtonSairMouseClicked
 
-    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+    private void jButtonExcluirNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirNFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluirActionPerformed
+    }//GEN-LAST:event_jButtonExcluirNFActionPerformed
 
-    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+    private void jButtonEditarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarNFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEditarActionPerformed
+    }//GEN-LAST:event_jButtonEditarNFActionPerformed
 
-    private void jButtonNovoCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoCliente1ActionPerformed
+    private void jButtonNovoOrcamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoOrcamentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonNovoCliente1ActionPerformed
+        TelaGerarOrcamento orcamento = new TelaGerarOrcamento();
+        orcamento.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonNovoOrcamentoActionPerformed
 
-    private void jButtonExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluir1ActionPerformed
+    private void jButtonExcluirOrcamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirOrcamentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluir1ActionPerformed
+    }//GEN-LAST:event_jButtonExcluirOrcamentoActionPerformed
 
-    private void jButtonEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditar1ActionPerformed
+    private void jButtonEditarOrcamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarOrcamentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEditar1ActionPerformed
+    }//GEN-LAST:event_jButtonEditarOrcamentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -696,13 +706,13 @@ public class TelaExibirOrcamento extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCadastrarPecas;
     private javax.swing.JButton jButtonCadastrarVeiculo;
     private javax.swing.JButton jButtonConfigurar;
-    private javax.swing.JButton jButtonEditar;
-    private javax.swing.JButton jButtonEditar1;
-    private javax.swing.JButton jButtonExcluir;
-    private javax.swing.JButton jButtonExcluir1;
+    private javax.swing.JButton jButtonEditarNF;
+    private javax.swing.JButton jButtonEditarOrcamento;
+    private javax.swing.JButton jButtonExcluirNF;
+    private javax.swing.JButton jButtonExcluirOrcamento;
     private javax.swing.JButton jButtonMenu;
-    private javax.swing.JButton jButtonNovoCliente;
-    private javax.swing.JButton jButtonNovoCliente1;
+    private javax.swing.JButton jButtonNovaNF;
+    private javax.swing.JButton jButtonNovoOrcamento;
     private javax.swing.JButton jButtonOrdemServico;
     private javax.swing.JButton jButtonPagar;
     private javax.swing.JButton jButtonSair;

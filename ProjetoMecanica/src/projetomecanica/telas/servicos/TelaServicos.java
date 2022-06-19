@@ -23,7 +23,9 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import projetomecanica.telas.clientes.*;
+import projetomecanica.telas.documentos.TelaExibirOrcamento;
 import projetomecanica.telas.documentos.TelaGerarOS;
+import projetomecanica.telas.documentos.TelaListagemOS;
 import projetomecanica.telas.funcionarios.*;
 import projetomecanica.telas.pecas.TelaPecas;
 /**
@@ -160,10 +162,22 @@ public class TelaServicos extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Nome / Razão Social", "CPF / CNPJ"
+                "Descrição", "Valor"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTableInformacoes);
+        if (jTableInformacoes.getColumnModel().getColumnCount() > 0) {
+            jTableInformacoes.getColumnModel().getColumn(0).setResizable(false);
+            jTableInformacoes.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         jLabel21.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel21.setText("Valor*");
@@ -479,7 +493,7 @@ public class TelaServicos extends javax.swing.JFrame {
 
     private void jButtonOrdemServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoActionPerformed
         // TODO add your handling code here:
-        TelaGerarOS ordemServico = new TelaGerarOS();
+        TelaListagemOS ordemServico = new TelaListagemOS();
         ordemServico.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonOrdemServicoActionPerformed
@@ -492,6 +506,9 @@ public class TelaServicos extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
+        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        pagamento.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
 
     private void jButtonCadastrarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarPecasActionPerformed

@@ -24,8 +24,10 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import projetomecanica.telas.clientes.*;
+import projetomecanica.telas.documentos.TelaExibirOrcamento;
 import projetomecanica.telas.funcionarios.*;
 import projetomecanica.telas.documentos.TelaGerarOS;
+import projetomecanica.telas.documentos.TelaListagemOS;
 /**
  *
  * @author Dell
@@ -163,16 +165,30 @@ public class TelaPecas extends javax.swing.JFrame {
 
         jTableInformacoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nome / Razão Social", "CPF / CNPJ"
+                "Código", "Descrição", "Valor", "QTD Estoque"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTableInformacoes);
+        if (jTableInformacoes.getColumnModel().getColumnCount() > 0) {
+            jTableInformacoes.getColumnModel().getColumn(0).setResizable(false);
+            jTableInformacoes.getColumnModel().getColumn(1).setResizable(false);
+            jTableInformacoes.getColumnModel().getColumn(2).setResizable(false);
+            jTableInformacoes.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         jLabel21.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel21.setText("Descrição*");
@@ -545,7 +561,7 @@ public class TelaPecas extends javax.swing.JFrame {
 
     private void jButtonOrdemServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoActionPerformed
         // TODO add your handling code here:
-        TelaGerarOS ordemServico = new TelaGerarOS();
+        TelaListagemOS ordemServico = new TelaListagemOS();
         ordemServico.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonOrdemServicoActionPerformed
@@ -559,6 +575,9 @@ public class TelaPecas extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
+        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        pagamento.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
 
     private void jButtonCadastrarPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarPecasActionPerformed
