@@ -24,6 +24,7 @@ import projetomecanica.entidades.Cliente;
 import projetomecanica.entidades.dao.ClienteDAO;
 import projetomecanica.telas.clientes.*;
 import projetomecanica.telas.funcionarios.*;
+import projetomecanica.telas.documentos.TelaGerarOS;
 import projetomecanica.telas.pecas.TelaPecas;
 import projetomecanica.telas.servicos.TelaServicos;
 import projetomecanica.telas.veiculos.TelaCadastrarMarcas;
@@ -463,13 +464,16 @@ public class TelaExibirClientes extends javax.swing.JFrame {
 
     private void jButtonOrdemServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoActionPerformed
         // TODO add your handling code here:
-        TelaServicos servico = new TelaServicos();
-        servico.setVisible(true);
+        TelaGerarOS ordemServico = new TelaGerarOS();
+        ordemServico.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonOrdemServicoActionPerformed
 
     private void jButtonServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServicoActionPerformed
         // TODO add your handling code here:
+        TelaServicos servico = new TelaServicos();
+        servico.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonServicoActionPerformed
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed

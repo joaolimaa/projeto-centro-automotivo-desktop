@@ -25,6 +25,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import projetomecanica.telas.clientes.*;
+import projetomecanica.telas.documentos.TelaGerarOS;
 import projetomecanica.telas.funcionarios.*;
 /**
  *
@@ -492,6 +493,9 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
 
     private void jButtonOrdemServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoActionPerformed
         // TODO add your handling code here:
+        TelaGerarOS ordemServico = new TelaGerarOS();
+        ordemServico.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonOrdemServicoActionPerformed
 
     private void jButtonServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServicoActionPerformed
