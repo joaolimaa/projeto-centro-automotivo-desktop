@@ -29,6 +29,7 @@ import projetomecanica.entidades.enums.TipoDeLogradouro;
 import projetomecanica.entidades.enums.TipoDeTelefone;
 import projetomecanica.telas.clientes.*;
 import projetomecanica.telas.funcionarios.*;
+import projetomecanica.telas.documentos.TelaGerarOS;
 import projetomecanica.telas.pecas.TelaPecas;
 import projetomecanica.telas.servicos.TelaServicos;
 import projetomecanica.telas.veiculos.TelaCadastrarMarcas;
@@ -765,6 +766,9 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
 
     private void jButtonOrdemServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdemServicoActionPerformed
         // TODO add your handling code here:
+        TelaGerarOS ordemServico = new TelaGerarOS();
+        ordemServico.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonOrdemServicoActionPerformed
 
     private void jButtonServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServicoActionPerformed
