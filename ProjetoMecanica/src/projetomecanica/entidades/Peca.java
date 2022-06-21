@@ -104,6 +104,10 @@ public class Peca {
     public Object[] listaValoresTabela() {
         return new Object[] {codigo, descricao, valorUnitario, qtdEstoque};
     }
+    
+    public Object[] listaValoresTabelaOS() {
+        return new Object[] {codigo, descricao};
+    }
 
     @Override
     public String toString() {

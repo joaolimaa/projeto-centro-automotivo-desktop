@@ -10,7 +10,7 @@ public class Servico {
     
     public Servico() {}
 
-    public Servico(int codigo, String descricao, float valor, int estimativaHora) throws Exception {
+    public Servico(String descricao, float valor, int estimativaHora) throws Exception {
         if (!Utils.validaNumero(valor)) throw new Exception("valor inválido");
         this.descricao = descricao;
         this.valor = valor;
@@ -43,6 +43,10 @@ public class Servico {
     
     public Object[] listaValoresTabela() {
         return new Object[] {descricao, valor};
+    }
+    
+    public Object[] listaValoresTabelaOS() {
+        return new Object[] {descricao};
     }
 
     @Override

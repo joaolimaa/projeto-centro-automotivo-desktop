@@ -81,13 +81,14 @@ public class MarcaDAO implements IDaoGenerico<Marca>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 8) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 3) throw new Exception("Faltam dados na String");
                 
                 objetoMarca.setId(Integer.parseInt(vetorString[0]));
                 
                 if (objetoMarca.getId() == id) {
                     
                     objetoMarca.setDescricao(vetorString[1]);
+                    objetoMarca.setLogo(vetorString[2]);
                 
                     br.close();
                     
@@ -150,10 +151,11 @@ public class MarcaDAO implements IDaoGenerico<Marca>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 8) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 3) throw new Exception("Faltam dados na String");
                 
                 objetoMarca.setId(Integer.parseInt(vetorString[0]));
                 objetoMarca.setDescricao(vetorString[1]);
+                objetoMarca.setLogo(vetorString[2]);
                         
                 listaDeMarcas.add(objetoMarca);
             }

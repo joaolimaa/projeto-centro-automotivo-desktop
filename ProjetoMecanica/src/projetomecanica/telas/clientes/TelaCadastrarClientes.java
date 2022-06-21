@@ -25,10 +25,12 @@ import projetomecanica.entidades.Cliente;
 import projetomecanica.entidades.Endereco;
 import projetomecanica.entidades.Telefone;
 import projetomecanica.entidades.dao.ClienteDAO;
+import projetomecanica.entidades.enums.StatusPessoa;
+import projetomecanica.entidades.enums.TipoDeCliente;
 import projetomecanica.entidades.enums.TipoDeLogradouro;
 import projetomecanica.entidades.enums.TipoDeTelefone;
 import projetomecanica.telas.clientes.*;
-import projetomecanica.telas.documentos.TelaExibirOrcamento;
+import projetomecanica.telas.documentos.TelaExibirOrcamentoNF;
 import projetomecanica.telas.funcionarios.*;
 import projetomecanica.telas.documentos.TelaGerarOS;
 import projetomecanica.telas.documentos.TelaListagemOS;
@@ -55,6 +57,82 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
             this.setExtendedState(TelaCadastrarClientes.MAXIMIZED_BOTH);
         }
         setLocationRelativeTo(null);
+        
+    }
+    
+    public TelaCadastrarClientes(int clienteId) {
+        try {
+            initComponents();
+            if(this.getExtendedState()!= TelaCadastrarClientes.MAXIMIZED_BOTH){
+                this.setExtendedState(TelaCadastrarClientes.MAXIMIZED_BOTH);
+            }
+            setLocationRelativeTo(null);
+            
+            cliente = clienteDAO.consultarPorId(clienteId);
+            jTextFieldNome.setText(cliente.getNomeCompleto());
+            jFormattedTextFieldCPF.setText(cliente.getCpf_cnpj());
+            jTextFieldEmail.setText(cliente.getEmail());
+            jFormattedTextFieldCEP.setText(cliente.getEndereco().getCep()+"");
+            jFormattedTextFieldDDD1.setText(cliente.getTelefone1().getDdd()+"");
+            jFormattedTextFieldDDD2.setText(cliente.getTelefone2().getDdd()+"");
+            jFormattedTextFieldDDD3.setText(cliente.getTelefone3().getDdd()+"");
+            jFormattedTextFieldDataNascimento.setText(cliente.getDataNascimento());
+            jFormattedTextFieldNum1.setText(cliente.getTelefone1().getNumero()+"");
+            jFormattedTextFieldNum2.setText(cliente.getTelefone2().getNumero()+"");
+            jFormattedTextFieldNum3.setText(cliente.getTelefone3().getNumero()+"");
+            if(cliente.getTipo().equals(TipoDeCliente.PESSOA_FISICA)) {
+                jCheckBoxPessoaFisica.setSelected(true);
+                jTextFieldRazaoSocial.setEnabled(false);
+                jTextFieldNomeFantasia.setEnabled(false);
+                jFormattedTextFieldCNPJ.setEnabled(false);
+                jTextFieldNome.setEnabled(true);
+                jFormattedTextFieldDataNascimento.setEnabled(true);
+                jFormattedTextFieldCPF.setEnabled(true);
+                jTextFieldNomeFantasia.setText("");
+                jTextFieldRazaoSocial.setText("");
+                jFormattedTextFieldCNPJ.setText("");
+                if (jCheckBoxPessoaJuridica.isSelected()){
+                    jCheckBoxPessoaJuridica.setSelected(false);
+                }
+            }
+            if(cliente.getTipo().equals(TipoDeCliente.PESSOA_JURIDICA)) {
+                jCheckBoxPessoaJuridica.setSelected(true);
+                jTextFieldNome.setEnabled(false);
+                jFormattedTextFieldDataNascimento.setEnabled(false);
+                jFormattedTextFieldCPF.setEnabled(false);
+                jTextFieldRazaoSocial.setEnabled(true);
+                jTextFieldNomeFantasia.setEnabled(true);
+                jFormattedTextFieldCNPJ.setEnabled(true);
+                jTextFieldNome.setText("");
+                jFormattedTextFieldCPF.setText("");
+                jFormattedTextFieldDataNascimento.setText("");
+                if (jCheckBoxPessoaFisica.isSelected()){
+                    jCheckBoxPessoaFisica.setSelected(false);
+                }
+                jTextFieldNomeFantasia.setText(cliente.getNomeFantasia());
+                jTextFieldRazaoSocial.setText(cliente.getRazaoSocial());
+                jFormattedTextFieldCNPJ.setText(cliente.getCpf_cnpj());
+            }
+            if(cliente.getEndereco().getTipoLogradouro().equals(TipoDeLogradouro.RUA)) jComboBoxTipoLogradouro.setSelectedIndex(0);
+            if(cliente.getEndereco().getTipoLogradouro().equals(TipoDeLogradouro.AVENIDA)) jComboBoxTipoLogradouro.setSelectedIndex(1);
+            if(cliente.getTelefone1().getTipo().equals(TipoDeTelefone.RESIDENCIAL)) jComboBoxTipoTelefone1.setSelectedIndex(0);
+            if(cliente.getTelefone1().getTipo().equals(TipoDeTelefone.TRABALHO)) jComboBoxTipoTelefone1.setSelectedIndex(1);
+            if(cliente.getTelefone1().getTipo().equals(TipoDeTelefone.CELULAR)) jComboBoxTipoTelefone1.setSelectedIndex(2);
+            if(cliente.getTelefone2().getTipo().equals(TipoDeTelefone.RESIDENCIAL)) jComboBoxTipoTelefone2.setSelectedIndex(0);
+            if(cliente.getTelefone2().getTipo().equals(TipoDeTelefone.TRABALHO)) jComboBoxTipoTelefone2.setSelectedIndex(1);
+            if(cliente.getTelefone2().getTipo().equals(TipoDeTelefone.CELULAR)) jComboBoxTipoTelefone2.setSelectedIndex(2);
+            if(cliente.getTelefone3().getTipo().equals(TipoDeTelefone.RESIDENCIAL)) jComboBoxTipoTelefone3.setSelectedIndex(0);
+            if(cliente.getTelefone3().getTipo().equals(TipoDeTelefone.TRABALHO)) jComboBoxTipoTelefone3.setSelectedIndex(1);
+            if(cliente.getTelefone3().getTipo().equals(TipoDeTelefone.CELULAR)) jComboBoxTipoTelefone3.setSelectedIndex(2);
+            jTextFieldBairro.setText(cliente.getEndereco().getBairro());
+            jTextFieldCidade.setText(cliente.getEndereco().getCidade());
+            jTextFieldComplemento.setText(cliente.getEndereco().getComplemento());
+            jTextFieldEstado.setText(cliente.getEndereco().getEstado());
+            jTextFieldLogradouro.setText(cliente.getEndereco().getLogradouro());
+            jTextFieldNumEndereco.setText(cliente.getEndereco().getNumero()+"");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
         
     }
 
@@ -782,7 +860,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
-        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        TelaExibirOrcamentoNF pagamento = new TelaExibirOrcamentoNF();
         pagamento.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
@@ -809,6 +887,9 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jTextFieldNome.setEnabled(true);
         jFormattedTextFieldDataNascimento.setEnabled(true);
         jFormattedTextFieldCPF.setEnabled(true);
+        jTextFieldNomeFantasia.setText("");
+        jTextFieldRazaoSocial.setText("");
+        jFormattedTextFieldCNPJ.setText("");
         if (jCheckBoxPessoaJuridica.isSelected()){
             jCheckBoxPessoaJuridica.setSelected(false);
         }
@@ -822,9 +903,11 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         jTextFieldRazaoSocial.setEnabled(true);
         jTextFieldNomeFantasia.setEnabled(true);
         jFormattedTextFieldCNPJ.setEnabled(true);
+        jTextFieldNome.setText("");
+        jFormattedTextFieldCPF.setText("");
+        jFormattedTextFieldDataNascimento.setText("");
         if (jCheckBoxPessoaFisica.isSelected()){
             jCheckBoxPessoaFisica.setSelected(false);
-
         }
     }//GEN-LAST:event_jCheckBoxPessoaJuridicaActionPerformed
 
@@ -915,7 +998,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
             TipoDeLogradouro tipoDeLogradouro = TipoDeLogradouro.valueOf(jComboBoxTipoLogradouro.getSelectedItem().toString());
             endereco.setTipoLogradouro(tipoDeLogradouro);
             endereco.setBairro(jTextFieldBairro.getText());
-            endereco.setCep(Integer.parseInt(jFormattedTextFieldCEP.getText()));
+            endereco.setCep(Integer.parseInt(cep));
             endereco.setCidade(jTextFieldCidade.getText());
             endereco.setComplemento(jTextFieldComplemento.getText());
             endereco.setLogradouro(jTextFieldLogradouro.getText());
@@ -929,8 +1012,14 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         } finally {
             try {
                 if (validador) {
-                    clienteDAO.incluir(cliente);
-                    JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    if (cliente.getId() != 0) {
+                        cliente.setStatus(StatusPessoa.ATIVO);
+                        clienteDAO.alterar(cliente);
+                        JOptionPane.showMessageDialog(null, "Cliente editado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        clienteDAO.incluir(cliente);
+                        JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    }
                     TelaExibirClientes telaListgemClientes = new TelaExibirClientes();
                     telaListgemClientes.setVisible(true);
                     dispose();
@@ -991,20 +1080,28 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
             cliente.setRazaoSocial(jTextFieldRazaoSocial.getText());
             cliente.setNomeFantasia(jTextFieldNomeFantasia.getText());
             
+            String DDD1 = jFormattedTextFieldDDD1.getText(1, 2);
+            String numero1 = jFormattedTextFieldNum1.getText().replace("-", "");
+            String DDD2 = jFormattedTextFieldDDD2.getText(1, 2);
+            String numero2 = jFormattedTextFieldNum2.getText().replace("-", "");
+            String DDD3 = jFormattedTextFieldDDD3.getText(1, 2);
+            String numero3 = jFormattedTextFieldNum3.getText().replace("-", "");
+            String cep = jFormattedTextFieldCEP.getText().replace("-", "");
+            
             Telefone telefone1 = new Telefone();
-            telefone1.setNumero(Integer.parseInt(jFormattedTextFieldDDD1.getText()), Integer.parseInt(jFormattedTextFieldNum1.getText()));
+            telefone1.setNumero(Integer.parseInt(DDD1), Integer.parseInt(numero1));
             TipoDeTelefone tipoTelefone1 = TipoDeTelefone.valueOf(jComboBoxTipoTelefone1.getSelectedItem().toString());
             telefone1.setTipo(tipoTelefone1);
             cliente.setTelefone1(telefone1);
             
             Telefone telefone2 = new Telefone();
-            telefone2.setNumero(Integer.parseInt(jFormattedTextFieldDDD2.getText()), Integer.parseInt(jFormattedTextFieldNum2.getText()));
+            telefone2.setNumero(Integer.parseInt(DDD2), Integer.parseInt(numero2));
             TipoDeTelefone tipoTelefone2 = TipoDeTelefone.valueOf(jComboBoxTipoTelefone2.getSelectedItem().toString());
             telefone1.setTipo(tipoTelefone2);
             cliente.setTelefone2(telefone2);
             
             Telefone telefone3 = new Telefone();
-            telefone3.setNumero(Integer.parseInt(jFormattedTextFieldDDD3.getText()), Integer.parseInt(jFormattedTextFieldNum3.getText()));
+            telefone3.setNumero(Integer.parseInt(DDD3), Integer.parseInt(numero3));
             TipoDeTelefone tipoTelefone3 = TipoDeTelefone.valueOf(jComboBoxTipoTelefone3.getSelectedItem().toString());
             telefone1.setTipo(tipoTelefone3);
             cliente.setTelefone3(telefone3);
@@ -1013,7 +1110,7 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
             TipoDeLogradouro tipoDeLogradouro = TipoDeLogradouro.valueOf(jComboBoxTipoLogradouro.getSelectedItem().toString());
             endereco.setTipoLogradouro(tipoDeLogradouro);
             endereco.setBairro(jTextFieldBairro.getText());
-            endereco.setCep(Integer.parseInt(jFormattedTextFieldCEP.getText()));
+            endereco.setCep(Integer.parseInt(cep));
             endereco.setCidade(jTextFieldCidade.getText());
             endereco.setComplemento(jTextFieldComplemento.getText());
             endereco.setLogradouro(jTextFieldLogradouro.getText());
@@ -1027,10 +1124,16 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
         } finally {
             try {
                 if (validador) {
-                    clienteDAO.incluir(cliente);
-                    JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
-                    TelaExibirClientes telaListgemClientes = new TelaExibirClientes();
-                    telaListgemClientes.setVisible(true);
+                    if (cliente.getId() != 0) {
+                        cliente.setStatus(StatusPessoa.ATIVO);
+                        clienteDAO.alterar(cliente);
+                        JOptionPane.showMessageDialog(null, "Cliente editado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        clienteDAO.incluir(cliente);
+                        JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    TelaCadastrarVeiculos telaCadastrarVeiculos = new TelaCadastrarVeiculos(cliente.getId(), false);
+                    telaCadastrarVeiculos.setVisible(true);
                     dispose();
                 }
             } catch (Exception erro) {

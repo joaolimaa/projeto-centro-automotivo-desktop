@@ -3,6 +3,8 @@ package projetomecanica.entidades;
 import projetomecanica.entidades.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import projetomecanica.entidades.dao.ClienteDAO;
+import projetomecanica.entidades.dao.VeiculoDAO;
 import projetomecanica.entidades.enums.FasesDocumento;
 import projetomecanica.servicos.Utils;
 
@@ -22,7 +24,6 @@ public class Orcamento {
     private String dataOrcamentoGerado = "";
     private String dataValidadeOrcamento = "";
     private String dataOrcamentoAprovado = "";
-    private String descricao = "";
     private float desconto = 0;
     private int codigo = 0;
     private FasesDocumento fase = FasesDocumento.ATIVO;
@@ -199,14 +200,6 @@ public class Orcamento {
     public void setFase(FasesDocumento fase) {
         this.fase = fase;
     }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
     
     protected String listarPecas(ArrayList<Peca> pecas) {
         return pecas.stream().map(String::valueOf).collect(Collectors.joining(";"));
@@ -215,10 +208,24 @@ public class Orcamento {
     protected String listarServicos(ArrayList<Servico> servicos) {
         return servicos.stream().map(String::valueOf).collect(Collectors.joining(";"));
     }
+    
+    public Object[] listaValoresTabelaExibir() throws Exception {
+        VeiculoDAO veiculoDAO = new VeiculoDAO();
+        ClienteDAO clienteDAO = new ClienteDAO();
+        String nomeCliente = "";
+        if (clienteDAO.consultarPorId(idCliente).getCpf_cnpj().length() > 14) nomeCliente = clienteDAO.consultarPorId(idCliente).getRazaoSocial();
+        else nomeCliente = clienteDAO.consultarPorId(idCliente).getNomeCompleto();
+        return new Object[] {codigo, veiculoDAO.consultarPorId(idVeiculo).getModelo().getDescricao(), nomeCliente, qtdPecas, qtdServicos, fase};
+    }
+    
+    public Object[] listaValoresTelaOS() throws Exception {
+        VeiculoDAO veiculoDAO = new VeiculoDAO();
+        return new Object[] {codigo, veiculoDAO.consultarPorId(idVeiculo).getModelo().getDescricao()};
+    }
 
     @Override
     public String toString() {
-        return id + ";" + idCliente + ";" + idColaborador + ";" + idVeiculo + ";" + qtdPecas + ";" + qtdServicos + ";" + this.listarPecas(pecas) + ";" + this.listarServicos(servicos) + ";" + totalPecas + ";" + totalServicos + ";" + total + ";" + dataOrcamentoGerado + ";" + dataValidadeOrcamento + ";" + dataOrcamentoAprovado + ";" + descricao + ";" + desconto + ";" + codigo + ";" + fase;
+        return id + ";" + idCliente + ";" + idColaborador + ";" + idVeiculo + ";" + qtdPecas + ";" + qtdServicos + ";" + this.listarPecas(pecas) + ";" + this.listarServicos(servicos) + ";" + totalPecas + ";" + totalServicos + ";" + total + ";" + dataOrcamentoGerado + ";" + dataValidadeOrcamento + ";" + dataOrcamentoAprovado + ";" + desconto + ";" + codigo + ";" + fase;
     }
     
 }

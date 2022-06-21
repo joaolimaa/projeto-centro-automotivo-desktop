@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import projetomecanica.entidades.Colaborador;
 import projetomecanica.entidades.dao.ColaboradorDAO;
 import projetomecanica.telas.clientes.*;
-import projetomecanica.telas.documentos.TelaExibirOrcamento;
+import projetomecanica.telas.documentos.TelaExibirOrcamentoNF;
 import projetomecanica.telas.documentos.TelaListagemOS;
 import projetomecanica.telas.funcionarios.*;
 import projetomecanica.telas.pecas.TelaPecas;
@@ -494,7 +494,7 @@ public class TelaExibirColaboradores extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
-        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        TelaExibirOrcamentoNF pagamento = new TelaExibirOrcamentoNF();
         pagamento.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
@@ -614,7 +614,12 @@ public class TelaExibirColaboradores extends javax.swing.JFrame {
         try {
             int index = jTableListagemDeColaboradores.getSelectedRow();
             if (index == -1) throw new Exception("Selecione um colaborador na tabela");
-            else colaboradorDAO.inativarPorId(colaboradoresId.get(index));
+            else {
+                colaboradorDAO.inativarPorId(colaboradoresId.get(index));
+                TelaExibirColaboradores telaExibirColaboradores = new TelaExibirColaboradores();
+                telaExibirColaboradores.setVisible(true);
+                dispose();
+            }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
         }

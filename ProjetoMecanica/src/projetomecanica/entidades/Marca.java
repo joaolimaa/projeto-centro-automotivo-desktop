@@ -3,8 +3,8 @@ package projetomecanica.entidades;
 public class Marca {
     
     private int id;
-    private String descricao;
-    private String logo;
+    private String descricao = "";
+    private String logo = "n/a";
 
     public Marca(String descricao, String logo) {
         this.descricao = descricao;
@@ -36,6 +36,10 @@ public class Marca {
 
     public void setLogo(String logo) {
         this.logo = logo;
+    }
+    
+    public Object[] listaValoresTabela() {
+        return new Object[] {id, descricao};
     }
 
     @Override

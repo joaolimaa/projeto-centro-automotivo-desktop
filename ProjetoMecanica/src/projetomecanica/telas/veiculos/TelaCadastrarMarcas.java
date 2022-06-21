@@ -15,6 +15,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,8 +25,10 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import projetomecanica.entidades.Marca;
+import projetomecanica.entidades.dao.MarcaDAO;
 import projetomecanica.telas.clientes.*;
-import projetomecanica.telas.documentos.TelaExibirOrcamento;
+import projetomecanica.telas.documentos.TelaExibirOrcamentoNF;
 import projetomecanica.telas.documentos.TelaGerarOS;
 import projetomecanica.telas.documentos.TelaListagemOS;
 import projetomecanica.telas.funcionarios.*;
@@ -34,16 +37,50 @@ import projetomecanica.telas.funcionarios.*;
  * @author Dell
  */
 public class TelaCadastrarMarcas extends javax.swing.JFrame {
-
-    /**
-     * Creates new form TelaTechnocar
-     */
+    
+    MarcaDAO marcaDAO = new MarcaDAO();
+    ArrayList<Integer> marcasId = new ArrayList<>();
+    Marca marca = new Marca();
+    boolean validador = false;
+    
     public TelaCadastrarMarcas() {
-        initComponents();
-         if(this.getExtendedState()!= TelaCadastrarMarcas.MAXIMIZED_BOTH){
-            this.setExtendedState(TelaCadastrarMarcas.MAXIMIZED_BOTH);
+        try {
+            initComponents();
+            if(this.getExtendedState()!= TelaCadastrarMarcas.MAXIMIZED_BOTH){
+               this.setExtendedState(TelaCadastrarMarcas.MAXIMIZED_BOTH);
+            }
+            setLocationRelativeTo(null);
+            ArrayList<Marca> listaDeMarcas = marcaDAO.obterTodasEntidades();
+            
+            DefaultTableModel tabela = (DefaultTableModel) jTableListagemMarcas.getModel();
+            for(int i = 0; i < listaDeMarcas.size(); i++) {
+                marcasId.add(listaDeMarcas.get(i).getId());
+                tabela.addRow(listaDeMarcas.get(i).listaValoresTabela());
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
         }
-        setLocationRelativeTo(null);
+    }
+    public TelaCadastrarMarcas(int marcaId) {
+        
+        try {
+            initComponents();
+            if(this.getExtendedState()!= TelaCadastrarMarcas.MAXIMIZED_BOTH){
+                this.setExtendedState(TelaCadastrarMarcas.MAXIMIZED_BOTH);
+            }
+            setLocationRelativeTo(null);
+            ArrayList<Marca> listaDeMarcas = marcaDAO.obterTodasEntidades();
+            
+            DefaultTableModel tabela = (DefaultTableModel) jTableListagemMarcas.getModel();
+            for(int i = 0; i < listaDeMarcas.size(); i++) {
+                marcasId.add(listaDeMarcas.get(i).getId());
+                tabela.addRow(listaDeMarcas.get(i).listaValoresTabela());
+            }
+            marca = marcaDAO.consultarPorId(marcaId);
+            jTextFieldDescricao.setText(marca.getDescricao());
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     /**
@@ -74,17 +111,17 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
         jTextField17 = new javax.swing.JTextField();
         jPanelFundo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButtonCancelar = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableInformacoes = new javax.swing.JTable();
+        jTableListagemMarcas = new javax.swing.JTable();
         jButtonExcluir = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButtonCancelar1 = new javax.swing.JButton();
+        jButtonLimpar = new javax.swing.JButton();
         jLabelQuadroo = new javax.swing.JLabel();
-        jTextFieldAnoModelo1 = new javax.swing.JTextField();
+        jTextFieldDescricao = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jButtonExcluir1 = new javax.swing.JButton();
+        jButtonSalvarCadastro = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
@@ -130,7 +167,7 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
         jLabel19.setText("Setor*");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanelFundo.setBackground(new java.awt.Color(255, 255, 255));
         jPanelFundo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -139,21 +176,18 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 27)); // NOI18N
         jLabel1.setText("Marca");
 
-        jButtonCancelar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonCancelar.setText("Editar");
-        jButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEditar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonEditar.setText("Editar");
+        jButtonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelarActionPerformed(evt);
+                jButtonEditarActionPerformed(evt);
             }
         });
 
-        jTableInformacoes.setModel(new javax.swing.table.DefaultTableModel(
+        jTableListagemMarcas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Código", "Descrição"
@@ -167,10 +201,10 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableInformacoes);
-        if (jTableInformacoes.getColumnModel().getColumnCount() > 0) {
-            jTableInformacoes.getColumnModel().getColumn(0).setResizable(false);
-            jTableInformacoes.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane1.setViewportView(jTableListagemMarcas);
+        if (jTableListagemMarcas.getColumnModel().getColumnCount() > 0) {
+            jTableListagemMarcas.getColumnModel().getColumn(0).setResizable(false);
+            jTableListagemMarcas.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jButtonExcluir.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -186,12 +220,12 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 1, 27)); // NOI18N
         jLabel2.setText("Nova Marca");
 
-        jButtonCancelar1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonCancelar1.setText("Novo");
-        jButtonCancelar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonCancelar1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLimpar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonLimpar.setText("Limpar");
+        jButtonLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelar1ActionPerformed(evt);
+                jButtonLimparActionPerformed(evt);
             }
         });
 
@@ -205,23 +239,23 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldAnoModelo1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldDescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAnoModelo1ActionPerformed(evt);
+                jTextFieldDescricaoActionPerformed(evt);
             }
         });
 
         jLabel10.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel10.setText("Descrição*");
 
-        jButtonExcluir1.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonExcluir1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonExcluir1.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonExcluir1.setText("Salvar Marca");
-        jButtonExcluir1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonExcluir1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSalvarCadastro.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonSalvarCadastro.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonSalvarCadastro.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSalvarCadastro.setText("Salvar Marca");
+        jButtonSalvarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonSalvarCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluir1ActionPerformed(evt);
+                jButtonSalvarCadastroActionPerformed(evt);
             }
         });
 
@@ -243,22 +277,26 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(jPanelFundoLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonCancelar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(132, 132, 132)
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonExcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel10)
-                                .addComponent(jLabelQuadroo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextFieldAnoModelo1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanelFundoLayout.createSequentialGroup()
-                                    .addGap(26, 26, 26)
-                                    .addComponent(jLabel5))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanelFundoLayout.createSequentialGroup()
+                                .addGap(241, 241, 241)
+                                .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonSalvarCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel10)
+                                        .addComponent(jLabelQuadroo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanelFundoLayout.createSequentialGroup()
+                                            .addGap(26, 26, 26)
+                                            .addComponent(jLabel5)))))
+                            .addGroup(jPanelFundoLayout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(165, 165, 165)
+                                .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(762, Short.MAX_VALUE))
         );
         jPanelFundoLayout.setVerticalGroup(
             jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,19 +306,21 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(6, 6, 6)
-                        .addComponent(jTextFieldAnoModelo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(jLabelQuadroo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addGap(36, 36, 36)
-                        .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonExcluir)
-                            .addComponent(jButtonExcluir1))
+                        .addComponent(jButtonSalvarCadastro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonCancelar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonCancelar1))
+                        .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonLimpar)
+                            .addGroup(jPanelFundoLayout.createSequentialGroup()
+                                .addComponent(jButtonExcluir)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonEditar)))
+                        .addGap(5, 5, 5))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
@@ -299,7 +339,7 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
         jButtonMenu.setBackground(new java.awt.Color(0, 0, 0));
         jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 20.png"))); // NOI18N
         jButtonMenu.setBorder(null);
-        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMenuActionPerformed(evt);
@@ -309,7 +349,7 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 43.png"))); // NOI18N
         jButtonSair.setBorder(null);
-        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonSairMouseClicked(evt);
@@ -319,7 +359,7 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
         jButtonConfigurar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonConfigurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 42.png"))); // NOI18N
         jButtonConfigurar.setBorder(null);
-        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonConfigurarMouseClicked(evt);
@@ -358,7 +398,7 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
         jButtonCadastrarCliente.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 4.png"))); // NOI18N
         jButtonCadastrarCliente.setBorder(null);
-        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarClienteActionPerformed(evt);
@@ -368,7 +408,7 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
         jButtonCadastrarVeiculo.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 5.png"))); // NOI18N
         jButtonCadastrarVeiculo.setBorder(null);
-        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarVeiculoActionPerformed(evt);
@@ -378,7 +418,7 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
         jButtonOrdemServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonOrdemServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 7.png"))); // NOI18N
         jButtonOrdemServico.setBorder(null);
-        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonOrdemServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonOrdemServicoActionPerformed(evt);
@@ -388,7 +428,7 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
         jButtonServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 8.png"))); // NOI18N
         jButtonServico.setBorder(null);
-        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonServicoActionPerformed(evt);
@@ -407,7 +447,7 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
         jButtonCadastrarColaborador.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 10.png"))); // NOI18N
         jButtonCadastrarColaborador.setBorder(null);
-        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarColaboradorActionPerformed(evt);
@@ -417,7 +457,7 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
         jButtonCadastrarPecas.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarPecas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 18.png"))); // NOI18N
         jButtonCadastrarPecas.setBorder(null);
-        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarPecasActionPerformed(evt);
@@ -521,7 +561,7 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
-        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        TelaExibirOrcamentoNF pagamento = new TelaExibirOrcamentoNF();
         pagamento.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
@@ -540,12 +580,19 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
 
-    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        // TODO add your handling code here:
-        TelaExibirVeiculos veiculo = new TelaExibirVeiculos();
-        veiculo.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButtonCancelarActionPerformed
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        try {
+            int index = jTableListagemMarcas.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione uma marca na tabela");
+            else {
+                TelaCadastrarMarcas telaCadastrarMarcas = new TelaCadastrarMarcas(marcasId.get(index));
+                telaCadastrarMarcas.setVisible(true);
+                dispose();
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSairMouseClicked
         // TODO add your handling code here:
@@ -625,24 +672,59 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonConfigurarMouseClicked
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        // TODO add your handling code here:
+        try {
+            int index = jTableListagemMarcas.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione um serviço na tabela");
+            else {
+                marcaDAO.excluir(marcasId.get(index));
+                TelaCadastrarMarcas telaCadastrarMarcas = new TelaCadastrarMarcas();
+                telaCadastrarMarcas.setVisible(true);
+                dispose();
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
-
-    private void jButtonCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCancelar1ActionPerformed
 
     private void jLabelQuadrooMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelQuadrooMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabelQuadrooMouseClicked
 
-    private void jTextFieldAnoModelo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnoModelo1ActionPerformed
+    private void jTextFieldDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDescricaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAnoModelo1ActionPerformed
+    }//GEN-LAST:event_jTextFieldDescricaoActionPerformed
 
-    private void jButtonExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluir1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluir1ActionPerformed
+    private void jButtonSalvarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarCadastroActionPerformed
+        try {
+            if (jTextFieldDescricao.getText().equals("")) throw new Exception("Preencha todos os campos obrigatórios (*)");
+            else validador = true;
+            
+            marca.setDescricao(jTextFieldDescricao.getText());
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        } finally {
+            try {
+                if (validador) {
+                    if (marca.getId() != 0) {
+                        marcaDAO.alterar(marca);
+                        JOptionPane.showMessageDialog(null, "Marca editado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        marcaDAO.incluir(marca);
+                        JOptionPane.showMessageDialog(null, "Marca cadastrado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    TelaCadastrarMarcas telaCadastrarMarcas = new TelaCadastrarMarcas();
+                    telaCadastrarMarcas.setVisible(true);
+                    dispose();
+                }
+            } catch (Exception erro) {
+                JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButtonSalvarCadastroActionPerformed
+
+    private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        jTextFieldDescricao.setText("");
+    }//GEN-LAST:event_jButtonLimparActionPerformed
 
     /**
      * @param args the command line arguments
@@ -682,15 +764,15 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCadastrarColaborador;
     private javax.swing.JButton jButtonCadastrarPecas;
     private javax.swing.JButton jButtonCadastrarVeiculo;
-    private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonCancelar1;
     private javax.swing.JButton jButtonConfigurar;
+    private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
-    private javax.swing.JButton jButtonExcluir1;
+    private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JButton jButtonOrdemServico;
     private javax.swing.JButton jButtonPagar;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JButton jButtonSalvarCadastro;
     private javax.swing.JButton jButtonServico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -712,7 +794,7 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelFundo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableInformacoes;
+    private javax.swing.JTable jTableListagemMarcas;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
@@ -720,6 +802,6 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextField jTextFieldAnoModelo1;
+    private javax.swing.JTextField jTextFieldDescricao;
     // End of variables declaration//GEN-END:variables
 }

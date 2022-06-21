@@ -12,20 +12,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-import projetomecanica.telas.clientes.*;
-import projetomecanica.telas.documentos.TelaExibirOrcamento;
-import projetomecanica.telas.documentos.TelaGerarOS;
+import projetomecanica.entidades.Cliente;
+import projetomecanica.entidades.Marca;
+import projetomecanica.entidades.Modelo;
+import projetomecanica.entidades.Veiculo;
+import projetomecanica.entidades.dao.ClienteDAO;
+import projetomecanica.entidades.dao.MarcaDAO;
+import projetomecanica.entidades.dao.VeiculoDAO;
+import projetomecanica.entidades.enums.StatusPessoa;
+import projetomecanica.entidades.enums.StatusVeiculo;
+import projetomecanica.entidades.enums.TipoDeVeiculo;
+import projetomecanica.telas.documentos.TelaExibirOrcamentoNF;
 import projetomecanica.telas.documentos.TelaListagemOS;
-import projetomecanica.telas.funcionarios.*;
 import projetomecanica.telas.pecas.TelaPecas;
 import projetomecanica.telas.servicos.TelaServicos;
 /**
@@ -33,16 +41,87 @@ import projetomecanica.telas.servicos.TelaServicos;
  * @author Dell
  */
 public class TelaCadastrarVeiculos extends javax.swing.JFrame {
-
-    /**
-     * Creates new form TelaTechnocar
-     */
-    public TelaCadastrarVeiculos() {
-        initComponents();
-         if(this.getExtendedState()!= TelaCadastrarVeiculos.MAXIMIZED_BOTH){
-            this.setExtendedState(TelaCadastrarVeiculos.MAXIMIZED_BOTH);
+    
+    ClienteDAO clienteDAO = new ClienteDAO();
+    ArrayList<Integer> clientesId = new ArrayList<>();
+    Veiculo veiculo = new Veiculo();
+    VeiculoDAO veiculoDAO = new VeiculoDAO();
+    boolean validador = false;
+    ArrayList<Marca> listaDeMarcas = new ArrayList<>();
+    
+    public TelaCadastrarVeiculos(int id, boolean editar) {
+        try {
+            initComponents();
+            if(this.getExtendedState()!= TelaCadastrarVeiculos.MAXIMIZED_BOTH){
+                this.setExtendedState(TelaCadastrarVeiculos.MAXIMIZED_BOTH);
+            }
+            setLocationRelativeTo(null);
+            
+            
+            
+            MarcaDAO marcaDAO = new MarcaDAO();
+            listaDeMarcas = marcaDAO.obterTodasEntidades();
+            for (int i = 0; i < listaDeMarcas.size(); i++) {
+                jComboBoxMarcas.addItem(listaDeMarcas.get(i).getDescricao());
+            }
+            
+            List<Cliente> listaDeClientes = clienteDAO.obterEntidadesAtivos();
+            
+            DefaultTableModel tabela = (DefaultTableModel) jTableInformacoesClientes.getModel();
+            for(int i = 0; i < listaDeClientes.size(); i++) {
+                if (editar) {
+                    Cliente cliente = clienteDAO.consultarPorId(veiculoDAO.consultarPorId(id).getIdCliente());
+                    clientesId.add(listaDeClientes.get(i).getId());
+                    tabela.addRow(cliente.listaValoresTabelaVeiculoEOS());
+                } else {
+                    if (listaDeClientes.get(i).getId() == id) {
+                        clientesId.add(listaDeClientes.get(i).getId());
+                        tabela.addRow(listaDeClientes.get(i).listaValoresTabelaVeiculoEOS());
+                    }
+                }
+            }
+            if (editar) {
+                veiculo = veiculoDAO.consultarPorId(id);
+                
+                jTextFieldModelo.setText(veiculo.getModelo().getDescricao());
+                jTextFieldAnoFabricacao.setText(veiculo.getAnoFabricacao()+"");
+                jTextFieldAnoModelo.setText(veiculo.getAnoModelo()+"");
+                jTextFieldKilometragem.setText(veiculo.getQuilometragem()+"");
+                jComboBoxMarcas.setSelectedItem(veiculo.getModelo().getMarca().getDescricao());
+                if(veiculo.getTipo().equals(TipoDeVeiculo.UTILITARIO)) jComboBoxTipoVeiculo.setSelectedIndex(0);
+                if(veiculo.getTipo().equals(TipoDeVeiculo.ESPORTIVO)) jComboBoxTipoVeiculo.setSelectedIndex(1);
+                if(veiculo.getTipo().equals(TipoDeVeiculo.PASSEIO)) jComboBoxTipoVeiculo.setSelectedIndex(2);
+                jTextFieldPlaca.setText(veiculo.getPlaca());
+                jTextFieldRenavam.setText(veiculo.getRenavam());
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
         }
-        setLocationRelativeTo(null);
+    }
+    
+    public TelaCadastrarVeiculos() {
+        try {
+            initComponents();
+            if(this.getExtendedState()!= TelaCadastrarVeiculos.MAXIMIZED_BOTH){
+                this.setExtendedState(TelaCadastrarVeiculos.MAXIMIZED_BOTH);
+            }
+            setLocationRelativeTo(null);
+            MarcaDAO marcaDAO = new MarcaDAO();
+            listaDeMarcas = marcaDAO.obterTodasEntidades();
+            for (int i = 0; i < listaDeMarcas.size(); i++) {
+                jComboBoxMarcas.addItem(listaDeMarcas.get(i).getDescricao());
+            }
+            
+            List<Cliente> listaDeClientes = clienteDAO.obterEntidadesAtivos();
+            
+            DefaultTableModel tabela = (DefaultTableModel) jTableInformacoesClientes.getModel();
+            for(int i = 0; i < listaDeClientes.size(); i++) {
+                clientesId.add(listaDeClientes.get(i).getId());
+                tabela.addRow(listaDeClientes.get(i).listaValoresTabelaVeiculoEOS());
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     public void upload(String pasta, String nomeDoArquivo) { 
@@ -95,15 +174,16 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         jTextFieldKilometragem = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableInformacoes = new javax.swing.JTable();
+        jTableInformacoesClientes = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jComboBoxTipoVeiculo = new javax.swing.JComboBox<>();
         jLabelQuadroo = new javax.swing.JLabel();
         jLabelQuadro = new javax.swing.JLabel();
         jComboBoxMarcas = new javax.swing.JComboBox<>();
-        jTextFieldAnoModelo1 = new javax.swing.JTextField();
+        jTextFieldModelo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jButtonListarClientes = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
@@ -195,11 +275,16 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonSalvarCadastro.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonSalvarCadastro.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalvarCadastro.setText("Salvar Cadastro");
-        jButtonSalvarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSalvarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonSalvarCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarCadastroActionPerformed(evt);
+            }
+        });
 
         jButtonCancelar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonCancelar.setText("Cancelar");
-        jButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
@@ -207,7 +292,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         });
 
         jLabel37.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jLabel37.setText("Kilometragem*");
+        jLabel37.setText("Quilometragem*");
 
         jTextFieldKilometragem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,18 +300,15 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
             }
         });
 
-        jTableInformacoes.setModel(new javax.swing.table.DefaultTableModel(
+        jTableInformacoesClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Nome / Razão Social", "CPF / CNPJ"
             }
         ));
-        jScrollPane1.setViewportView(jTableInformacoes);
+        jScrollPane1.setViewportView(jTableInformacoesClientes);
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel4.setText("Selecione o Cliente");
@@ -234,7 +316,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel20.setText("Tipo de Veículo*");
 
-        jComboBoxTipoVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTipoVeiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UTILITARIO", "ESPORTIVO", "PASSEIO" }));
 
         jLabelQuadroo.setBackground(new java.awt.Color(255, 255, 255));
         jLabelQuadroo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -250,21 +332,29 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jLabelQuadro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelQuadro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        jComboBoxMarcas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Chevrolet", "Fiat", "Ford", "Honda", "Hyundai", "Kia", "Mitsubishi", "Peugeot", "Renault", "Toyota", "Volkswagen", "Volvo" }));
         jComboBoxMarcas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxMarcasActionPerformed(evt);
             }
         });
 
-        jTextFieldAnoModelo1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldModelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAnoModelo1ActionPerformed(evt);
+                jTextFieldModeloActionPerformed(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
         jLabel5.setText("Inserir foto do Veículo");
+
+        jButtonListarClientes.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonListarClientes.setText("Listar todos Clientes");
+        jButtonListarClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonListarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonListarClientesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelFundoLayout = new javax.swing.GroupLayout(jPanelFundo);
         jPanelFundo.setLayout(jPanelFundoLayout);
@@ -283,7 +373,8 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
                         .addGap(93, 93, 93)
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jLabel4)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonListarClientes))
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelFundoLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -299,7 +390,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
                                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel10)
                                             .addComponent(jLabelQuadroo, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                            .addComponent(jTextFieldAnoModelo1))
+                                            .addComponent(jTextFieldModelo))
                                         .addGap(34, 34, 34)
                                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabelQuadro, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
@@ -360,7 +451,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
                                                     .addComponent(jTextFieldAnoFabricacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jComboBoxTipoVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jComboBoxMarcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jTextFieldAnoModelo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addComponent(jTextFieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
                                                 .addComponent(jLabel32)
                                                 .addGap(6, 6, 6)
@@ -390,7 +481,9 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
                                     .addComponent(jButtonSalvarCadastro)
                                     .addComponent(jButtonCancelar)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonListarClientes)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -400,7 +493,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonMenu.setBackground(new java.awt.Color(0, 0, 0));
         jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/New Car white.png"))); // NOI18N
         jButtonMenu.setBorder(null);
-        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMenuActionPerformed(evt);
@@ -410,7 +503,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 43.png"))); // NOI18N
         jButtonSair.setBorder(null);
-        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonSairMouseClicked(evt);
@@ -420,7 +513,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonConfigurar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonConfigurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 42.png"))); // NOI18N
         jButtonConfigurar.setBorder(null);
-        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonConfigurarMouseClicked(evt);
@@ -459,7 +552,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonCadastrarCliente.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 4.png"))); // NOI18N
         jButtonCadastrarCliente.setBorder(null);
-        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarClienteActionPerformed(evt);
@@ -469,7 +562,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonCadastrarVeiculo.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 5.png"))); // NOI18N
         jButtonCadastrarVeiculo.setBorder(null);
-        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarVeiculoActionPerformed(evt);
@@ -479,7 +572,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonOrdemServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonOrdemServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 7.png"))); // NOI18N
         jButtonOrdemServico.setBorder(null);
-        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonOrdemServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonOrdemServicoActionPerformed(evt);
@@ -489,7 +582,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 8.png"))); // NOI18N
         jButtonServico.setBorder(null);
-        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonServicoActionPerformed(evt);
@@ -499,7 +592,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonPagar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 9.png"))); // NOI18N
         jButtonPagar.setBorder(null);
-        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPagarActionPerformed(evt);
@@ -509,7 +602,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonCadastrarColaborador.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 10.png"))); // NOI18N
         jButtonCadastrarColaborador.setBorder(null);
-        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarColaboradorActionPerformed(evt);
@@ -519,7 +612,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         jButtonCadastrarPecas.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarPecas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 18.png"))); // NOI18N
         jButtonCadastrarPecas.setBorder(null);
-        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarPecasActionPerformed(evt);
@@ -623,7 +716,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
-        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        TelaExibirOrcamentoNF pagamento = new TelaExibirOrcamentoNF();
         pagamento.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
@@ -794,13 +887,82 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBoxMarcasActionPerformed
 
-    private void jTextFieldAnoModelo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnoModelo1ActionPerformed
+    private void jTextFieldModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldModeloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAnoModelo1ActionPerformed
+    }//GEN-LAST:event_jTextFieldModeloActionPerformed
 
     private void jLabelQuadrooMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelQuadrooMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabelQuadrooMouseClicked
+
+    private void jButtonListarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarClientesActionPerformed
+        TelaCadastrarVeiculos telaCadastrarVeiculos = new TelaCadastrarVeiculos();
+        telaCadastrarVeiculos.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonListarClientesActionPerformed
+
+    private void jButtonSalvarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarCadastroActionPerformed
+        try {
+            //Validar Campos Obrigatórios
+                
+            if (jTextFieldModelo.getText().equals("") || //Valida se os campos estão preenchidos
+                    jTextFieldAnoFabricacao.getText().equals("") ||
+                    jTextFieldAnoModelo.getText().equals("") ||
+                    jTextFieldKilometragem.getText().equals("") ||
+                    jComboBoxMarcas.getSelectedItem().equals("") ||
+                    jComboBoxTipoVeiculo.getSelectedItem().equals("") ||
+                    jTextFieldPlaca.getText().equals("") ||
+                    jTextFieldRenavam.getText().equals("")) throw new Exception("Preencha todos os campos obrigatórios (*)");
+            else validador = true;
+            
+            veiculo.setAnoFabricacao(Integer.parseInt(jTextFieldAnoFabricacao.getText()));
+            veiculo.setAnoModelo(Integer.parseInt(jTextFieldAnoModelo.getText()));
+            
+            Marca marca = new Marca();
+            marca.setDescricao(jComboBoxMarcas.getSelectedItem().toString());
+            marca.setLogo("n/a");
+            for (int i = 0; i < listaDeMarcas.size(); i++) {
+                if (listaDeMarcas.get(i).getDescricao().equals(marca.getDescricao())) marca.setId(listaDeMarcas.get(i).getId());
+            }
+            
+            Modelo modelo = new Modelo();
+            modelo.setMarca(marca);
+            modelo.setDescricao(jTextFieldModelo.getText());
+            
+            veiculo.setModelo(modelo);
+            veiculo.setPlaca(jTextFieldPlaca.getText());
+            veiculo.setRenavam(jTextFieldRenavam.getText());
+            veiculo.setQuilometragem(Integer.parseInt(jTextFieldKilometragem.getText()));
+            TipoDeVeiculo tipo = TipoDeVeiculo.valueOf(jComboBoxTipoVeiculo.getSelectedItem().toString());
+            veiculo.setTipo(tipo);
+            
+            int index = jTableInformacoesClientes.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione um cliente na tabela");
+            else veiculo.setIdCliente(clientesId.get(index));
+            
+        } catch (Exception erro) {
+            validador = false;
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        } finally {
+            try {
+                if (validador) {
+                    if (veiculo.getId() != 0) {
+                        veiculo.setStatus(StatusVeiculo.EM_ESPERA);
+                        veiculoDAO.alterar(veiculo);
+                        JOptionPane.showMessageDialog(null, "Veículo editado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        veiculoDAO.incluir(veiculo);
+                        JOptionPane.showMessageDialog(null, "Veículo cadastrado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    TelaExibirVeiculos telaExibirVeiculos = new TelaExibirVeiculos();
+                    telaExibirVeiculos.setVisible(true);
+                    dispose();
+                }
+            } catch (Exception erro) {
+                JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButtonSalvarCadastroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -842,6 +1004,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCadastrarVeiculo;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonConfigurar;
+    private javax.swing.JButton jButtonListarClientes;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JButton jButtonOrdemServico;
     private javax.swing.JButton jButtonPagar;
@@ -879,7 +1042,7 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelFundo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableInformacoes;
+    private javax.swing.JTable jTableInformacoesClientes;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
@@ -889,8 +1052,8 @@ public class TelaCadastrarVeiculos extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jTextFieldAnoFabricacao;
     private javax.swing.JTextField jTextFieldAnoModelo;
-    private javax.swing.JTextField jTextFieldAnoModelo1;
     private javax.swing.JTextField jTextFieldKilometragem;
+    private javax.swing.JTextField jTextFieldModelo;
     private javax.swing.JTextField jTextFieldPlaca;
     private javax.swing.JTextField jTextFieldRenavam;
     // End of variables declaration//GEN-END:variables

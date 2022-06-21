@@ -22,7 +22,9 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import projetomecanica.entidades.Cliente;
+import projetomecanica.entidades.OrdemDeServico;
 import projetomecanica.entidades.dao.ClienteDAO;
+import projetomecanica.entidades.dao.OrdemDeServicoDAO;
 import projetomecanica.telas.clientes.*;
 import projetomecanica.telas.funcionarios.*;
 import projetomecanica.telas.documentos.TelaGerarOS;
@@ -36,9 +38,9 @@ import projetomecanica.telas.veiculos.TelaExibirVeiculos;
  */
 public class TelaListagemOS extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaTechnocar
-     */
+    OrdemDeServicoDAO ordemDeServicoDAO = new OrdemDeServicoDAO();
+    ArrayList<Integer> ordemDeServicosId = new ArrayList<>();
+    
     public TelaListagemOS() {
         try {
             initComponents();
@@ -46,12 +48,13 @@ public class TelaListagemOS extends javax.swing.JFrame {
                 this.setExtendedState(TelaListagemOS.MAXIMIZED_BOTH);
             }
             setLocationRelativeTo(null);
-            ClienteDAO clienteDAO = new ClienteDAO();
-            ArrayList<Cliente> listaDeClientes = clienteDAO.obterTodasEntidades();
             
-            DefaultTableModel tabela = (DefaultTableModel) jTableListagemDeCLientes.getModel();
-            for(int i = 0; i < listaDeClientes.size(); i++) {
-                tabela.addRow(listaDeClientes.get(i).listaValoresTabela(listaDeClientes.get(i).getId()));
+            ArrayList<OrdemDeServico> listaDeOrdemDeServicos = ordemDeServicoDAO.obterTodasEntidades();
+            
+            DefaultTableModel tabela = (DefaultTableModel) jTableListagemDeOS.getModel();
+            for(int i = 0; i < listaDeOrdemDeServicos.size(); i++) {
+                ordemDeServicosId.add(listaDeOrdemDeServicos.get(i).getId());
+                tabela.addRow(listaDeOrdemDeServicos.get(i).listaValoresTela());
             }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
@@ -88,7 +91,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonNovaOS = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableListagemDeCLientes = new javax.swing.JTable();
+        jTableListagemDeOS = new javax.swing.JTable();
         jButtonExcluir = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -147,15 +150,15 @@ public class TelaListagemOS extends javax.swing.JFrame {
         jButtonNovaOS.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonNovaOS.setForeground(new java.awt.Color(255, 255, 255));
         jButtonNovaOS.setText("Nova O.S");
-        jButtonNovaOS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonNovaOS.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonNovaOS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNovaOSActionPerformed(evt);
             }
         });
 
-        jTableListagemDeCLientes.setForeground(new java.awt.Color(255, 255, 255));
-        jTableListagemDeCLientes.setModel(new javax.swing.table.DefaultTableModel(
+        jTableListagemDeOS.setForeground(new java.awt.Color(255, 255, 255));
+        jTableListagemDeOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -171,22 +174,22 @@ public class TelaListagemOS extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTableListagemDeCLientes);
-        if (jTableListagemDeCLientes.getColumnModel().getColumnCount() > 0) {
-            jTableListagemDeCLientes.getColumnModel().getColumn(0).setResizable(false);
-            jTableListagemDeCLientes.getColumnModel().getColumn(1).setResizable(false);
-            jTableListagemDeCLientes.getColumnModel().getColumn(2).setResizable(false);
-            jTableListagemDeCLientes.getColumnModel().getColumn(3).setResizable(false);
-            jTableListagemDeCLientes.getColumnModel().getColumn(4).setResizable(false);
-            jTableListagemDeCLientes.getColumnModel().getColumn(5).setResizable(false);
-            jTableListagemDeCLientes.getColumnModel().getColumn(6).setResizable(false);
+        jScrollPane2.setViewportView(jTableListagemDeOS);
+        if (jTableListagemDeOS.getColumnModel().getColumnCount() > 0) {
+            jTableListagemDeOS.getColumnModel().getColumn(0).setResizable(false);
+            jTableListagemDeOS.getColumnModel().getColumn(1).setResizable(false);
+            jTableListagemDeOS.getColumnModel().getColumn(2).setResizable(false);
+            jTableListagemDeOS.getColumnModel().getColumn(3).setResizable(false);
+            jTableListagemDeOS.getColumnModel().getColumn(4).setResizable(false);
+            jTableListagemDeOS.getColumnModel().getColumn(5).setResizable(false);
+            jTableListagemDeOS.getColumnModel().getColumn(6).setResizable(false);
         }
 
         jButtonExcluir.setBackground(new java.awt.Color(0, 0, 0));
         jButtonExcluir.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonExcluir.setForeground(new java.awt.Color(255, 255, 255));
         jButtonExcluir.setText("Excluir");
-        jButtonExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonExcluirActionPerformed(evt);
@@ -195,7 +198,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
 
         jButtonEditar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonEditar.setText("Editar");
-        jButtonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEditarActionPerformed(evt);
@@ -241,7 +244,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
         jButtonMenu.setBackground(new java.awt.Color(0, 0, 0));
         jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/New Car white.png"))); // NOI18N
         jButtonMenu.setBorder(null);
-        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMenuActionPerformed(evt);
@@ -251,7 +254,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 43.png"))); // NOI18N
         jButtonSair.setBorder(null);
-        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonSairMouseClicked(evt);
@@ -261,7 +264,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
         jButtonConfigurar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonConfigurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 42.png"))); // NOI18N
         jButtonConfigurar.setBorder(null);
-        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonConfigurarMouseClicked(evt);
@@ -300,7 +303,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
         jButtonCadastrarCliente.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 4.png"))); // NOI18N
         jButtonCadastrarCliente.setBorder(null);
-        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarClienteActionPerformed(evt);
@@ -310,7 +313,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
         jButtonCadastrarVeiculo.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 5.png"))); // NOI18N
         jButtonCadastrarVeiculo.setBorder(null);
-        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarVeiculoActionPerformed(evt);
@@ -320,7 +323,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
         jButtonOrdemServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonOrdemServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 7.png"))); // NOI18N
         jButtonOrdemServico.setBorder(null);
-        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonOrdemServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonOrdemServicoActionPerformed(evt);
@@ -330,7 +333,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
         jButtonServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 8.png"))); // NOI18N
         jButtonServico.setBorder(null);
-        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonServicoActionPerformed(evt);
@@ -340,7 +343,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
         jButtonPagar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 9.png"))); // NOI18N
         jButtonPagar.setBorder(null);
-        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPagarActionPerformed(evt);
@@ -350,7 +353,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
         jButtonCadastrarColaborador.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 10.png"))); // NOI18N
         jButtonCadastrarColaborador.setBorder(null);
-        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarColaboradorActionPerformed(evt);
@@ -360,7 +363,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
         jButtonCadastrarPecas.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarPecas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 18.png"))); // NOI18N
         jButtonCadastrarPecas.setBorder(null);
-        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarPecasActionPerformed(evt);
@@ -464,7 +467,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
-        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        TelaExibirOrcamentoNF pagamento = new TelaExibirOrcamentoNF();
         pagamento.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
@@ -639,7 +642,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelFundo;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableListagemDeCLientes;
+    private javax.swing.JTable jTableListagemDeOS;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;

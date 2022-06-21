@@ -1,5 +1,6 @@
 package projetomecanica.entidades;
 
+import projetomecanica.entidades.dao.ClienteDAO;
 import projetomecanica.entidades.enums.StatusVeiculo;
 import projetomecanica.entidades.enums.TipoDeVeiculo;
 import projetomecanica.servicos.Utils;
@@ -119,6 +120,15 @@ public class Veiculo {
     public void setQuilometragem(int quilometragem) throws Exception {
         if (!Utils.validaNumero(quilometragem)) throw new Exception("Quilometragem inválida");
         this.quilometragem = quilometragem;
+    }
+    
+    public Object[] listaValoresTabela() throws Exception {
+        ClienteDAO clienteDAO = new ClienteDAO();
+        return new Object[] {modelo.getMarca().getDescricao(), modelo.getDescricao(), placa, clienteDAO.consultarPorId(idCliente).getNomeCompleto(), status};
+    }
+    
+    public Object[] listaValoresTabelaOS() throws Exception {
+        return new Object[] {modelo.getDescricao(), placa};
     }
 
     @Override

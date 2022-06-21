@@ -19,7 +19,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import projetomecanica.telas.clientes.*;
-import projetomecanica.telas.documentos.TelaExibirOrcamento;
+import projetomecanica.telas.documentos.TelaExibirOrcamentoNF;
 import projetomecanica.telas.documentos.TelaGerarOS;
 import projetomecanica.telas.documentos.TelaListagemOS;
 import projetomecanica.telas.funcionarios.*;
@@ -461,7 +461,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
-        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        TelaExibirOrcamentoNF pagamento = new TelaExibirOrcamentoNF();
         pagamento.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
@@ -585,7 +585,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonPagarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarMenuActionPerformed
         // TODO add your handling code here:
-        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        TelaExibirOrcamentoNF pagamento = new TelaExibirOrcamentoNF();
         pagamento.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonPagarMenuActionPerformed

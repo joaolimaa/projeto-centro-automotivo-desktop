@@ -87,52 +87,57 @@ public class OrcamentoDAO implements IDaoGenerico<Orcamento>{
                 
                 objetoOrcamento.setQtdPecas(Integer.parseInt(vetorString[4]));
                 objetoOrcamento.setQtdServicos(Integer.parseInt(vetorString[5]));
+                System.out.println(objetoOrcamento.getQtdPecas());
+                System.out.println(objetoOrcamento.getQtdServicos());
                 
-                int total = 14 + ((objetoOrcamento.getQtdPecas()*8) + (objetoOrcamento.getQtdServicos()*3));
+                int total = 15 + ((objetoOrcamento.getQtdPecas()*8) + (objetoOrcamento.getQtdServicos()*3));
                 
                 int ultimo = 6;
-                
-                if (vetorString.length != total) throw new Exception("Faltam dados na String");
                 
                 objetoOrcamento.setId(Integer.parseInt(vetorString[0]));
                 
                 if (objetoOrcamento.getId() == id) {
+                    System.out.println(objetoOrcamento.getId());
                     
                     objetoOrcamento.setIdCliente(Integer.parseInt(vetorString[1]));
                     objetoOrcamento.setIdColaborador(Integer.parseInt(vetorString[2]));
                     objetoOrcamento.setIdVeiculo(Integer.parseInt(vetorString[3]));
                     
                     ArrayList<Peca> listaDePecas = new ArrayList<>();
-                    
+                    Peca peca = new Peca();
+
                     for (int i = 0; i < objetoOrcamento.getQtdPecas(); i++) {
-                        listaDePecas.get(i).setId(Integer.parseInt(vetorString[ultimo]));
+                        peca.setId(Integer.parseInt(vetorString[ultimo]));
                         ultimo++;
-                        listaDePecas.get(i).setCodigo(Integer.parseInt(vetorString[ultimo]));
+                        peca.setCodigo(Integer.parseInt(vetorString[ultimo]));
                         ultimo++;
-                        listaDePecas.get(i).setDescricao(vetorString[ultimo]);
+                        peca.setDescricao(vetorString[ultimo]);
                         ultimo++;
-                        listaDePecas.get(i).setQtdEstoque(Integer.parseInt(vetorString[ultimo]));
+                        peca.setQtdEstoque(Integer.parseInt(vetorString[ultimo]));
                         ultimo++;
-                        listaDePecas.get(i).setQtdMinEstoque(Integer.parseInt(vetorString[ultimo]));
+                        peca.setQtdMinEstoque(Integer.parseInt(vetorString[ultimo]));
                         ultimo++;
-                        listaDePecas.get(i).setReservadas(Integer.parseInt(vetorString[ultimo]));
+                        peca.setReservadas(Integer.parseInt(vetorString[ultimo]));
                         ultimo++;
-                        listaDePecas.get(i).setValorUnitario(Float.parseFloat(vetorString[ultimo]));
+                        peca.setValorUnitario(Float.parseFloat(vetorString[ultimo]));
                         ultimo++;
-                        listaDePecas.get(i).setVidaUtilEmDias(Integer.parseInt(vetorString[ultimo]));
+                        peca.setVidaUtilEmDias(Integer.parseInt(vetorString[ultimo]));
                         ultimo++;
+                        listaDePecas.add(peca);
                     }
                     objetoOrcamento.setPecas(listaDePecas);
-                    
+
                     ArrayList<Servico> listaDeServicos = new ArrayList();
-                    
+                    Servico servico = new Servico();
+
                     for (int i = 0; i < objetoOrcamento.getQtdServicos(); i++) {
-                        listaDeServicos.get(i).setId(Integer.parseInt(vetorString[ultimo]));
+                        servico.setId(Integer.parseInt(vetorString[ultimo]));
                         ultimo++;
-                        listaDeServicos.get(i).setValor(Float.parseFloat(vetorString[ultimo]));
+                        servico.setDescricao(vetorString[ultimo]);
                         ultimo++;
-                        listaDeServicos.get(i).setDescricao(vetorString[ultimo]);
+                        servico.setValor(Float.parseFloat(vetorString[ultimo]));
                         ultimo++;
+                        listaDeServicos.add(servico);
                     }
                     objetoOrcamento.setServicos(listaDeServicos);
                     
@@ -147,8 +152,6 @@ public class OrcamentoDAO implements IDaoGenerico<Orcamento>{
                     objetoOrcamento.setDataValidadeOrcamento(vetorString[ultimo]);
                     ultimo++;
                     objetoOrcamento.setDataOrcamentoAprovado(vetorString[ultimo]);
-                    ultimo++;
-                    objetoOrcamento.setDescricao(vetorString[ultimo]);
                     ultimo++;
                     objetoOrcamento.setDesconto(Float.parseFloat(vetorString[ultimo]));
                     ultimo++;
@@ -221,11 +224,9 @@ public class OrcamentoDAO implements IDaoGenerico<Orcamento>{
                 objetoOrcamento.setQtdPecas(Integer.parseInt(vetorString[4]));
                 objetoOrcamento.setQtdServicos(Integer.parseInt(vetorString[5]));
                 
-                int total = 14 + ((objetoOrcamento.getQtdPecas()*8) + (objetoOrcamento.getQtdServicos()*3));
+                int total = 15 + ((objetoOrcamento.getQtdPecas()*8) + (objetoOrcamento.getQtdServicos()*3));
                 
                 int ultimo = 6;
-                
-                if (vetorString.length != total) throw new Exception("Faltam dados na String");
                 
                 objetoOrcamento.setId(Integer.parseInt(vetorString[0]));
                     
@@ -234,36 +235,40 @@ public class OrcamentoDAO implements IDaoGenerico<Orcamento>{
                 objetoOrcamento.setIdVeiculo(Integer.parseInt(vetorString[3]));
 
                 ArrayList<Peca> listaDePecas = new ArrayList<>();
+                Peca peca = new Peca();
 
                 for (int i = 0; i < objetoOrcamento.getQtdPecas(); i++) {
-                    listaDePecas.get(i).setId(Integer.parseInt(vetorString[ultimo]));
+                    peca.setId(Integer.parseInt(vetorString[ultimo]));
                     ultimo++;
-                    listaDePecas.get(i).setCodigo(Integer.parseInt(vetorString[ultimo]));
+                    peca.setCodigo(Integer.parseInt(vetorString[ultimo]));
                     ultimo++;
-                    listaDePecas.get(i).setDescricao(vetorString[ultimo]);
+                    peca.setDescricao(vetorString[ultimo]);
                     ultimo++;
-                    listaDePecas.get(i).setQtdEstoque(Integer.parseInt(vetorString[ultimo]));
+                    peca.setQtdEstoque(Integer.parseInt(vetorString[ultimo]));
                     ultimo++;
-                    listaDePecas.get(i).setQtdMinEstoque(Integer.parseInt(vetorString[ultimo]));
+                    peca.setQtdMinEstoque(Integer.parseInt(vetorString[ultimo]));
                     ultimo++;
-                    listaDePecas.get(i).setReservadas(Integer.parseInt(vetorString[ultimo]));
+                    peca.setReservadas(Integer.parseInt(vetorString[ultimo]));
                     ultimo++;
-                    listaDePecas.get(i).setValorUnitario(Float.parseFloat(vetorString[ultimo]));
+                    peca.setValorUnitario(Float.parseFloat(vetorString[ultimo]));
                     ultimo++;
-                    listaDePecas.get(i).setVidaUtilEmDias(Integer.parseInt(vetorString[ultimo]));
+                    peca.setVidaUtilEmDias(Integer.parseInt(vetorString[ultimo]));
                     ultimo++;
+                    listaDePecas.add(peca);
                 }
                 objetoOrcamento.setPecas(listaDePecas);
 
                 ArrayList<Servico> listaDeServicos = new ArrayList();
+                Servico servico = new Servico();
 
                 for (int i = 0; i < objetoOrcamento.getQtdServicos(); i++) {
-                    listaDeServicos.get(i).setId(Integer.parseInt(vetorString[ultimo]));
+                    servico.setId(Integer.parseInt(vetorString[ultimo]));
                     ultimo++;
-                    listaDeServicos.get(i).setValor(Float.parseFloat(vetorString[ultimo]));
+                    servico.setDescricao(vetorString[ultimo]);
                     ultimo++;
-                    listaDeServicos.get(i).setDescricao(vetorString[ultimo]);
+                    servico.setValor(Float.parseFloat(vetorString[ultimo]));
                     ultimo++;
+                    listaDeServicos.add(servico);
                 }
                 objetoOrcamento.setServicos(listaDeServicos);
 
@@ -278,8 +283,6 @@ public class OrcamentoDAO implements IDaoGenerico<Orcamento>{
                 objetoOrcamento.setDataValidadeOrcamento(vetorString[ultimo]);
                 ultimo++;
                 objetoOrcamento.setDataOrcamentoAprovado(vetorString[ultimo]);
-                ultimo++;
-                objetoOrcamento.setDescricao(vetorString[ultimo]);
                 ultimo++;
                 objetoOrcamento.setDesconto(Float.parseFloat(vetorString[ultimo]));
                 ultimo++;

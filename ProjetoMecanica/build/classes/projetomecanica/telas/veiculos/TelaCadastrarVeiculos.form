@@ -172,6 +172,7 @@
                           <Group type="103" groupAlignment="2" attributes="0">
                               <Component id="jLabel4" alignment="2" min="-2" max="-2" attributes="0"/>
                               <Component id="jScrollPane1" alignment="2" min="-2" pref="389" max="-2" attributes="0"/>
+                              <Component id="jButtonListarClientes" alignment="2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
@@ -190,7 +191,7 @@
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabelQuadroo" alignment="0" pref="140" max="32767" attributes="0"/>
-                                              <Component id="jTextFieldAnoModelo1" max="32767" attributes="0"/>
+                                              <Component id="jTextFieldModelo" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -270,7 +271,7 @@
                                                       <Component id="jTextFieldAnoFabricacao" alignment="2" min="-2" max="-2" attributes="0"/>
                                                       <Component id="jComboBoxTipoVeiculo" alignment="2" min="-2" max="-2" attributes="0"/>
                                                       <Component id="jComboBoxMarcas" alignment="2" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jTextFieldAnoModelo1" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jTextFieldModelo" alignment="2" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
@@ -316,7 +317,9 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="89" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jButtonListarClientes" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="53" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -420,9 +423,12 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Salvar Cadastro"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSalvarCadastroActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonCancelar">
           <Properties>
@@ -431,7 +437,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -443,7 +449,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Kilometragem*"/>
+            <Property name="text" type="java.lang.String" value="Quilometragem*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldKilometragem">
@@ -458,10 +464,10 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTableInformacoes">
+            <Component class="javax.swing.JTable" name="jTableInformacoesClientes">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="2" rowCount="4">
+                  <Table columnCount="2" rowCount="0">
                     <Column editable="true" title="Nome / Raz&#xe3;o Social" type="java.lang.Object"/>
                     <Column editable="true" title="CPF / CNPJ" type="java.lang.Object"/>
                   </Table>
@@ -506,11 +512,10 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxTipoVeiculo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="3">
+                <StringItem index="0" value="UTILITARIO"/>
+                <StringItem index="1" value="ESPORTIVO"/>
+                <StringItem index="2" value="PASSEIO"/>
               </StringArray>
             </Property>
           </Properties>
@@ -553,21 +558,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxMarcas">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="13">
-                <StringItem index="0" value=" "/>
-                <StringItem index="1" value="Chevrolet"/>
-                <StringItem index="2" value="Fiat"/>
-                <StringItem index="3" value="Ford"/>
-                <StringItem index="4" value="Honda"/>
-                <StringItem index="5" value="Hyundai"/>
-                <StringItem index="6" value="Kia"/>
-                <StringItem index="7" value="Mitsubishi"/>
-                <StringItem index="8" value="Peugeot"/>
-                <StringItem index="9" value="Renault"/>
-                <StringItem index="10" value="Toyota"/>
-                <StringItem index="11" value="Volkswagen"/>
-                <StringItem index="12" value="Volvo"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
@@ -577,9 +568,9 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldAnoModelo1">
+        <Component class="javax.swing.JTextField" name="jTextFieldModelo">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldAnoModelo1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldModeloActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
@@ -589,6 +580,20 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Inserir foto do Ve&#xed;culo"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonListarClientes">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Yu Gothic UI" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Listar todos Clientes"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor Padr&#xe3;o"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonListarClientesActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -648,7 +653,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -667,7 +672,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -686,7 +691,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -766,7 +771,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -785,7 +790,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -804,7 +809,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -823,7 +828,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -842,7 +847,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -861,7 +866,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -880,7 +885,7 @@
               <Border info="null"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>

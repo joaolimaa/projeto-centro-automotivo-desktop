@@ -133,9 +133,9 @@ public class ClienteDAO implements IDaoGenerico<Cliente>{
                     objetoCliente.setCpf_cnpj(vetorString[21]);
                     objetoCliente.setRazaoSocial(vetorString[22]);
                     objetoCliente.setDataNascimento(vetorString[23]);
-                    StatusPessoa status = StatusPessoa.valueOf(vetorString[24]);
+                    StatusPessoa status = StatusPessoa.valueOf(vetorString[25]);
                     objetoCliente.setStatus(status);
-                    objetoCliente.setNomeFantasia(vetorString[25]);
+                    objetoCliente.setNomeFantasia(vetorString[24]);
                 
                     br.close();
                     
@@ -198,7 +198,7 @@ public class ClienteDAO implements IDaoGenerico<Cliente>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 28) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 26) throw new Exception("Faltam dados na String");
                 
                 objetoCliente.setId(Integer.parseInt(vetorString[0]));
                 objetoCliente.setNomeCompleto(vetorString[1]);
@@ -244,9 +244,9 @@ public class ClienteDAO implements IDaoGenerico<Cliente>{
                 objetoCliente.setCpf_cnpj(vetorString[21]);
                 objetoCliente.setRazaoSocial(vetorString[22]);
                 objetoCliente.setDataNascimento(vetorString[23]);
-                StatusPessoa status = StatusPessoa.valueOf(vetorString[24]);
+                StatusPessoa status = StatusPessoa.valueOf(vetorString[25]);
                 objetoCliente.setStatus(status);
-                objetoCliente.setNomeFantasia(vetorString[25]);
+                objetoCliente.setNomeFantasia(vetorString[24]);
                 
                 listaDeClientes.add(objetoCliente);
             }
