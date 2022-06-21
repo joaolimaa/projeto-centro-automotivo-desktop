@@ -561,8 +561,8 @@ public class TelaServicos extends javax.swing.JFrame {
         menuItem.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                TelaExibirVeiculos veiculo = new TelaExibirVeiculos();
-                veiculo.setVisible(true);
+                TelaPrincipal inicio = new TelaPrincipal();
+                inicio.setVisible(true);
                 dispose();
                 
             }
