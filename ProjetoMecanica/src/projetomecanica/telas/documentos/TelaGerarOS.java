@@ -691,8 +691,8 @@ public class TelaGerarOS extends javax.swing.JFrame {
         menuItem.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                TelaExibirVeiculos veiculo = new TelaExibirVeiculos();
-                veiculo.setVisible(true);
+                TelaListagemOS ordemServico = new TelaListagemOS();
+                ordemServico.setVisible(true);
                 dispose();
                 
             }

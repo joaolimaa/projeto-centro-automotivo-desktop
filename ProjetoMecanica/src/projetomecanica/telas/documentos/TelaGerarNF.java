@@ -737,8 +737,8 @@ public class TelaGerarNF extends javax.swing.JFrame {
         menuItem.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                TelaExibirVeiculos veiculo = new TelaExibirVeiculos();
-                veiculo.setVisible(true);
+                TelaExibirOrcamento orcamento = new TelaExibirOrcamento();
+                orcamento.setVisible(true);
                 dispose();
                 
             }
