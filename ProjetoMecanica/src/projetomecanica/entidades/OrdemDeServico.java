@@ -2,6 +2,9 @@ package projetomecanica.entidades;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import projetomecanica.entidades.dao.ClienteDAO;
+import projetomecanica.entidades.dao.ColaboradorDAO;
+import projetomecanica.entidades.dao.VeiculoDAO;
 import projetomecanica.entidades.enums.FasesDocumento;
 
 public class OrdemDeServico {
@@ -19,11 +22,10 @@ public class OrdemDeServico {
     private String dataOrdemDeServicoFinalizada = "";
     private int codigo = 0;
     private FasesDocumento fase = FasesDocumento.ATIVO;
-    private String descricao = "";
     
     public OrdemDeServico() {}
 
-    public OrdemDeServico(int idOrcamento, int idCliente, int idColaborador, int idVeiculo, ArrayList<Peca> pecas, ArrayList<Servico> servicos, String dataOrdemDeServicoGerada, String dataOrdemDeServicoFinalizada, int codigo, FasesDocumento fase ,int qtdPecas, int qtdServicos, String descricao) {
+    public OrdemDeServico(int idOrcamento, int idCliente, int idColaborador, int idVeiculo, ArrayList<Peca> pecas, ArrayList<Servico> servicos, String dataOrdemDeServicoGerada, String dataOrdemDeServicoFinalizada, int codigo, FasesDocumento fase ,int qtdPecas, int qtdServicos) {
         this.idOrcamento = idOrcamento;
         this.idCliente = idCliente;
         this.idColaborador = idColaborador;
@@ -36,7 +38,6 @@ public class OrdemDeServico {
         this.fase = fase;
         this.qtdPecas = pecas.size();
         this.qtdServicos = servicos.size();
-        this.descricao = descricao;
     }
 
     public int getId() {
@@ -142,14 +143,6 @@ public class OrdemDeServico {
     public void setQtdServicos(int qtdServicos) {
         this.qtdServicos = qtdServicos;
     }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
     
     protected String listarPecas(ArrayList<Peca> pecas) {
         return pecas.stream().map(String::valueOf).collect(Collectors.joining(";"));
@@ -158,10 +151,20 @@ public class OrdemDeServico {
     protected String listarServicos(ArrayList<Servico> servicos) {
         return servicos.stream().map(String::valueOf).collect(Collectors.joining(";"));
     }
+    
+    public Object[] listaValoresTela() throws Exception {
+        ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
+        VeiculoDAO veiculoDAO = new VeiculoDAO();
+        ClienteDAO clienteDAO = new ClienteDAO();
+        String nomeCliente = "";
+        if(clienteDAO.consultarPorId(idCliente).getCpf_cnpj().length() > 14) nomeCliente = clienteDAO.consultarPorId(idCliente).getRazaoSocial();
+        else nomeCliente = clienteDAO.consultarPorId(idCliente).getNomeCompleto();
+        return new Object[] {codigo, colaboradorDAO.consultarPorId(idColaborador).getNomeCompleto(), veiculoDAO.consultarPorId(idVeiculo).getModelo().getDescricao(), nomeCliente,qtdPecas, qtdServicos, fase};
+    }
 
     @Override
     public String toString() {
-        return id + ";" + idOrcamento + ";" + idCliente + ";" + idColaborador + ";" + idVeiculo + ";" + qtdPecas + ";" + qtdServicos + ";" + this.listarPecas(pecas) + ";" + this.listarServicos(servicos) + ";" + dataOrdemDeServicoGerada + ";" + dataOrdemDeServicoFinalizada + ";" + codigo + ";" + fase + ";" + descricao;
+        return id + ";" + idOrcamento + ";" + idCliente + ";" + idColaborador + ";" + idVeiculo + ";" + qtdPecas + ";" + qtdServicos + ";" + this.listarPecas(pecas) + ";" + this.listarServicos(servicos) + ";" + dataOrdemDeServicoGerada + ";" + dataOrdemDeServicoFinalizada + ";" + codigo + ";" + fase;
     }
     
 }

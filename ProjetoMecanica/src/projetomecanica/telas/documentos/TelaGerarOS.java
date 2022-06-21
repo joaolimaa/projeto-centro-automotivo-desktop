@@ -15,6 +15,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,6 +25,21 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import projetomecanica.entidades.Cliente;
+import projetomecanica.entidades.Colaborador;
+import projetomecanica.entidades.Orcamento;
+import projetomecanica.entidades.OrdemDeServico;
+import projetomecanica.entidades.Peca;
+import projetomecanica.entidades.Servico;
+import projetomecanica.entidades.Veiculo;
+import projetomecanica.entidades.dao.ClienteDAO;
+import projetomecanica.entidades.dao.ColaboradorDAO;
+import projetomecanica.entidades.dao.OrcamentoDAO;
+import projetomecanica.entidades.dao.OrdemDeServicoDAO;
+import projetomecanica.entidades.dao.PecaDAO;
+import projetomecanica.entidades.dao.ServicoDAO;
+import projetomecanica.entidades.dao.VeiculoDAO;
+import projetomecanica.entidades.enums.FasesDocumento;
 import projetomecanica.telas.clientes.*;
 import projetomecanica.telas.funcionarios.*;
 /**
@@ -31,16 +47,51 @@ import projetomecanica.telas.funcionarios.*;
  * @author Dell
  */
 public class TelaGerarOS extends javax.swing.JFrame {
+    
+    OrcamentoDAO orcamentoDAO = new OrcamentoDAO();
+    ClienteDAO clienteDAO = new ClienteDAO();
+    PecaDAO pecaDAO = new PecaDAO();
+    ServicoDAO servicoDAO = new ServicoDAO();
+    VeiculoDAO veiculoDAO = new VeiculoDAO();
+    ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
+    OrdemDeServicoDAO ordemDeServicoDAO = new OrdemDeServicoDAO();
+    Orcamento orcamento = new Orcamento();
+    OrdemDeServico ordemDeServico = new OrdemDeServico();
+    Cliente cliente = new Cliente();
+    Peca peca = new Peca();
+    Servico servico = new Servico();
+    Veiculo veiculo = new Veiculo();
+    Colaborador colaborador = new Colaborador();
+    ArrayList<Integer> idOrcamentos = new ArrayList<>();
+    ArrayList<Peca> pecas = new ArrayList<>();
+    ArrayList<Servico> servicos = new ArrayList<>();
+    
+    boolean validador = false;
 
-    /**
-     * Creates new form TelaTechnocar
-     */
     public TelaGerarOS() {
-        initComponents();
-         if(this.getExtendedState()!= TelaGerarOS.MAXIMIZED_BOTH){
-            this.setExtendedState(TelaGerarOS.MAXIMIZED_BOTH);
+        try {
+            initComponents();
+            if(this.getExtendedState()!= TelaGerarOS.MAXIMIZED_BOTH){
+                this.setExtendedState(TelaGerarOS.MAXIMIZED_BOTH);
+            }
+            setLocationRelativeTo(null);
+            
+            ArrayList<Orcamento> listaDeOrcamentos = orcamentoDAO.obterTodasEntidades();
+            
+            DefaultTableModel tabela = (DefaultTableModel) jTableInformacoesOrcamento.getModel();
+            for(int i = 0; i < listaDeOrcamentos.size(); i++) {
+                idOrcamentos.add(listaDeOrcamentos.get(i).getId());
+                tabela.addRow(listaDeOrcamentos.get(i).listaValoresTelaOS());
+            }
+            jTextFieldColaborador.setEnabled(false);
+            jTextFieldTotal.setEnabled(false);
+            jTextFieldTotalComDesconto.setEnabled(false);
+            jTextFieldTotalPecas.setEnabled(false);
+            jTextFieldTotalServicos.setEnabled(false);
+            
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
         }
-        setLocationRelativeTo(null);
     }
 
     /**
@@ -73,36 +124,32 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextFieldNome = new javax.swing.JTextField();
+        jTextFieldColaborador = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jButtonSelecionarOrcamento = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTableInformacoes4 = new javax.swing.JTable();
-        jTextFieldNome2 = new javax.swing.JTextField();
+        jTableInformacoesOrcamento = new javax.swing.JTable();
+        jTextFieldTotalServicos = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextFieldNome3 = new javax.swing.JTextField();
+        jTextFieldTotal = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextFieldNome4 = new javax.swing.JTextField();
+        jTextFieldNumeroOS = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jTextFieldNome5 = new javax.swing.JTextField();
+        jTextFieldTotalPecas = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jTextFieldNome6 = new javax.swing.JTextField();
+        jTextFieldTotalComDesconto = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTableInformacoes5 = new javax.swing.JTable();
+        jTableInformacoesVeiculo = new javax.swing.JTable();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTableInformacoes6 = new javax.swing.JTable();
-        jButtonExcluirCliente = new javax.swing.JButton();
-        jButtonExcluirVeiculo = new javax.swing.JButton();
+        jTableInformacoesCliente = new javax.swing.JTable();
         jButtonSalvar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
-        jButtonExcluirPecas = new javax.swing.JButton();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jTableInformacoes8 = new javax.swing.JTable();
+        jTableInformacoesPeca = new javax.swing.JTable();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTableInformacoes9 = new javax.swing.JTable();
-        jButtonExcluirServicos = new javax.swing.JButton();
+        jTableInformacoesServico = new javax.swing.JTable();
         jLabel23 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
@@ -169,35 +216,34 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jButtonSelecionarOrcamento.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonSelecionarOrcamento.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSelecionarOrcamento.setText("Selecionar Orçamento");
-        jButtonSelecionarOrcamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSelecionarOrcamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonSelecionarOrcamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSelecionarOrcamentoActionPerformed(evt);
             }
         });
 
-        jTableInformacoes4.setModel(new javax.swing.table.DefaultTableModel(
+        jTableInformacoesOrcamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
-                "Número do Orçamento"
+                "Número do Orçamento", "Veículo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane5.setViewportView(jTableInformacoes4);
-        if (jTableInformacoes4.getColumnModel().getColumnCount() > 0) {
-            jTableInformacoes4.getColumnModel().getColumn(0).setResizable(false);
+        jTableInformacoesOrcamento.getTableHeader().setReorderingAllowed(false);
+        jScrollPane5.setViewportView(jTableInformacoesOrcamento);
+        if (jTableInformacoesOrcamento.getColumnModel().getColumnCount() > 0) {
+            jTableInformacoesOrcamento.getColumnModel().getColumn(0).setResizable(false);
+            jTableInformacoesOrcamento.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jLabel10.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -215,12 +261,9 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel21.setText("Total com Desconto*");
 
-        jTableInformacoes5.setModel(new javax.swing.table.DefaultTableModel(
+        jTableInformacoesVeiculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Modelo", "Placa"
@@ -234,48 +277,27 @@ public class TelaGerarOS extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane6.setViewportView(jTableInformacoes5);
-        if (jTableInformacoes5.getColumnModel().getColumnCount() > 0) {
-            jTableInformacoes5.getColumnModel().getColumn(0).setResizable(false);
-            jTableInformacoes5.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane6.setViewportView(jTableInformacoesVeiculo);
+        if (jTableInformacoesVeiculo.getColumnModel().getColumnCount() > 0) {
+            jTableInformacoesVeiculo.getColumnModel().getColumn(0).setResizable(false);
+            jTableInformacoesVeiculo.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        jTableInformacoes6.setModel(new javax.swing.table.DefaultTableModel(
+        jTableInformacoesCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Nome / Razão Social", "CPF / CNPJ"
             }
         ));
-        jScrollPane7.setViewportView(jTableInformacoes6);
-
-        jButtonExcluirCliente.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonExcluirCliente.setText("Excluir");
-        jButtonExcluirCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonExcluirCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluirClienteActionPerformed(evt);
-            }
-        });
-
-        jButtonExcluirVeiculo.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonExcluirVeiculo.setText("Excluir");
-        jButtonExcluirVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonExcluirVeiculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluirVeiculoActionPerformed(evt);
-            }
-        });
+        jScrollPane7.setViewportView(jTableInformacoesCliente);
 
         jButtonSalvar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSalvar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonSalvar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalvar.setText("Salvar");
-        jButtonSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalvarActionPerformed(evt);
@@ -284,7 +306,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
 
         jButtonCancelar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonCancelar.setText("Cancelar");
-        jButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
@@ -294,21 +316,9 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel22.setText("Peças");
 
-        jButtonExcluirPecas.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonExcluirPecas.setText("Excluir");
-        jButtonExcluirPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonExcluirPecas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluirPecasActionPerformed(evt);
-            }
-        });
-
-        jTableInformacoes8.setModel(new javax.swing.table.DefaultTableModel(
+        jTableInformacoesPeca.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Código", "Descrição"
@@ -322,18 +332,15 @@ public class TelaGerarOS extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane9.setViewportView(jTableInformacoes8);
-        if (jTableInformacoes8.getColumnModel().getColumnCount() > 0) {
-            jTableInformacoes8.getColumnModel().getColumn(0).setResizable(false);
-            jTableInformacoes8.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane9.setViewportView(jTableInformacoesPeca);
+        if (jTableInformacoesPeca.getColumnModel().getColumnCount() > 0) {
+            jTableInformacoesPeca.getColumnModel().getColumn(0).setResizable(false);
+            jTableInformacoesPeca.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        jTableInformacoes9.setModel(new javax.swing.table.DefaultTableModel(
+        jTableInformacoesServico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "Descrição"
@@ -347,19 +354,10 @@ public class TelaGerarOS extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane10.setViewportView(jTableInformacoes9);
-        if (jTableInformacoes9.getColumnModel().getColumnCount() > 0) {
-            jTableInformacoes9.getColumnModel().getColumn(0).setResizable(false);
+        jScrollPane10.setViewportView(jTableInformacoesServico);
+        if (jTableInformacoesServico.getColumnModel().getColumnCount() > 0) {
+            jTableInformacoesServico.getColumnModel().getColumn(0).setResizable(false);
         }
-
-        jButtonExcluirServicos.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonExcluirServicos.setText("Excluir");
-        jButtonExcluirServicos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonExcluirServicos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluirServicosActionPerformed(evt);
-            }
-        });
 
         jLabel23.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel23.setText("Serviços");
@@ -382,68 +380,53 @@ public class TelaGerarOS extends javax.swing.JFrame {
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                        .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelFundoLayout.createSequentialGroup()
-                                .addComponent(jLabel23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonExcluirServicos, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel23)
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelFundoLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonExcluirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel4))
                         .addGap(44, 44, 44)
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
-                                .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanelFundoLayout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButtonExcluirVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
                                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(47, 47, 47)
-                                .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanelFundoLayout.createSequentialGroup()
-                                        .addComponent(jLabel22)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButtonExcluirPecas, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel22)
                                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel10)
                                     .addComponent(jLabel11)
-                                    .addComponent(jTextFieldNome3)
-                                    .addComponent(jTextFieldNome2)
-                                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldTotal)
+                                    .addComponent(jTextFieldTotalServicos)
+                                    .addComponent(jTextFieldColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(47, 47, 47)
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel20)
                                     .addComponent(jLabel13)
                                     .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTextFieldNome4, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextFieldNome5, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextFieldNome6, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextFieldNumeroOS, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextFieldTotalPecas, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextFieldTotalComDesconto, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.LEADING)))
                                 .addGap(84, 84, 84)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         jPanelFundoLayout.setVerticalGroup(
             jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel4)
-                    .addComponent(jButtonExcluirCliente)
                     .addComponent(jLabel7)
-                    .addComponent(jButtonExcluirVeiculo)
-                    .addComponent(jLabel22)
-                    .addComponent(jButtonExcluirPecas))
-                .addGap(10, 10, 10)
+                    .addComponent(jLabel22))
+                .addGap(15, 15, 15)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelFundoLayout.createSequentialGroup()
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -456,10 +439,8 @@ public class TelaGerarOS extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelFundoLayout.createSequentialGroup()
-                                .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel23)
-                                    .addComponent(jButtonExcluirServicos))
-                                .addGap(11, 11, 11)
+                                .addComponent(jLabel23)
+                                .addGap(16, 16, 16)
                                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
                                 .addGap(17, 17, 17)
@@ -467,27 +448,27 @@ public class TelaGerarOS extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
                                         .addComponent(jLabel13)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldNome4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldNumeroOS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(15, 15, 15)
                                         .addComponent(jLabel20)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldNome5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldTotalPecas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(15, 15, 15)
                                         .addComponent(jLabel21)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldNome6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTextFieldTotalComDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
                                         .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(15, 15, 15)
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldTotalServicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(15, 15, 15)
                                         .addComponent(jLabel11)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldNome3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jTextFieldTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(17, 17, 17))))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
@@ -505,7 +486,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jButtonMenu.setBackground(new java.awt.Color(0, 0, 0));
         jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 20.png"))); // NOI18N
         jButtonMenu.setBorder(null);
-        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMenuActionPerformed(evt);
@@ -515,7 +496,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 43.png"))); // NOI18N
         jButtonSair.setBorder(null);
-        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonSairMouseClicked(evt);
@@ -525,7 +506,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jButtonConfigurar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonConfigurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 42.png"))); // NOI18N
         jButtonConfigurar.setBorder(null);
-        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonConfigurarMouseClicked(evt);
@@ -564,7 +545,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jButtonCadastrarColaborador.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 10.png"))); // NOI18N
         jButtonCadastrarColaborador.setBorder(null);
-        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarColaboradorActionPerformed(evt);
@@ -574,7 +555,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jButtonCadastrarPecas.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarPecas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 18.png"))); // NOI18N
         jButtonCadastrarPecas.setBorder(null);
-        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarPecasActionPerformed(evt);
@@ -584,7 +565,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jButtonPagar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 9.png"))); // NOI18N
         jButtonPagar.setBorder(null);
-        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPagarActionPerformed(evt);
@@ -594,7 +575,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jButtonServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 8.png"))); // NOI18N
         jButtonServico.setBorder(null);
-        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonServicoActionPerformed(evt);
@@ -604,7 +585,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jButtonOrdemServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonOrdemServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 7.png"))); // NOI18N
         jButtonOrdemServico.setBorder(null);
-        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonOrdemServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonOrdemServicoActionPerformed(evt);
@@ -614,7 +595,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jButtonCadastrarVeiculo.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 5.png"))); // NOI18N
         jButtonCadastrarVeiculo.setBorder(null);
-        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarVeiculoActionPerformed(evt);
@@ -624,7 +605,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jButtonCadastrarCliente.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 4.png"))); // NOI18N
         jButtonCadastrarCliente.setBorder(null);
-        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarClienteActionPerformed(evt);
@@ -683,7 +664,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
                     .addComponent(jPanelFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -777,32 +758,107 @@ public class TelaGerarOS extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonConfigurarMouseClicked
 
     private void jButtonSelecionarOrcamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarOrcamentoActionPerformed
-        // TODO add your handling code here:
+        try {
+            int index = jTableInformacoesOrcamento.getSelectedRow();
+            if (index < 0) throw new Exception("Selecione um orçamento na tabela");
+            else {
+                orcamento = orcamentoDAO.consultarPorId(idOrcamentos.get(index));
+                
+                cliente = clienteDAO.consultarPorId(orcamento.getIdCliente());
+                veiculo = veiculoDAO.consultarPorId(orcamento.getIdVeiculo());
+                pecas = orcamento.getPecas();
+                servicos = orcamento.getServicos();
+                colaborador = colaboradorDAO.consultarPorId(orcamento.getIdColaborador());
+                jTextFieldColaborador.setText(colaborador.getNomeCompleto());
+                float total = 0;
+                float totalPecas = 0;
+                float totalServicos = 0;
+                for(int i = 0; i < orcamento.getQtdPecas(); i++) {
+                    totalPecas += pecas.get(i).getValorUnitario();
+                }
+                jTextFieldTotalPecas.setText(totalPecas+"");
+                for(int i = 0; i < orcamento.getQtdServicos(); i++) {
+                    totalServicos += servicos.get(i).getValor();
+                }
+                jTextFieldTotalServicos.setText(totalServicos+"");
+                total = totalPecas+totalServicos;
+                jTextFieldTotal.setText(total+"");
+                jTextFieldTotalComDesconto.setText((total - (orcamento.getDesconto()))+"");
+            
+                DefaultTableModel tabelaCliente = (DefaultTableModel) jTableInformacoesCliente.getModel();
+                tabelaCliente.setNumRows(0);
+                tabelaCliente.addRow(cliente.listaValoresTabelaVeiculoEOS());
+                
+                DefaultTableModel tabelaVeiculo = (DefaultTableModel) jTableInformacoesVeiculo.getModel();
+                tabelaVeiculo.setNumRows(0);
+                tabelaVeiculo.addRow(veiculo.listaValoresTabelaOS());
+                
+                DefaultTableModel tabelaPecas = (DefaultTableModel) jTableInformacoesPeca.getModel();
+                tabelaPecas.setNumRows(0);
+                for(int i = 0; i < orcamento.getQtdPecas(); i++) {
+                    tabelaPecas.addRow(pecas.get(i).listaValoresTabelaOS());
+                }
+                DefaultTableModel tabelaServicos = (DefaultTableModel) jTableInformacoesServico.getModel();
+                tabelaServicos.setNumRows(0);
+                for(int i = 0; i < orcamento.getQtdServicos(); i++) {
+                    tabelaServicos.addRow(servicos.get(i).listaValoresTabelaOS());
+                }
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonSelecionarOrcamentoActionPerformed
 
-    private void jButtonExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluirClienteActionPerformed
-
-    private void jButtonExcluirVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirVeiculoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluirVeiculoActionPerformed
-
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        // TODO add your handling code here:
+        try {
+            if (jTextFieldTotalServicos.getText().equals("") || 
+                    jTextFieldTotal.getText().equals("") ||
+                    jTextFieldTotalComDesconto.getText().equals("") ||
+                    jTextFieldColaborador.getText().equals("") ||
+                    jTextFieldNumeroOS.getText().equals("")) throw new Exception("Preencha todos os campos obrigatórios (*)");
+            else if (jTableInformacoesOrcamento.getSelectedRow() < 0) throw new Exception("Selecione um orçamento na tabela");
+            else validador = true;
+            
+            orcamento.setFase(FasesDocumento.FINALIZADO);
+            ordemDeServico.setCodigo(Integer.parseInt(jTextFieldNumeroOS.getText()));
+            ordemDeServico.setDataOrdemDeServicoGerada(orcamento.getDataOrcamentoAprovado());
+            ordemDeServico.setFase(FasesDocumento.ATIVO);
+            ordemDeServico.setIdCliente(orcamento.getIdCliente());
+            ordemDeServico.setIdColaborador(orcamento.getIdColaborador());
+            ordemDeServico.setIdVeiculo(orcamento.getIdVeiculo());
+            ordemDeServico.setIdOrcamento(orcamento.getId());
+            ordemDeServico.setDataOrdemDeServicoFinalizada("n/a");
+            ordemDeServico.setQtdPecas(orcamento.getQtdPecas());
+            ordemDeServico.setQtdServicos(orcamento.getQtdServicos());
+            ordemDeServico.setPecas(pecas);
+            ordemDeServico.setServicos(servicos);
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        } finally {
+            try {
+                if (validador) {
+                    if (ordemDeServico.getId() != 0) {
+                        ordemDeServicoDAO.alterar(ordemDeServico);
+                        JOptionPane.showMessageDialog(null, "Ordem de Serviço editado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        ordemDeServicoDAO.incluir(ordemDeServico);
+                        JOptionPane.showMessageDialog(null, "Ordem de Serviço cadastrado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    TelaListagemOS telaListagemOS = new TelaListagemOS();
+                    telaListagemOS.setVisible(true);
+                    dispose();
+                }
+            } catch (Exception erro) {
+                JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        // TODO add your handling code here:
+        TelaListagemOS telaListagemOS = new TelaListagemOS();
+        telaListagemOS.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
-
-    private void jButtonExcluirPecasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirPecasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluirPecasActionPerformed
-
-    private void jButtonExcluirServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirServicosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluirServicosActionPerformed
 
     private void jButtonCadastrarColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarColaboradorActionPerformed
         // TODO add your handling code here:
@@ -820,7 +876,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
-        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        TelaExibirOrcamentoNF pagamento = new TelaExibirOrcamentoNF();
         pagamento.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
@@ -893,10 +949,6 @@ public class TelaGerarOS extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCadastrarVeiculo;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonConfigurar;
-    private javax.swing.JButton jButtonExcluirCliente;
-    private javax.swing.JButton jButtonExcluirPecas;
-    private javax.swing.JButton jButtonExcluirServicos;
-    private javax.swing.JButton jButtonExcluirVeiculo;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JButton jButtonOrdemServico;
     private javax.swing.JButton jButtonPagar;
@@ -933,11 +985,11 @@ public class TelaGerarOS extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTable jTableInformacoes4;
-    private javax.swing.JTable jTableInformacoes5;
-    private javax.swing.JTable jTableInformacoes6;
-    private javax.swing.JTable jTableInformacoes8;
-    private javax.swing.JTable jTableInformacoes9;
+    private javax.swing.JTable jTableInformacoesCliente;
+    private javax.swing.JTable jTableInformacoesOrcamento;
+    private javax.swing.JTable jTableInformacoesPeca;
+    private javax.swing.JTable jTableInformacoesServico;
+    private javax.swing.JTable jTableInformacoesVeiculo;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
@@ -945,11 +997,11 @@ public class TelaGerarOS extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextField jTextFieldNome;
-    private javax.swing.JTextField jTextFieldNome2;
-    private javax.swing.JTextField jTextFieldNome3;
-    private javax.swing.JTextField jTextFieldNome4;
-    private javax.swing.JTextField jTextFieldNome5;
-    private javax.swing.JTextField jTextFieldNome6;
+    private javax.swing.JTextField jTextFieldColaborador;
+    private javax.swing.JTextField jTextFieldNumeroOS;
+    private javax.swing.JTextField jTextFieldTotal;
+    private javax.swing.JTextField jTextFieldTotalComDesconto;
+    private javax.swing.JTextField jTextFieldTotalPecas;
+    private javax.swing.JTextField jTextFieldTotalServicos;
     // End of variables declaration//GEN-END:variables
 }

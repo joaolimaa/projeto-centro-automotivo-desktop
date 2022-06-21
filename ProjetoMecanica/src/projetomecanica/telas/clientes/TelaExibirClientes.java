@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import projetomecanica.entidades.Cliente;
 import projetomecanica.entidades.dao.ClienteDAO;
 import projetomecanica.telas.clientes.*;
-import projetomecanica.telas.documentos.TelaExibirOrcamento;
+import projetomecanica.telas.documentos.TelaExibirOrcamentoNF;
 import projetomecanica.telas.funcionarios.*;
 import projetomecanica.telas.documentos.TelaGerarOS;
 import projetomecanica.telas.documentos.TelaListagemOS;
@@ -37,6 +37,7 @@ import projetomecanica.telas.veiculos.TelaExibirVeiculos;
  */
 public class TelaExibirClientes extends javax.swing.JFrame {
     ClienteDAO clienteDAO = new ClienteDAO();
+    ArrayList<Integer> clientesId = new ArrayList<>();
 
     /**
      * Creates new form TelaTechnocar
@@ -52,6 +53,7 @@ public class TelaExibirClientes extends javax.swing.JFrame {
             
             DefaultTableModel tabela = (DefaultTableModel) jTableListagemDeCLientes.getModel();
             for(int i = 0; i < listaDeClientes.size(); i++) {
+                clientesId.add(listaDeClientes.get(i).getId());
                 tabela.addRow(listaDeClientes.get(i).listaValoresTabela(listaDeClientes.get(i).getId()));
             }
         } catch (Exception erro) {
@@ -462,7 +464,7 @@ public class TelaExibirClientes extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
-        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        TelaExibirOrcamentoNF pagamento = new TelaExibirOrcamentoNF();
         pagamento.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
@@ -568,11 +570,27 @@ public class TelaExibirClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSairMouseClicked
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        // TODO add your handling code here:
+        try {
+            int index = jTableListagemDeCLientes.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione um cliente na tabela");
+            else clienteDAO.inativarPorId(clientesId.get(index));
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        // TODO add your handling code here:
+        try {
+            int index = jTableListagemDeCLientes.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione um cliente na tabela");
+            else {
+                TelaCadastrarClientes telaCadastrarClientes = new TelaCadastrarClientes(clientesId.get(index));
+                telaCadastrarClientes.setVisible(true);
+                dispose();
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     /**

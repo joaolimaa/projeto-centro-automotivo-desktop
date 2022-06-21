@@ -24,11 +24,12 @@ import projetomecanica.entidades.Colaborador;
 import projetomecanica.entidades.Endereco;
 import projetomecanica.entidades.Telefone;
 import projetomecanica.entidades.dao.ColaboradorDAO;
+import projetomecanica.entidades.enums.StatusPessoa;
 import projetomecanica.entidades.enums.TipoDeColaborador;
 import projetomecanica.entidades.enums.TipoDeLogradouro;
 import projetomecanica.entidades.enums.TipoDeTelefone;
 import projetomecanica.telas.clientes.*;
-import projetomecanica.telas.documentos.TelaExibirOrcamento;
+import projetomecanica.telas.documentos.TelaExibirOrcamentoNF;
 import projetomecanica.telas.documentos.TelaListagemOS;
 import projetomecanica.telas.funcionarios.*;
 import projetomecanica.telas.pecas.TelaPecas;
@@ -50,8 +51,8 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
     public TelaCadastrarColaborador() {
         
         initComponents();
-         if(this.getExtendedState()!= TelaCadastrarClientes.MAXIMIZED_BOTH){
-            this.setExtendedState(TelaCadastrarClientes.MAXIMIZED_BOTH);
+         if(this.getExtendedState()!= TelaCadastrarColaborador.MAXIMIZED_BOTH){
+            this.setExtendedState(TelaCadastrarColaborador.MAXIMIZED_BOTH);
         }
         setLocationRelativeTo(null);
     }
@@ -60,8 +61,8 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
         
         try {
             initComponents();
-            if(this.getExtendedState()!= TelaCadastrarClientes.MAXIMIZED_BOTH){
-                this.setExtendedState(TelaCadastrarClientes.MAXIMIZED_BOTH);
+            if(this.getExtendedState()!= TelaCadastrarColaborador.MAXIMIZED_BOTH){
+                this.setExtendedState(TelaCadastrarColaborador.MAXIMIZED_BOTH);
             }
             setLocationRelativeTo(null);
             
@@ -783,7 +784,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
 
     private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
         // TODO add your handling code here:
-        TelaExibirOrcamento pagamento = new TelaExibirOrcamento();
+        TelaExibirOrcamentoNF pagamento = new TelaExibirOrcamentoNF();
         pagamento.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonPagarActionPerformed
@@ -877,6 +878,7 @@ public class TelaCadastrarColaborador extends javax.swing.JFrame {
             try {
                 if (validador) {
                     if (colaborador.getId() != 0) {
+                        colaborador.setStatus(StatusPessoa.ATIVO);
                         colaboradorDAO.alterar(colaborador);
                         JOptionPane.showMessageDialog(null, "Colaborador editado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
                     } else {

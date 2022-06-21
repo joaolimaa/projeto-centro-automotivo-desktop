@@ -88,11 +88,7 @@ public class OrdemDeServicoDAO implements IDaoGenerico<OrdemDeServico>{
                 objetoOrdemDeServico.setQtdPecas(Integer.parseInt(vetorString[5]));
                 objetoOrdemDeServico.setQtdServicos(Integer.parseInt(vetorString[6]));
                 
-                int total = 10 + ((objetoOrdemDeServico.getQtdPecas()*8) + (objetoOrdemDeServico.getQtdServicos()*3));
-                
-                int ultimo = 5;
-                
-                if (vetorString.length != total) throw new Exception("Faltam dados na String");
+                int ultimo = 7;
                 
                 objetoOrdemDeServico.setId(Integer.parseInt(vetorString[0]));
                 
@@ -145,8 +141,6 @@ public class OrdemDeServicoDAO implements IDaoGenerico<OrdemDeServico>{
                     ultimo++;
                     FasesDocumento fase = FasesDocumento.valueOf(vetorString[ultimo]);
                     objetoOrdemDeServico.setFase(fase);
-                    objetoOrdemDeServico.setDescricao(vetorString[ultimo]);
-                    ultimo++;
                 
                     br.close();
                     
@@ -212,11 +206,7 @@ public class OrdemDeServicoDAO implements IDaoGenerico<OrdemDeServico>{
                 objetoOrdemDeServico.setQtdPecas(Integer.parseInt(vetorString[5]));
                 objetoOrdemDeServico.setQtdServicos(Integer.parseInt(vetorString[6]));
                 
-                int total = 10 + ((objetoOrdemDeServico.getQtdPecas()*8) + (objetoOrdemDeServico.getQtdServicos()*3));
-                
-                int ultimo = 5;
-                
-                if (vetorString.length != total) throw new Exception("Faltam dados na String");
+                int ultimo = 7;
                 
                 objetoOrdemDeServico.setId(Integer.parseInt(vetorString[0]));
                     
@@ -267,8 +257,6 @@ public class OrdemDeServicoDAO implements IDaoGenerico<OrdemDeServico>{
                 ultimo++;
                 FasesDocumento fase = FasesDocumento.valueOf(vetorString[ultimo]);
                 objetoOrdemDeServico.setFase(fase);
-                objetoOrdemDeServico.setDescricao(vetorString[ultimo]);
-                ultimo++;
                 
                 listaDeOrdemDeServicos.add(objetoOrdemDeServico);
             }
@@ -332,26 +320,6 @@ public class OrdemDeServicoDAO implements IDaoGenerico<OrdemDeServico>{
             }
             
             bw.close();
-            
-        } catch (Exception erro) {
-            throw erro;
-        }
-        
-    }
-    
-    public void gerarOS(int idOrcamento) throws Exception {
-        
-        try {
-            
-            OrcamentoDAO orcamentoDao = new OrcamentoDAO();
-            Orcamento orcamento = orcamentoDao.consultarPorId(idOrcamento);
-            
-            OrdemDeServico objetoOrdemDeServico = new OrdemDeServico();
-            
-            objetoOrdemDeServico.setIdCliente(orcamento.getIdCliente());
-            objetoOrdemDeServico.setIdColaborador(orcamento.getIdColaborador());
-            objetoOrdemDeServico.setIdOrcamento(orcamento.getId());
-            objetoOrdemDeServico.setDescricao(orcamento.getDescricao());
             
         } catch (Exception erro) {
             throw erro;
