@@ -2,6 +2,8 @@ package projetomecanica.entidades;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import projetomecanica.entidades.dao.ClienteDAO;
+import projetomecanica.entidades.dao.VeiculoDAO;
 import projetomecanica.entidades.enums.FasesDocumento;
 import projetomecanica.servicos.Utils;
 
@@ -143,7 +145,7 @@ public class NotaFiscal {
     }
 
     public void setQtdPecas(int qtdPecas) {
-        this.qtdPecas = pecas.size();
+        this.qtdPecas = qtdPecas;
     }
 
     public ArrayList<Servico> getServicos() {
@@ -167,8 +169,8 @@ public class NotaFiscal {
         return qtdServicos;
     }
 
-    public void setQtdServicos() {
-        this.qtdServicos = servicos.size();
+    public void setQtdServicos(int qtdServicos) {
+        this.qtdServicos = qtdServicos;
     }
 
     public float getTotal() {
@@ -249,10 +251,19 @@ public class NotaFiscal {
     protected String listarServicos(ArrayList<Servico> servicos) {
          return servicos.stream().map(String::valueOf).collect(Collectors.joining(";"));
     }
+    
+    public Object[] listaValoresTabelaExibir() throws Exception {
+        VeiculoDAO veiculoDAO = new VeiculoDAO();
+        ClienteDAO clienteDAO = new ClienteDAO();
+        String nomeCliente = "";
+        if (clienteDAO.consultarPorId(idCliente).getCpf_cnpj().length() > 14) nomeCliente = clienteDAO.consultarPorId(idCliente).getRazaoSocial();
+        else nomeCliente = clienteDAO.consultarPorId(idCliente).getNomeCompleto();
+        return new Object[] {numeroNF, veiculoDAO.consultarPorId(idVeiculo).getModelo().getDescricao(), nomeCliente, total, fase};
+    }
 
     @Override
     public String toString() {
-        return id + ";" + idCliente + ";" + idColaborador + ";" + idVeiculo + ";" + idOrcamento + ";" + idOrdemDeServico + ";" + pecas + ";" + totalPecas + ";" + qtdPecas + ";" + servicos + ";" + totalServicos + ";" + qtdServicos + ";" + total + ";" + numeroNF + ";" + serieNF + ";" + dataGerado + ";" + dataValidade + ";" + dataPagamento + ";" + desconto + ";" + fase + '}';
+        return id + ";" + idCliente + ";" + idColaborador + ";" + idVeiculo + ";" + idOrcamento + ";" + idOrdemDeServico + ";" + qtdPecas + ";" + qtdServicos + ";" + this.listarPecas(pecas) + ";" + totalPecas + ";" + this.listarServicos(servicos) + ";" + totalServicos + ";" + total + ";" + numeroNF + ";" + serieNF + ";" + dataGerado + ";" + dataValidade + ";" + dataPagamento + ";" + desconto + ";" + fase;
     }
     
 }

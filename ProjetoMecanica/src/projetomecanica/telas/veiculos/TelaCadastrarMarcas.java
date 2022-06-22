@@ -337,7 +337,7 @@ public class TelaCadastrarMarcas extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(8, 83, 148));
 
         jButtonMenu.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 20.png"))); // NOI18N
+        jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/New Car white.png"))); // NOI18N
         jButtonMenu.setBorder(null);
         jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonMenu.addActionListener(new java.awt.event.ActionListener() {

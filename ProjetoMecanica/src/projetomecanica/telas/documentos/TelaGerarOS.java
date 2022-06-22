@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -40,6 +41,7 @@ import projetomecanica.entidades.dao.PecaDAO;
 import projetomecanica.entidades.dao.ServicoDAO;
 import projetomecanica.entidades.dao.VeiculoDAO;
 import projetomecanica.entidades.enums.FasesDocumento;
+import projetomecanica.entidades.enums.StatusVeiculo;
 import projetomecanica.telas.clientes.*;
 import projetomecanica.telas.funcionarios.*;
 /**
@@ -76,6 +78,34 @@ public class TelaGerarOS extends javax.swing.JFrame {
             }
             setLocationRelativeTo(null);
             
+            List<Orcamento> listaDeOrcamentos = orcamentoDAO.obterEntidadesPorFase(FasesDocumento.ATIVO);
+            
+            DefaultTableModel tabela = (DefaultTableModel) jTableInformacoesOrcamento.getModel();
+            for(int i = 0; i < listaDeOrcamentos.size(); i++) {
+                idOrcamentos.add(listaDeOrcamentos.get(i).getId());
+                tabela.addRow(listaDeOrcamentos.get(i).listaValoresTelaOS());
+            }
+            jTextFieldColaborador.setEnabled(false);
+            jTextFieldTotal.setEnabled(false);
+            jTextFieldTotalComDesconto.setEnabled(false);
+            jTextFieldTotalPecas.setEnabled(false);
+            jTextFieldTotalServicos.setEnabled(false);
+            
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    public TelaGerarOS(int idOS) {
+        try {
+            initComponents();
+            if(this.getExtendedState()!= TelaGerarOS.MAXIMIZED_BOTH){
+                this.setExtendedState(TelaGerarOS.MAXIMIZED_BOTH);
+            }
+            setLocationRelativeTo(null);
+            
+            ordemDeServico = ordemDeServicoDAO.consultarPorId(idOS);
+            
             ArrayList<Orcamento> listaDeOrcamentos = orcamentoDAO.obterTodasEntidades();
             
             DefaultTableModel tabela = (DefaultTableModel) jTableInformacoesOrcamento.getModel();
@@ -88,6 +118,48 @@ public class TelaGerarOS extends javax.swing.JFrame {
             jTextFieldTotalComDesconto.setEnabled(false);
             jTextFieldTotalPecas.setEnabled(false);
             jTextFieldTotalServicos.setEnabled(false);
+            
+            orcamento = orcamentoDAO.consultarPorId(ordemDeServico.getIdOrcamento());
+            cliente = clienteDAO.consultarPorId(ordemDeServico.getIdCliente());
+            veiculo = veiculoDAO.consultarPorId(ordemDeServico.getIdVeiculo());
+            pecas = ordemDeServico.getPecas();
+            servicos = ordemDeServico.getServicos();
+            colaborador = colaboradorDAO.consultarPorId(ordemDeServico.getIdColaborador());
+            jTextFieldColaborador.setText(colaborador.getNomeCompleto());
+            float total = 0;
+            float totalPecas = 0;
+            float totalServicos = 0;
+            for(int i = 0; i < ordemDeServico.getQtdPecas(); i++) {
+                totalPecas += pecas.get(i).getValorUnitario();
+            }
+            jTextFieldTotalPecas.setText(totalPecas+"");
+            for(int i = 0; i < ordemDeServico.getQtdServicos(); i++) {
+                totalServicos += servicos.get(i).getValor();
+            }
+            jTextFieldTotalServicos.setText(totalServicos+"");
+            total = totalPecas+totalServicos;
+            jTextFieldTotal.setText(total+"");
+            jTextFieldTotalComDesconto.setText((total - (orcamento.getDesconto()))+"");
+            jTextFieldNumeroOS.setText(ordemDeServico.getCodigo()+"");
+
+            DefaultTableModel tabelaCliente = (DefaultTableModel) jTableInformacoesCliente.getModel();
+            tabelaCliente.setNumRows(0);
+            tabelaCliente.addRow(cliente.listaValoresTabelaVeiculoEOS());
+
+            DefaultTableModel tabelaVeiculo = (DefaultTableModel) jTableInformacoesVeiculo.getModel();
+            tabelaVeiculo.setNumRows(0);
+            tabelaVeiculo.addRow(veiculo.listaValoresTabelaOS());
+
+            DefaultTableModel tabelaPecas = (DefaultTableModel) jTableInformacoesPeca.getModel();
+            tabelaPecas.setNumRows(0);
+            for(int i = 0; i < ordemDeServico.getQtdPecas(); i++) {
+                tabelaPecas.addRow(pecas.get(i).listaValoresTabelaOS());
+            }
+            DefaultTableModel tabelaServicos = (DefaultTableModel) jTableInformacoesServico.getModel();
+            tabelaServicos.setNumRows(0);
+            for(int i = 0; i < ordemDeServico.getQtdServicos(); i++) {
+                tabelaServicos.addRow(servicos.get(i).listaValoresTabela());
+            }
             
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
@@ -151,6 +223,8 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jScrollPane10 = new javax.swing.JScrollPane();
         jTableInformacoesServico = new javax.swing.JTable();
         jLabel23 = new javax.swing.JLabel();
+        jFormattedTextFieldData = new javax.swing.JFormattedTextField();
+        jLabel24 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
@@ -343,24 +417,35 @@ public class TelaGerarOS extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Descrição"
+                "Descrição", "Valor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jTableInformacoesServico.getTableHeader().setReorderingAllowed(false);
         jScrollPane10.setViewportView(jTableInformacoesServico);
         if (jTableInformacoesServico.getColumnModel().getColumnCount() > 0) {
             jTableInformacoesServico.getColumnModel().getColumn(0).setResizable(false);
+            jTableInformacoesServico.getColumnModel().getColumn(1).setResizable(false);
         }
 
         jLabel23.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel23.setText("Serviços");
+
+        try {
+            jFormattedTextFieldData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel24.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jLabel24.setText("Data*");
 
         javax.swing.GroupLayout jPanelFundoLayout = new javax.swing.GroupLayout(jPanelFundo);
         jPanelFundo.setLayout(jPanelFundoLayout);
@@ -397,22 +482,26 @@ public class TelaGerarOS extends javax.swing.JFrame {
                                     .addComponent(jLabel22)
                                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
-                                .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jTextFieldTotal)
-                                    .addComponent(jTextFieldTotalServicos)
-                                    .addComponent(jTextFieldColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(47, 47, 47)
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel20)
-                                    .addComponent(jLabel13)
-                                    .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTextFieldNumeroOS, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextFieldTotalPecas, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextFieldTotalComDesconto, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.LEADING)))
+                                    .addComponent(jLabel24)
+                                    .addGroup(jPanelFundoLayout.createSequentialGroup()
+                                        .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldTotal, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldTotalServicos, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldColaborador, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+                                        .addGap(47, 47, 47)
+                                        .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel20)
+                                            .addComponent(jLabel13)
+                                            .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jTextFieldNumeroOS, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jTextFieldTotalPecas, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jTextFieldTotalComDesconto, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.LEADING)))))
                                 .addGap(84, 84, 84)))))
                 .addContainerGap(191, Short.MAX_VALUE))
         );
@@ -421,7 +510,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel4)
                     .addComponent(jLabel7)
@@ -437,13 +526,16 @@ public class TelaGerarOS extends javax.swing.JFrame {
                                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanelFundoLayout.createSequentialGroup()
                                 .addComponent(jLabel23)
                                 .addGap(16, 16, 16)
                                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
+                            .addGroup(jPanelFundoLayout.createSequentialGroup()
+                                .addComponent(jLabel24)
+                                .addGap(10, 10, 10)
+                                .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFundoLayout.createSequentialGroup()
                                         .addComponent(jLabel13)
@@ -476,7 +568,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
                     .addComponent(jButtonCancelar)
                     .addComponent(jButtonSalvar)
                     .addComponent(jButtonSelecionarOrcamento))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -484,7 +576,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(8, 83, 148));
 
         jButtonMenu.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 20.png"))); // NOI18N
+        jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/New Car white.png"))); // NOI18N
         jButtonMenu.setBorder(null);
         jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -801,7 +893,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
                 DefaultTableModel tabelaServicos = (DefaultTableModel) jTableInformacoesServico.getModel();
                 tabelaServicos.setNumRows(0);
                 for(int i = 0; i < orcamento.getQtdServicos(); i++) {
-                    tabelaServicos.addRow(servicos.get(i).listaValoresTabelaOS());
+                    tabelaServicos.addRow(servicos.get(i).listaValoresTabela());
                 }
             }
         } catch (Exception erro) {
@@ -815,19 +907,22 @@ public class TelaGerarOS extends javax.swing.JFrame {
                     jTextFieldTotal.getText().equals("") ||
                     jTextFieldTotalComDesconto.getText().equals("") ||
                     jTextFieldColaborador.getText().equals("") ||
-                    jTextFieldNumeroOS.getText().equals("")) throw new Exception("Preencha todos os campos obrigatórios (*)");
+                    jTextFieldNumeroOS.getText().equals("") ||
+                    jFormattedTextFieldData.getText().equals("")) throw new Exception("Preencha todos os campos obrigatórios (*)");
             else if (jTableInformacoesOrcamento.getSelectedRow() < 0) throw new Exception("Selecione um orçamento na tabela");
             else validador = true;
             
             orcamento.setFase(FasesDocumento.FINALIZADO);
+            orcamento.setDataOrcamentoAprovado(jFormattedTextFieldData.getText());
+            veiculo.setStatus(StatusVeiculo.EM_MANUTENCAO);
             ordemDeServico.setCodigo(Integer.parseInt(jTextFieldNumeroOS.getText()));
             ordemDeServico.setDataOrdemDeServicoGerada(orcamento.getDataOrcamentoAprovado());
+            ordemDeServico.setDataOrdemDeServicoFinalizada(orcamento.getDataOrcamentoAprovado());
             ordemDeServico.setFase(FasesDocumento.ATIVO);
             ordemDeServico.setIdCliente(orcamento.getIdCliente());
             ordemDeServico.setIdColaborador(orcamento.getIdColaborador());
             ordemDeServico.setIdVeiculo(orcamento.getIdVeiculo());
             ordemDeServico.setIdOrcamento(orcamento.getId());
-            ordemDeServico.setDataOrdemDeServicoFinalizada("n/a");
             ordemDeServico.setQtdPecas(orcamento.getQtdPecas());
             ordemDeServico.setQtdServicos(orcamento.getQtdServicos());
             ordemDeServico.setPecas(pecas);
@@ -838,9 +933,16 @@ public class TelaGerarOS extends javax.swing.JFrame {
             try {
                 if (validador) {
                     if (ordemDeServico.getId() != 0) {
+                        for(int i = 0; i < ordemDeServico.getPecas().size(); i++) {
+                            ordemDeServico.getPecas().get(i).setReservadas(ordemDeServico.getPecas().get(i).getReservadas()-1);
+                            pecaDAO.alterar(ordemDeServico.getPecas().get(i));
+                        }
+                        veiculoDAO.alterar(veiculo);
+                        orcamentoDAO.alterar(orcamento);
                         ordemDeServicoDAO.alterar(ordemDeServico);
                         JOptionPane.showMessageDialog(null, "Ordem de Serviço editado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
                     } else {
+                        orcamentoDAO.alterar(orcamento);
                         ordemDeServicoDAO.incluir(ordemDeServico);
                         JOptionPane.showMessageDialog(null, "Ordem de Serviço cadastrado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -956,6 +1058,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonSelecionarOrcamento;
     private javax.swing.JButton jButtonServico;
+    private javax.swing.JFormattedTextField jFormattedTextFieldData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -971,6 +1074,7 @@ public class TelaGerarOS extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel4;

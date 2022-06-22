@@ -6,7 +6,7 @@ import projetomecanica.servicos.Utils;
 public class Telefone {
     
     private int ddd = 0;
-    private int numero = 0;
+    private int numero = 900000000;
     private TipoDeTelefone tipo = TipoDeTelefone.CELULAR;
     
     public Telefone() {}

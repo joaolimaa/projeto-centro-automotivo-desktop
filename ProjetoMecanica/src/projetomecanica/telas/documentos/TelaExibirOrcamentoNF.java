@@ -22,7 +22,9 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import projetomecanica.entidades.Cliente;
+import projetomecanica.entidades.NotaFiscal;
 import projetomecanica.entidades.Orcamento;
+import projetomecanica.entidades.dao.NotaFiscalDAO;
 import projetomecanica.entidades.dao.OrcamentoDAO;
 import projetomecanica.telas.clientes.*;
 import projetomecanica.telas.funcionarios.*;
@@ -39,6 +41,9 @@ public class TelaExibirOrcamentoNF extends javax.swing.JFrame {
     OrcamentoDAO orcamentoDAO = new OrcamentoDAO();
     Orcamento orcamento = new Orcamento();
     ArrayList<Integer> idOrcamentos = new ArrayList<>();
+    NotaFiscalDAO notaFiscalDAO = new NotaFiscalDAO();
+    NotaFiscal notaFiscal = new NotaFiscal();
+    ArrayList<Integer> idNF = new ArrayList<>();
     
     public TelaExibirOrcamentoNF() {
         try {
@@ -50,9 +55,18 @@ public class TelaExibirOrcamentoNF extends javax.swing.JFrame {
             
             ArrayList<Orcamento> listaDeOrcamentos = orcamentoDAO.obterTodasEntidades();
             
-            DefaultTableModel tabela = (DefaultTableModel) jTableListagemDeOrcamentos.getModel();
+            DefaultTableModel tabelaOrcamento = (DefaultTableModel) jTableListagemDeOrcamentos.getModel();
             for(int i = 0; i < listaDeOrcamentos.size(); i++) {
-                tabela.addRow(listaDeOrcamentos.get(i).listaValoresTabelaExibir());
+                idOrcamentos.add(listaDeOrcamentos.get(i).getId());
+                tabelaOrcamento.addRow(listaDeOrcamentos.get(i).listaValoresTabelaExibir());
+            }
+            
+            ArrayList<NotaFiscal> listaDeNotaFiscais = notaFiscalDAO.obterTodasEntidades();
+            
+            DefaultTableModel tabelaNF = (DefaultTableModel) jTableListagemDeNFs.getModel();
+            for(int i = 0; i < listaDeNotaFiscais.size(); i++) {
+                idNF.add(listaDeNotaFiscais.get(i).getId());
+                tabelaNF.addRow(listaDeNotaFiscais.get(i).listaValoresTabelaExibir());
             }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
@@ -649,11 +663,32 @@ public class TelaExibirOrcamentoNF extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSairMouseClicked
 
     private void jButtonExcluirNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirNFActionPerformed
-        // TODO add your handling code here:
+        try {
+            int index = jTableListagemDeNFs.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione uma Nota Fiscal na tabela");
+            else {
+                notaFiscalDAO.excluir(idNF.get(index));
+                TelaExibirOrcamentoNF telaExibirOrcamentoNF = new TelaExibirOrcamentoNF();
+                telaExibirOrcamentoNF.setVisible(true);
+                dispose();
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonExcluirNFActionPerformed
 
     private void jButtonEditarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarNFActionPerformed
-        // TODO add your handling code here:
+        try {
+            int index = jTableListagemDeNFs.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione uma Nota Fiscal na tabela");
+            else {
+                TelaGerarNF telaGerarNF = new TelaGerarNF(idNF.get(index));
+                telaGerarNF.setVisible(true);
+                dispose();
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonEditarNFActionPerformed
 
     private void jButtonNovoOrcamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoOrcamentoActionPerformed
@@ -664,11 +699,32 @@ public class TelaExibirOrcamentoNF extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonNovoOrcamentoActionPerformed
 
     private void jButtonExcluirOrcamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirOrcamentoActionPerformed
-        // TODO add your handling code here:
+        try {
+            int index = jTableListagemDeOrcamentos.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione um orçamento na tabela");
+            else {
+                orcamentoDAO.excluir(idOrcamentos.get(index));
+                TelaExibirOrcamentoNF telaExibirOrcamentoNF = new TelaExibirOrcamentoNF();
+                telaExibirOrcamentoNF.setVisible(true);
+                dispose();
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonExcluirOrcamentoActionPerformed
 
     private void jButtonEditarOrcamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarOrcamentoActionPerformed
-        // TODO add your handling code here:
+        try {
+            int index = jTableListagemDeOrcamentos.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione um orçamento na tabela");
+            else {
+                TelaGerarOrcamento telaGerarOrcamento = new TelaGerarOrcamento(idOrcamentos.get(index));
+                telaGerarOrcamento.setVisible(true);
+                dispose();
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonEditarOrcamentoActionPerformed
 
     /**

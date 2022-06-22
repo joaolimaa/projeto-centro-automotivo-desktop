@@ -161,6 +161,11 @@ public class OrdemDeServico {
         else nomeCliente = clienteDAO.consultarPorId(idCliente).getNomeCompleto();
         return new Object[] {codigo, colaboradorDAO.consultarPorId(idColaborador).getNomeCompleto(), veiculoDAO.consultarPorId(idVeiculo).getModelo().getDescricao(), nomeCliente,qtdPecas, qtdServicos, fase};
     }
+    
+    public Object[] listaValoresTelaNF() throws Exception {
+        VeiculoDAO veiculoDAO = new VeiculoDAO();
+        return new Object[] {codigo, veiculoDAO.consultarPorId(idVeiculo).getModelo().getDescricao()};
+    }
 
     @Override
     public String toString() {

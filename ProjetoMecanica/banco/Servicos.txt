@@ -1,2 +1,5 @@
 14;Troca de correia;150.0
 36;Limpeza de bicos;200.0
+45;Troca do Amortecedor;100.0
+46;Troca das molas;54.0
+58;Troca de pneu;40.0

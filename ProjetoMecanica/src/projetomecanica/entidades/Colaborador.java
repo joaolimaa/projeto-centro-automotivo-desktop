@@ -1,5 +1,6 @@
 package projetomecanica.entidades;
 
+import projetomecanica.entidades.dao.ControleDeAcessoDAO;
 import projetomecanica.entidades.enums.StatusPessoa;
 import projetomecanica.entidades.enums.TipoDeColaborador;
 import projetomecanica.servicos.Utils;
@@ -184,6 +185,19 @@ public class Colaborador {
     
     public Object[] listaValoresTabela() throws Exception {
         return new Object[] {nomeCompleto, cpf, tipo, status};
+    }
+    
+    public Object[] listaValoresTabelaOrcamentoFinal() throws Exception {
+        return new Object[] {nomeCompleto, 0};
+    }
+    
+    public Object[] listaValoresTabelaOrcamento() throws Exception {
+        return new Object[] {nomeCompleto, cpf};
+    }
+    
+    public Object[] listaValoresTabelaAcesso() throws Exception {
+        ControleDeAcessoDAO controleDeAcessoDAO = new ControleDeAcessoDAO();
+        return new Object[] {nomeCompleto, cpf, controleDeAcessoDAO.consultarPorId(idControleDeAcesso).getDescricao()};
     }
 
     @Override

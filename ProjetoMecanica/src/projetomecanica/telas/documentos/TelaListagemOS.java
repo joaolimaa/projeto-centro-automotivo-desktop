@@ -40,6 +40,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
 
     OrdemDeServicoDAO ordemDeServicoDAO = new OrdemDeServicoDAO();
     ArrayList<Integer> ordemDeServicosId = new ArrayList<>();
+    ArrayList<OrdemDeServico> listaDeOrdemDeServicos = new ArrayList<>();
     
     public TelaListagemOS() {
         try {
@@ -49,7 +50,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
             }
             setLocationRelativeTo(null);
             
-            ArrayList<OrdemDeServico> listaDeOrdemDeServicos = ordemDeServicoDAO.obterTodasEntidades();
+            listaDeOrdemDeServicos = ordemDeServicoDAO.obterTodasEntidades();
             
             DefaultTableModel tabela = (DefaultTableModel) jTableListagemDeOS.getModel();
             for(int i = 0; i < listaDeOrdemDeServicos.size(); i++) {
@@ -157,7 +158,7 @@ public class TelaListagemOS extends javax.swing.JFrame {
             }
         });
 
-        jTableListagemDeOS.setForeground(new java.awt.Color(255, 255, 255));
+        jTableListagemDeOS.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jTableListagemDeOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -573,11 +574,32 @@ public class TelaListagemOS extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSairMouseClicked
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        // TODO add your handling code here:
+        try {
+            int index = jTableListagemDeOS.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione uma Ordem de Serviço na tabela");
+            else {
+                ordemDeServicoDAO.inativarPorId(ordemDeServicosId.get(index));
+                TelaListagemOS telaListagemOS = new TelaListagemOS();
+                telaListagemOS.setVisible(true);
+                dispose();
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        // TODO add your handling code here:
+        try {
+            int index = jTableListagemDeOS.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione uma Ordem de Serviço na tabela");
+            else {
+                TelaGerarOS telaGerarOS = new TelaGerarOS(ordemDeServicosId.get(index));
+                telaGerarOS.setVisible(true);
+                dispose();
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     /**

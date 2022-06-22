@@ -44,10 +44,6 @@ public class Servico {
     public Object[] listaValoresTabela() {
         return new Object[] {descricao, valor};
     }
-    
-    public Object[] listaValoresTabelaOS() {
-        return new Object[] {descricao};
-    }
 
     @Override
     public String toString() {

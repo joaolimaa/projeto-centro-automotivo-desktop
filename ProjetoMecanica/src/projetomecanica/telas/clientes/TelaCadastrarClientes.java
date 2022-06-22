@@ -982,17 +982,21 @@ public class TelaCadastrarClientes extends javax.swing.JFrame {
             telefone1.setTipo(tipoTelefone1);
             cliente.setTelefone1(telefone1);
             
-            Telefone telefone2 = new Telefone();
-            telefone2.setNumero(Integer.parseInt(DDD2), Integer.parseInt(numero2));
-            TipoDeTelefone tipoTelefone2 = TipoDeTelefone.valueOf(jComboBoxTipoTelefone2.getSelectedItem().toString());
-            telefone1.setTipo(tipoTelefone2);
-            cliente.setTelefone2(telefone2);
+            if(DDD2.length() > 0) {
+                Telefone telefone2 = new Telefone();
+                telefone2.setNumero(Integer.parseInt(DDD2), Integer.parseInt(numero2));
+                TipoDeTelefone tipoTelefone2 = TipoDeTelefone.valueOf(jComboBoxTipoTelefone2.getSelectedItem().toString());
+                telefone1.setTipo(tipoTelefone2);
+                cliente.setTelefone2(telefone2);
+            }
             
-            Telefone telefone3 = new Telefone();
-            telefone3.setNumero(Integer.parseInt(DDD3), Integer.parseInt(numero3));
-            TipoDeTelefone tipoTelefone3 = TipoDeTelefone.valueOf(jComboBoxTipoTelefone3.getSelectedItem().toString());
-            telefone1.setTipo(tipoTelefone3);
-            cliente.setTelefone3(telefone3);
+            if(DDD3.length() > 0) {
+                Telefone telefone3 = new Telefone();
+                telefone3.setNumero(Integer.parseInt(DDD3), Integer.parseInt(numero3));
+                TipoDeTelefone tipoTelefone3 = TipoDeTelefone.valueOf(jComboBoxTipoTelefone3.getSelectedItem().toString());
+                telefone1.setTipo(tipoTelefone3);
+                cliente.setTelefone3(telefone3);
+            }
             
             Endereco endereco = new Endereco();
             TipoDeLogradouro tipoDeLogradouro = TipoDeLogradouro.valueOf(jComboBoxTipoLogradouro.getSelectedItem().toString());

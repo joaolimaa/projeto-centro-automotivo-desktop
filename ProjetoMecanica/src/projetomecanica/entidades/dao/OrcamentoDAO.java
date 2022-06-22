@@ -87,8 +87,6 @@ public class OrcamentoDAO implements IDaoGenerico<Orcamento>{
                 
                 objetoOrcamento.setQtdPecas(Integer.parseInt(vetorString[4]));
                 objetoOrcamento.setQtdServicos(Integer.parseInt(vetorString[5]));
-                System.out.println(objetoOrcamento.getQtdPecas());
-                System.out.println(objetoOrcamento.getQtdServicos());
                 
                 int total = 15 + ((objetoOrcamento.getQtdPecas()*8) + (objetoOrcamento.getQtdServicos()*3));
                 
@@ -97,7 +95,6 @@ public class OrcamentoDAO implements IDaoGenerico<Orcamento>{
                 objetoOrcamento.setId(Integer.parseInt(vetorString[0]));
                 
                 if (objetoOrcamento.getId() == id) {
-                    System.out.println(objetoOrcamento.getId());
                     
                     objetoOrcamento.setIdCliente(Integer.parseInt(vetorString[1]));
                     objetoOrcamento.setIdColaborador(Integer.parseInt(vetorString[2]));

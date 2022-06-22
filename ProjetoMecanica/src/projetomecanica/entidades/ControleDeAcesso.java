@@ -116,6 +116,10 @@ public class ControleDeAcesso {
     public void setAcessoNotaFiscal(boolean acessoNotaFiscal) {
         this.acessoNotaFiscal = acessoNotaFiscal;
     }
+    
+    public Object[] listaValoresTela() throws Exception {
+        return new Object[] { descricao };
+    }
 
     @Override
     public String toString() {

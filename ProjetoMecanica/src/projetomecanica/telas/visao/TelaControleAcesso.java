@@ -12,6 +12,10 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,6 +25,11 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import projetomecanica.entidades.Colaborador;
+import projetomecanica.entidades.ControleDeAcesso;
+import projetomecanica.entidades.dao.ColaboradorDAO;
+import projetomecanica.entidades.dao.ControleDeAcessoDAO;
+import projetomecanica.entidades.dao.MarcaDAO;
 import projetomecanica.telas.clientes.*;
 import projetomecanica.telas.documentos.TelaExibirOrcamentoNF;
 import projetomecanica.telas.documentos.TelaGerarOS;
@@ -33,16 +42,74 @@ import projetomecanica.telas.servicos.TelaServicos;
  * @author Dell
  */
 public class TelaControleAcesso extends javax.swing.JFrame {
+    
+    ArrayList<ControleDeAcesso> listaDeAcesso = new ArrayList<>();
+    ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
+    ArrayList<Integer> colaboradoresId = new ArrayList<>();
+    Colaborador colaborador = new Colaborador();
+    boolean validador = false;
 
     /**
      * Creates new form TelaTechnocar
      */
     public TelaControleAcesso() {
-        initComponents();
-         if(this.getExtendedState()!= TelaControleAcesso.MAXIMIZED_BOTH){
-            this.setExtendedState(TelaControleAcesso.MAXIMIZED_BOTH);
+        try {
+            initComponents();
+            if(this.getExtendedState()!= TelaControleAcesso.MAXIMIZED_BOTH){
+                this.setExtendedState(TelaControleAcesso.MAXIMIZED_BOTH);
+            }
+            setLocationRelativeTo(null);
+            
+            ControleDeAcessoDAO controleDeAcessoDAO = new ControleDeAcessoDAO();
+            listaDeAcesso = controleDeAcessoDAO.obterTodasEntidades();
+            for (int i = 0; i < listaDeAcesso.size(); i++) {
+                jComboBoxAcesso.addItem(listaDeAcesso.get(i).getDescricao());
+            }
+            
+            List<Colaborador> listaDeColaboradores = colaboradorDAO.obterTodasEntidades();
+            
+            DefaultTableModel tabela = (DefaultTableModel) jTableInformacoesClolaboradores.getModel();
+            for(int i = 0; i < listaDeColaboradores.size(); i++) {
+                colaboradoresId.add(listaDeColaboradores.get(i).getId());
+                tabela.addRow(listaDeColaboradores.get(i).listaValoresTabelaAcesso());
+            }
+            
+            jTextFieldSenha.setEnabled(false);
+            jComboBoxAcesso.setEnabled(false);
+        } catch (Exception ex) {
+            Logger.getLogger(TelaControleAcesso.class.getName()).log(Level.SEVERE, null, ex);
         }
-        setLocationRelativeTo(null);
+    }
+    
+    public TelaControleAcesso(int id) {
+        try {
+            initComponents();
+            if(this.getExtendedState()!= TelaControleAcesso.MAXIMIZED_BOTH){
+                this.setExtendedState(TelaControleAcesso.MAXIMIZED_BOTH);
+            }
+            setLocationRelativeTo(null);
+            
+            ControleDeAcessoDAO controleDeAcessoDAO = new ControleDeAcessoDAO();
+            listaDeAcesso = controleDeAcessoDAO.obterTodasEntidades();
+            for (int i = 0; i < listaDeAcesso.size(); i++) {
+                jComboBoxAcesso.addItem(listaDeAcesso.get(i).getDescricao());
+            }
+            
+            List<Colaborador> listaDeColaboradores = colaboradorDAO.obterTodasEntidades();
+            
+            DefaultTableModel tabela = (DefaultTableModel) jTableInformacoesClolaboradores.getModel();
+            for(int i = 0; i < listaDeColaboradores.size(); i++) {
+                colaboradoresId.add(listaDeColaboradores.get(i).getId());
+                tabela.addRow(listaDeColaboradores.get(i).listaValoresTabelaAcesso());
+            }
+            
+            colaborador = colaboradorDAO.consultarPorId(id);
+            
+            jTextFieldSenha.setEnabled(true);
+            jComboBoxAcesso.setEnabled(true);
+        } catch (Exception ex) {
+            Logger.getLogger(TelaControleAcesso.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -75,13 +142,13 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jButtonSalvarCadastro = new javax.swing.JButton();
-        jButtonCancelar = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableInformacoes = new javax.swing.JTable();
+        jTableInformacoesClolaboradores = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jTextFieldAnoModelo2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jTextFieldSenha = new javax.swing.JTextField();
+        jComboBoxAcesso = new javax.swing.JComboBox<>();
         jButtonConfigControleAcesso = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButtonMenu = new javax.swing.JButton();
@@ -142,40 +209,44 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         jButtonSalvarCadastro.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonSalvarCadastro.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalvarCadastro.setText("Salvar");
-        jButtonSalvarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jButtonCancelar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jButtonCancelar.setText("Editar");
-        jButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSalvarCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonSalvarCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelarActionPerformed(evt);
+                jButtonSalvarCadastroActionPerformed(evt);
             }
         });
 
-        jTableInformacoes.setModel(new javax.swing.table.DefaultTableModel(
+        jButtonEditar.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        jButtonEditar.setText("Editar");
+        jButtonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
+
+        jTableInformacoesClolaboradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Nome", "CPF"
+                "Nome", "CPF", "Acesso"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableInformacoes);
-        if (jTableInformacoes.getColumnModel().getColumnCount() > 0) {
-            jTableInformacoes.getColumnModel().getColumn(0).setResizable(false);
-            jTableInformacoes.getColumnModel().getColumn(1).setResizable(false);
+        jTableInformacoesClolaboradores.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTableInformacoesClolaboradores);
+        if (jTableInformacoesClolaboradores.getColumnModel().getColumnCount() > 0) {
+            jTableInformacoesClolaboradores.getColumnModel().getColumn(0).setResizable(false);
+            jTableInformacoesClolaboradores.getColumnModel().getColumn(1).setResizable(false);
+            jTableInformacoesClolaboradores.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -184,9 +255,9 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jLabel21.setText("Senha*");
 
-        jTextFieldAnoModelo2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAnoModelo2ActionPerformed(evt);
+                jTextFieldSenhaActionPerformed(evt);
             }
         });
 
@@ -194,7 +265,7 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         jButtonConfigControleAcesso.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jButtonConfigControleAcesso.setForeground(new java.awt.Color(255, 255, 255));
         jButtonConfigControleAcesso.setText("Configurar Controle de Acesso");
-        jButtonConfigControleAcesso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonConfigControleAcesso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonConfigControleAcesso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConfigControleAcessoActionPerformed(evt);
@@ -220,13 +291,13 @@ public class TelaControleAcesso extends javax.swing.JFrame {
                                     .addComponent(jLabel21)
                                     .addGroup(jPanelFundoLayout.createSequentialGroup()
                                         .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTextFieldAnoModelo2, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jTextFieldSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jComboBoxAcesso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(75, 75, 75)
                                         .addComponent(jButtonSalvarCadastro))))
                             .addGroup(jPanelFundoLayout.createSequentialGroup()
                                 .addGap(28, 28, 28)
-                                .addComponent(jButtonCancelar)
+                                .addComponent(jButtonEditar)
                                 .addGap(32, 32, 32)
                                 .addComponent(jButtonConfigControleAcesso))))
                     .addGroup(jPanelFundoLayout.createSequentialGroup()
@@ -242,7 +313,7 @@ public class TelaControleAcesso extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonCancelar)
+                        .addComponent(jButtonEditar)
                         .addComponent(jButtonConfigControleAcesso))
                     .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanelFundoLayout.createSequentialGroup()
@@ -250,12 +321,12 @@ public class TelaControleAcesso extends javax.swing.JFrame {
                             .addGap(136, 136, 136)
                             .addComponent(jLabel10)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(61, 61, 61)
                             .addComponent(jLabel21)
                             .addGap(3, 3, 3)
                             .addGroup(jPanelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextFieldAnoModelo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jButtonSalvarCadastro)))
                         .addGroup(jPanelFundoLayout.createSequentialGroup()
                             .addGap(33, 33, 33)
@@ -268,9 +339,9 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(8, 83, 148));
 
         jButtonMenu.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 20.png"))); // NOI18N
+        jButtonMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/New Car white.png"))); // NOI18N
         jButtonMenu.setBorder(null);
-        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMenuActionPerformed(evt);
@@ -280,7 +351,7 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 43.png"))); // NOI18N
         jButtonSair.setBorder(null);
-        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonSairMouseClicked(evt);
@@ -290,7 +361,7 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         jButtonConfigurar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonConfigurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 42.png"))); // NOI18N
         jButtonConfigurar.setBorder(null);
-        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonConfigurarMouseClicked(evt);
@@ -329,7 +400,7 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         jButtonCadastrarCliente.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 4.png"))); // NOI18N
         jButtonCadastrarCliente.setBorder(null);
-        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarClienteActionPerformed(evt);
@@ -339,7 +410,7 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         jButtonCadastrarVeiculo.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarVeiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 5.png"))); // NOI18N
         jButtonCadastrarVeiculo.setBorder(null);
-        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarVeiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarVeiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarVeiculoActionPerformed(evt);
@@ -349,7 +420,7 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         jButtonOrdemServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonOrdemServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 7.png"))); // NOI18N
         jButtonOrdemServico.setBorder(null);
-        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonOrdemServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonOrdemServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonOrdemServicoActionPerformed(evt);
@@ -359,7 +430,7 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         jButtonServico.setBackground(new java.awt.Color(0, 0, 0));
         jButtonServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 8.png"))); // NOI18N
         jButtonServico.setBorder(null);
-        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonServico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonServicoActionPerformed(evt);
@@ -369,7 +440,7 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         jButtonPagar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 9.png"))); // NOI18N
         jButtonPagar.setBorder(null);
-        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonPagar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPagarActionPerformed(evt);
@@ -379,7 +450,7 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         jButtonCadastrarColaborador.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 10.png"))); // NOI18N
         jButtonCadastrarColaborador.setBorder(null);
-        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarColaborador.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarColaboradorActionPerformed(evt);
@@ -389,7 +460,7 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         jButtonCadastrarPecas.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrarPecas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projetomecanica/telas/visao/icones/Ativo 18.png"))); // NOI18N
         jButtonCadastrarPecas.setBorder(null);
-        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarPecas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonCadastrarPecas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCadastrarPecasActionPerformed(evt);
@@ -512,12 +583,19 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonCadastrarColaboradorActionPerformed
 
-    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        // TODO add your handling code here:
-        TelaExibirVeiculos veiculo = new TelaExibirVeiculos();
-        veiculo.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButtonCancelarActionPerformed
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        try {
+            int index = jTableInformacoesClolaboradores.getSelectedRow();
+            if (index == -1) throw new Exception("Selecione um Colaborador na tabela");
+            else {
+                TelaControleAcesso telaControleAcesso = new TelaControleAcesso(colaboradoresId.get(index));
+                telaControleAcesso.setVisible(true);
+                dispose();
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSairMouseClicked
         // TODO add your handling code here:
@@ -595,9 +673,9 @@ public class TelaControleAcesso extends javax.swing.JFrame {
         popup.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_jButtonConfigurarMouseClicked
 
-    private void jTextFieldAnoModelo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAnoModelo2ActionPerformed
+    private void jTextFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAnoModelo2ActionPerformed
+    }//GEN-LAST:event_jTextFieldSenhaActionPerformed
 
     private void jButtonConfigControleAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfigControleAcessoActionPerformed
         // TODO add your handling code here:
@@ -605,6 +683,31 @@ public class TelaControleAcesso extends javax.swing.JFrame {
             acesso.setVisible(true);
             dispose();
     }//GEN-LAST:event_jButtonConfigControleAcessoActionPerformed
+
+    private void jButtonSalvarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarCadastroActionPerformed
+        try {
+            if (jTextFieldSenha.getText().equals("")) throw new Exception("Preencha todos os campos obrigatórios (*)");
+            else validador = true;
+            
+            colaborador.setSenha(jTextFieldSenha.getText());
+            ControleDeAcessoDAO controleDeAcessoDAO = new ControleDeAcessoDAO();
+            colaborador.setIdControleDeAcesso(controleDeAcessoDAO.consultaByDescricao(jComboBoxAcesso.getSelectedItem().toString()));
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+        } finally {
+            try {
+                if (validador) {
+                    colaboradorDAO.alterar(colaborador);
+                    JOptionPane.showMessageDialog(null, "Usuário editado com sucesso!", "Aviso:", JOptionPane.INFORMATION_MESSAGE);
+                    TelaControleAcesso telaControleAcesso = new TelaControleAcesso();
+                    telaControleAcesso.setVisible(true);
+                    dispose();
+                }
+            } catch (Exception erro) {
+                JOptionPane.showMessageDialog(null, erro, "Aviso:", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButtonSalvarCadastroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -644,16 +747,16 @@ public class TelaControleAcesso extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCadastrarColaborador;
     private javax.swing.JButton jButtonCadastrarPecas;
     private javax.swing.JButton jButtonCadastrarVeiculo;
-    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonConfigControleAcesso;
     private javax.swing.JButton jButtonConfigurar;
+    private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonMenu;
     private javax.swing.JButton jButtonOrdemServico;
     private javax.swing.JButton jButtonPagar;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonSalvarCadastro;
     private javax.swing.JButton jButtonServico;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxAcesso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -672,7 +775,7 @@ public class TelaControleAcesso extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelFundo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableInformacoes;
+    private javax.swing.JTable jTableInformacoesClolaboradores;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
@@ -680,6 +783,6 @@ public class TelaControleAcesso extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextField jTextFieldAnoModelo2;
+    private javax.swing.JTextField jTextFieldSenha;
     // End of variables declaration//GEN-END:variables
 }

@@ -81,7 +81,7 @@ public class ControleDeAcessoDAO implements IDaoGenerico<ControleDeAcesso>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 12) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 11) throw new Exception("Faltam dados na String");
                 
                 objetoControleDeAcesso.setId(Integer.parseInt(vetorString[0]));
                 
@@ -91,12 +91,12 @@ public class ControleDeAcessoDAO implements IDaoGenerico<ControleDeAcesso>{
                     objetoControleDeAcesso.setAcessoCliente(Boolean.getBoolean(vetorString[2]));
                     objetoControleDeAcesso.setAcessoColaborador(Boolean.getBoolean(vetorString[3]));
                     objetoControleDeAcesso.setAcessoPeca(Boolean.getBoolean(vetorString[4]));
-                    objetoControleDeAcesso.setAcessoServico(Boolean.getBoolean(vetorString[6]));
-                    objetoControleDeAcesso.setAcessoVeiculo(Boolean.getBoolean(vetorString[7]));
-                    objetoControleDeAcesso.setAcessoOrcamento(Boolean.getBoolean(vetorString[8]));
-                    objetoControleDeAcesso.setAcessoNotaFiscal(Boolean.getBoolean(vetorString[9]));
-                    objetoControleDeAcesso.setAcessoOrdemDeServico(Boolean.getBoolean(vetorString[10]));
-                    objetoControleDeAcesso.setAcessoConfiguracao(Boolean.getBoolean(vetorString[11]));
+                    objetoControleDeAcesso.setAcessoServico(Boolean.getBoolean(vetorString[5]));
+                    objetoControleDeAcesso.setAcessoVeiculo(Boolean.getBoolean(vetorString[6]));
+                    objetoControleDeAcesso.setAcessoOrcamento(Boolean.getBoolean(vetorString[7]));
+                    objetoControleDeAcesso.setAcessoNotaFiscal(Boolean.getBoolean(vetorString[8]));
+                    objetoControleDeAcesso.setAcessoOrdemDeServico(Boolean.getBoolean(vetorString[9]));
+                    objetoControleDeAcesso.setAcessoConfiguracao(Boolean.getBoolean(vetorString[10]));
                 
                     br.close();
                     
@@ -159,19 +159,19 @@ public class ControleDeAcessoDAO implements IDaoGenerico<ControleDeAcesso>{
                 
                 String vetorString[] = linha.split(";");
                 
-                if (vetorString.length != 12) throw new Exception("Faltam dados na String");
+                if (vetorString.length != 11) throw new Exception("Faltam dados na String");
                 
                 objetoControleDeAcesso.setId(Integer.parseInt(vetorString[0]));
                 objetoControleDeAcesso.setDescricao(vetorString[1]);
                 objetoControleDeAcesso.setAcessoCliente(Boolean.getBoolean(vetorString[2]));
                 objetoControleDeAcesso.setAcessoColaborador(Boolean.getBoolean(vetorString[3]));
                 objetoControleDeAcesso.setAcessoPeca(Boolean.getBoolean(vetorString[4]));
-                objetoControleDeAcesso.setAcessoServico(Boolean.getBoolean(vetorString[6]));
-                objetoControleDeAcesso.setAcessoVeiculo(Boolean.getBoolean(vetorString[7]));
-                objetoControleDeAcesso.setAcessoOrcamento(Boolean.getBoolean(vetorString[8]));
-                objetoControleDeAcesso.setAcessoNotaFiscal(Boolean.getBoolean(vetorString[9]));
-                objetoControleDeAcesso.setAcessoOrdemDeServico(Boolean.getBoolean(vetorString[10]));
-                objetoControleDeAcesso.setAcessoConfiguracao(Boolean.getBoolean(vetorString[11]));
+                objetoControleDeAcesso.setAcessoServico(Boolean.getBoolean(vetorString[5]));
+                objetoControleDeAcesso.setAcessoVeiculo(Boolean.getBoolean(vetorString[6]));
+                objetoControleDeAcesso.setAcessoOrcamento(Boolean.getBoolean(vetorString[7]));
+                objetoControleDeAcesso.setAcessoNotaFiscal(Boolean.getBoolean(vetorString[8]));
+                objetoControleDeAcesso.setAcessoOrdemDeServico(Boolean.getBoolean(vetorString[9]));
+                objetoControleDeAcesso.setAcessoConfiguracao(Boolean.getBoolean(vetorString[10]));
                         
                 listaDeControleDeAcessos.add(objetoControleDeAcesso);
             }
@@ -205,17 +205,35 @@ public class ControleDeAcessoDAO implements IDaoGenerico<ControleDeAcesso>{
         
         try {
             
-            ArrayList<ControleDeAcesso> listaDePecas = this.obterTodasEntidades();
+            ArrayList<ControleDeAcesso> listaDeAcessos = this.obterTodasEntidades();
             
             FileWriter fw = new FileWriter(nomeDoArquivoNoDisco);
             
             BufferedWriter bw = new BufferedWriter(fw);
             
-            for (int i = 0; i < listaDePecas.size(); i++) {
-                if (listaDePecas.get(i).getId() != id) bw.write(listaDePecas.get(i).toString()+"\n");
+            for (int i = 0; i < listaDeAcessos.size(); i++) {
+                if (listaDeAcessos.get(i).getId() != id) bw.write(listaDeAcessos.get(i).toString()+"\n");
             }
             
             bw.close();
+            
+        } catch (Exception erro) {
+            throw erro;
+        }
+        
+    }
+    
+    public int consultaByDescricao(String descricao) throws Exception {
+        
+        try {
+            
+            ArrayList<ControleDeAcesso> listaDeControleDeAcessos = obterTodasEntidades();
+            
+            for (int i = 0; i < listaDeControleDeAcessos.size(); i++) {
+                if(listaDeControleDeAcessos.get(i).getDescricao().equals(descricao)) return listaDeControleDeAcessos.get(i).getId();
+            }
+            
+            throw new Exception("Controle de Acesso não identificado");
             
         } catch (Exception erro) {
             throw erro;
