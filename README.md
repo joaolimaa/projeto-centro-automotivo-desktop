@@ -4,7 +4,7 @@
 - Eduardo Lemes Ribeiro
 - João Paulo de Lima Gonçalves
 
-Projeto com tema de Centro Automotivo desenvolvido em Java para desktop, que tem como funcionalidades os CRUDs:
+Projeto com tema de Centro Automotivo desenvolvido em Java e Java Swing para telas, que tem como funcionalidades os CRUDs:
 - Clientes
 - Colaboradores
 - Veículos
