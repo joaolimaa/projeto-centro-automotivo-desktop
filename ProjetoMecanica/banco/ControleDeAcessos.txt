@@ -1,3 +1,0 @@
-41;Administrador;false;false;false;false;false;false;false;false;false
-42;Consultor Técnico;false;false;false;false;false;false;false;false;false
-47;Mecânico;false;false;false;false;false;false;false;false;false

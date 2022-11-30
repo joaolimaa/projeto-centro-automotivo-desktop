@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Hello, Spring and JSF World!</title>
+</h:head>
+<h:body>
+	<h:form>
+
+		<ui:include src="menu.xhtml" />
+		
+	    <p:panel header="Exemplo">
+	        <h:outputText id="msg" value="#{springManagedBean.message}"/>
+	        <p:commandButton update="msg" action="#{springManagedBean.acao}" value="Clique"/>
+	    </p:panel>
+	    
+		<p:dataTable var="servico" value="#{springManagedBean.servicos}" allowUnsorting="true" sortMode="single">
+			<p:column sortBy="#{servico.id}" headerText="Id">
+				<h:outputText value="#{servico.id}"/>
+			</p:column>
+			<p:column sortBy="#{servico.nome}" headerText="Nome">
+				<h:outputText value="#{servico.nome}"/>
+			</p:column>
+			<p:column sortBy="#{servico.preco}" headerText="Preço">
+				<h:outputText value="#{servico.preco}"/>
+			</p:column>
+		</p:dataTable>	    
+	</h:form>
+
+
+</h:body>
+</html>

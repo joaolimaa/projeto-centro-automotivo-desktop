@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+	<title>Hello, Spring and JSF World!</title>
+</h:head>
+<h:body>
+	<h:form id="form">
+		<ui:include src="menu.xhtml" />
+		<p:commandButton styleClass="btn.adicionar" value="Adicionar Veículo" type="button"
+			icon="pi pi-external-link" onclick="PF('formulario').show()" />
+		<p:dataTable id="lista" var="veiculo"
+			value="#{veiculoControl.veiculos}" allowUnsorting="true"
+			sortMode="single">
+			<p:column sortBy="#{veiculo.id}" headerText="Id">
+				<h:outputText value="#{veiculo.id}" />
+			</p:column>
+			<p:column sortBy="#{veiculo.modelo}" headerText="Modelo">
+				<h:outputText value="#{veiculo.modelo}" />
+			</p:column>
+			<p:column sortBy="#{veiculo.placa}" headerText="Placa">
+				<h:outputText value="#{veiculo.placa}" />
+			</p:column>
+			<p:column sortBy="#{veiculo.ano}" headerText="Ano">
+				<h:outputText value="#{veiculo.ano}" />
+			</p:column>
+			<p:column sortBy="#{veiculo.anoModelo}" headerText="Ano Modelo">
+				<h:outputText value="#{veiculo.anoModelo}" />
+			</p:column>
+			<p:column sortBy="#{veiculo.km}" headerText="Quilometragem">
+				<h:outputText value="#{veiculo.km}" />
+			</p:column>
+			<p:column sortBy="#{veiculo.modelo.marca}" headerText="Marca">
+				<h:outputText value="#{veiculo.modelo.marca}" />
+			</p:column>
+
+			<p:selectBooleanCheckbox value="veiculo.whatsapp" itemLabel="Basic" />
+
+			<p:column headerText="">
+				<!-- 				<p:commandButton icon="pi pi-pencil" update="form:veiculoDiag" action="#{veiculoControl.setveiculo(veiculo)}" onclick="PF('formulario').show()" value="Editar"/> -->
+				<!-- 				<p:commandButton icon="pi pi-trash" update="form:lista" action="#{veiculoControl.excluir(veiculo.id)}" style="margin-left: 10px;" value="Excluir"/> -->
+			</p:column>
+		</p:dataTable>
+		<p:dialog header="Veiculo" widgetVar="formulario" minHeight="40"
+			showEffect="fade" closeOnEscape="true">
+			<p:panelGrid id="modeloDiag" columns="6">
+				<h:outputText value="Modelo:" />
+				<p:inputText value="#{veiculoControl.veiculo.modelo}" />
+				<h:outputText value="Ano:" />
+				<p:inputText value="#{veiculoControl.veiculo.ano}" />
+				<h:outputText value="Placa:" />
+				<p:inputText value="#{veiculoControl.veiculo.placa}" />
+				<h:outputText value="Quilometragem:" />
+				<p:inputText value="#{veiculoControl.veiculo.km}" />
+				<h:outputText value="Ano do Modelo:" />
+				<p:inputText value="#{veiculoControl.veiculo.anoModelo}" />
+				<h:outputText value="Marca:" />
+				<p:inputText value="#{veiculoControl.veiculo.modelo.marca}" />
+
+
+			</p:panelGrid>
+
+			<p:commandButton value="Salvar" action="#{modeloControl.salvar}"
+				onclick="PF('formulario').close()" />
+
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>
