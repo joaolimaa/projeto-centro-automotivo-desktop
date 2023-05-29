@@ -31,3 +31,7 @@ O Centro Automotivo possui as seguintes funcionalidades de CRUD (Create, Read, U
 2. Clone este repositório para o seu ambiente local.
 3. Abra o projeto em sua IDE preferida (recomendamos o uso do IntelliJ IDEA ou Eclipse).
 4. Compile e execute o projeto a partir do arquivo principal.
+
+## Vídeo Explicativo
+
+Aqui você pode encontrar uma prévia da interface: [clieque aqui](https://github.com/joaolimaa/projeto-centro-automotivo).
