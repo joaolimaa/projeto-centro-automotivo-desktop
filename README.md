@@ -1,16 +1,29 @@
-# projeto-centro-automotivo
+# Projeto Centro Automotivo
 
-2° Projeto Integrador realizado pelos Alunos:
-- Eduardo Lemes Ribeiro
-- João Paulo de Lima Gonçalves
+Este é o repositório do 2° Projeto Integrador realizado pelos alunos Eduardo Lemes Ribeiro e João Paulo de Lima Gonçalves. O projeto tem como tema um Centro Automotivo e foi desenvolvido em Java e Java Swing para a interface gráfica. 
 
-Projeto com tema de Centro Automotivo desenvolvido em Java e Java Swing para telas, que tem como funcionalidades os CRUDs:
-- Clientes
-- Colaboradores
-- Veículos
-- Peças
-- Serviços
-- Ordens de Serviços
-- Orçamentos
-- Notas Fiscais
-- Controle de acesso por Usuario (editável)
+## Funcionalidades
+
+O Centro Automotivo possui as seguintes funcionalidades de CRUD (Create, Read, Update, Delete):
+
+- 🧑‍🔧 Clientes: Cadastro, consulta, atualização e exclusão de clientes.
+- 🔧 Colaboradores: Cadastro, consulta, atualização e exclusão de colaboradores.
+- 🚗 Veículos: Cadastro, consulta, atualização e exclusão de veículos.
+- 🛠️ Peças: Cadastro, consulta, atualização e exclusão de peças.
+- ⚙️ Serviços: Cadastro, consulta, atualização e exclusão de serviços.
+- 📑 Ordens de Serviços: Registro, consulta, atualização e exclusão de ordens de serviços.
+- 💰 Orçamentos: Criação, consulta, atualização e exclusão de orçamentos.
+- 🧾 Notas Fiscais: Emissão, consulta e gerenciamento de notas fiscais.
+- 🔐 Controle de acesso por usuário (editável): Gerenciamento de permissões de acesso de usuários ao sistema.
+
+## Tecnologias utilizadas
+
+- Linguagem de programação: Java
+- Interface gráfica: Java Swing
+
+## Como executar o projeto
+
+1. Certifique-se de ter o Java JDK instalado em sua máquina.
+2. Clone este repositório para o seu ambiente local.
+3. Abra o projeto em sua IDE preferida (recomendamos o uso do IntelliJ IDEA ou Eclipse).
+4. Compile e execute o projeto a partir do arquivo principal.
