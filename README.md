@@ -34,4 +34,4 @@ O Centro Automotivo possui as seguintes funcionalidades de CRUD (Create, Read, U
 
 ## Vídeo Explicativo
 
-Aqui você pode encontrar uma prévia da interface: [clieque aqui](https://github.com/joaolimaa/projeto-centro-automotivo).
+Aqui você pode encontrar uma prévia da interface: [clique aqui](https://youtu.be/4p_2OIo0dYE).
